@@ -5,6 +5,11 @@ const massive = require("massive");
 const session = require("express-session");
 const uc =  require('./controllers/userController')
 
+
+//middleware
+const initSession = require('./middleware/initSession')
+const authCheck = require('./middleware/authCheck')
+
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 const app = express();
@@ -20,11 +25,16 @@ app.use(
 
 massive(CONNECTION_STRING).then(db => app.set("db", db));
 
+app.unsubscribe(initSession)
 
+//test endpoint ---may not keep
+app.get('/api/getUsers', uc.getAll)
 
 //ENDPOINTS WILL GO HERE
 app.post('/api/login', uc.login);
-app.get('/api/getUsers', uc.getAll)
+app.post('/api/signup', uc.signup)
+
+app.get('/api/user', authCheck, uc.getUser)
 
 app.listen(SERVER_PORT, () =>
   console.log(`This server... it's over ${SERVER_PORT}`)

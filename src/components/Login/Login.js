@@ -18,10 +18,16 @@ class Login extends Component {
     console.log(this.state);
   };
 
-  handleLogin = () => {};
+  handleLogin = () => {
+    this.props.login(this.state.username, this.state.password);
+  };
 
   render() {
     let { username, password } = this.state;
+    const { user } = this.props;
+    if (user.loggedIn) return <Redirect to="/" />;
+
+    console.log("props", this.props);
 
     return (
       <div>
@@ -39,6 +45,9 @@ class Login extends Component {
           placeholder="PASSWORD"
           onChange={this.handleInput}
         />
+        <button onClick={this.handleLogin}>
+            Login
+          </button>
       </div>
     );
   }
