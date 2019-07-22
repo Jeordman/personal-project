@@ -9,7 +9,15 @@ class Login extends Component {
     super();
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      image:
+        "https://images.unsplash.com/photo-1465145177017-c5b156cd4d14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+      image2:
+        "https://images.unsplash.com/photo-1500027014421-46ccc843776a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+      image3:
+        "https://images.unsplash.com/photo-1486044988991-ba1bd3194dc1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      image4:
+        "https://images.unsplash.com/photo-1505150892987-424388901632?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
     };
   }
 
@@ -34,8 +42,16 @@ class Login extends Component {
       <div>
         <article className="welcome-message">Welcome to</article>
         <article className="title">SAFE HAVEN</article>
-        <article className="page-label">Sign in</article>
 
+        <section className="image-holder1">
+          <img src={this.state.image} className="image" />
+          <img src={this.state.image2} className="image2" />
+        </section>
+        <section className='image-holder2'>
+        <img src={this.state.image3} className="image3" />
+        <img src={this.state.image4} className="image4" />
+        </section>
+        <article className="page-label">Sign in</article>
         <section className="input-holder">
           <input
             type="text"
@@ -52,13 +68,13 @@ class Login extends Component {
             className="input"
           />
         </section>
-        <article className='no-account' >Don't have an account?</article>
+        <article className="no-account">Don't have an account?</article>
         <section className="button-holder">
           <Link to={{ pathname: "/signup" }}>
-            <div className="signup">Sign Up</div>
+            <div className="signup">Sign up</div>
           </Link>
           <button onClick={this.handleLogin} className="login">
-            Login
+            Sign in -->
           </button>
         </section>
 

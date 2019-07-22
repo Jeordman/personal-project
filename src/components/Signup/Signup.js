@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { signup } from "../../ducks/userReducer";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "./signup.css";
 
 class Signup extends Component {
@@ -28,9 +28,10 @@ class Signup extends Component {
     this.props.signup(username, password, first_name, last_name, image);
   };
 
-  addDefaultSrc(ev){
-  ev.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvlhaYgj0EeSjYPBSHNY3xacbupTZ_EnCvlSWoyJB7jMa1wuhdeA'
-}
+  addDefaultSrc(ev) {
+    ev.target.src =
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvlhaYgj0EeSjYPBSHNY3xacbupTZ_EnCvlSWoyJB7jMa1wuhdeA";
+  }
 
   render() {
     let { username, password, first_name, last_name, image } = this.state;
@@ -39,8 +40,13 @@ class Signup extends Component {
 
     return (
       <section>
+        <h2>Create account</h2>
         <section className="main">
-          <img onError={this.addDefaultSrc} src={this.state.image} className="img" />
+          <img
+            onError={this.addDefaultSrc}
+            src={this.state.image}
+            className="img"
+          />
           <section className="input-holder">
             <input
               type="text"
@@ -48,7 +54,7 @@ class Signup extends Component {
               name="image"
               onChange={this.handleInput}
               placeholder="IMAGE URL"
-              className='input'
+              className="input"
             />
             <input
               type="text"
@@ -56,7 +62,7 @@ class Signup extends Component {
               name="username"
               onChange={this.handleInput}
               placeholder="USERNAME"
-              className='input'
+              className="input"
             />
             <input
               type="password"
@@ -64,7 +70,7 @@ class Signup extends Component {
               name="password"
               onChange={this.handleInput}
               placeholder="PASSWORD"
-              className='input'
+              className="input"
             />
             <input
               type="text"
@@ -72,7 +78,7 @@ class Signup extends Component {
               name="first_name"
               onChange={this.handleInput}
               placeholder="FIRST NAME"
-              className='input'
+              className="input"
             />
             <input
               type="text"
@@ -80,11 +86,16 @@ class Signup extends Component {
               name="last_name"
               onChange={this.handleInput}
               placeholder="LAST NAME"
-              className='input'
+              className="input"
             />
           </section>
         </section>
-        <button onClick={this.signup}>SIGN UP</button>
+        <section className="button-holder">
+          <Link to={{ pathname: "/login" }}>
+            <article className='login'>Sign in</article>
+          </Link>
+          <button onClick={this.signup} className='signup'>Sign up --></button>
+        </section>
       </section>
     );
   }
