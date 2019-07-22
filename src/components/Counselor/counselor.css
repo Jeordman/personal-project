@@ -1,0 +1,17 @@
+.repeat{
+    flex-direction: column;
+    text-align: center;
+    margin-top: 2vh;
+    margin-left: 9vw;
+}
+
+
+.images{
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border-style: solid;
+  display: flex;
+  border-color: gray;
+  margin-top: 2vh;
+}

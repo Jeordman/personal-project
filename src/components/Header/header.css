@@ -1,6 +1,30 @@
-.navbar{
+.header{
+    display: flex;
+    justify-content: space-between;
     height: 8vh;
     background-color: rgb(0, 0, 255);
-    border-radius: 0px 0px 10px 10px;
-    margin-bottom: 5vh;
+    color: white;
+}
+
+.menu-btn-content{
+    display: flex;
+    color: white;
+    font-size: 40px;
+}
+
+
+.nav-menu{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-left: 55vw;
+    z-index: +5;
+    background: rgb(0, 0, 255); 
+    border-radius: 0px 0px 0px 35px; 
+    opacity: .8; 
+}
+
+.nav-link{
+    color: white;
+    font-size: 30px
 }

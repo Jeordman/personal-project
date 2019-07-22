@@ -1,0 +1,19 @@
+.user-pic {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border-style: solid;
+  display: flex;
+  margin-left: 39vw;
+  border-color: gray;
+  margin-top: 4vh;
+}
+
+.scroll-right {
+  height: 30vh;
+  width: 100vw;
+  margin-top: 5vh;
+  background-color: rgb(242, 242, 250);
+  display: flex;
+  overflow: scroll;
+}

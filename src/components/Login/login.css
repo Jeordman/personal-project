@@ -1,6 +1,6 @@
 .welcome-message{
     text-align: center;
-    margin: .5vh 0vh .5vh 0vh;
+    margin: 5vh 0vh .5vh 0vh;
 }
 
 .title{
@@ -8,6 +8,8 @@
     margin: .5vh 0vh 5vh 0vh;
     font-size: 30px;
     letter-spacing: 5px;
+    border-bottom: 2px solid;
+    border-radius: 10vh;
 }
 
 .page-label{

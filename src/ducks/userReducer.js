@@ -28,6 +28,13 @@ export const signup = (username, password, first_name, last_name, photo) => {
   };
 };
 
+export const logout = () => {
+  return {
+    type: LOGOUT,
+    payload: axios.delete("/api/logout")
+  };
+};
+
 export const getUser = () => {
   let data = axios.get("/api/user").then(res => res.data);
   return {
@@ -66,6 +73,8 @@ export default function(state = initialState, action) {
       return { ...state, user: payload, error: false };
     case GET_USER + "_REJECTED":
       return { ...state, redirect: true, error: payload };
+    case LOGOUT + '_FULFILLED':
+      return { ...state, user: {}, redirect: true, error: false}
     default:
       return state;
   }

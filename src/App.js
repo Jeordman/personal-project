@@ -8,7 +8,6 @@ function App() {
   return (
     <div>
       <HashRouter>
-        <Header />
         {routes}
       </HashRouter>
     </div>
