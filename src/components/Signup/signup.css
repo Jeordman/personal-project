@@ -1,0 +1,30 @@
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+.img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border-style: solid;
+    display: flex;
+    margin-left: 39vw;
+}
+
+.input-holder{
+    width: 85vw;
+    margin: 0 auto;
+    margin-top: 2vh;
+}
+
+.input{
+    height: 5vh;
+    margin: 1vh 0vh 1vh 0vh;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: gray;
+    
+    /* border: solid; */
+}
+

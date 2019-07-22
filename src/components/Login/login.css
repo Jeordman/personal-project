@@ -1,0 +1,80 @@
+.welcome-message{
+    text-align: center;
+    margin: .5vh 0vh .5vh 0vh;
+}
+
+.title{
+    text-align: center;
+    margin: .5vh 0vh .5vh 0vh;
+    font-size: 30px;
+    letter-spacing: 5px;
+}
+
+.page-label{
+    text-align: center;
+    margin: 10vh 0vh .5vh 0vh;
+    font-size: 25px;
+}
+
+.input-holder{
+    width: 85vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.input{
+    height: 5vh;
+    margin: 1vh 0vh 1vh 0vh;
+}
+
+.input:hover{
+    cursor: pointer;
+}
+
+.no-account{
+    margin-left: 2vw;
+    font-size: 15px;
+}
+
+.button-holder{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;
+    margin: 0vh 0vh 1vh 0vh;
+}
+
+.signup{
+    text-decoration: none;
+    color: rgb(0, 0, 255);
+    margin-top: .5vh;
+}
+
+.signup:hover{
+    cursor: pointer;
+}
+
+.login{
+    background-color: rgb(0, 0, 255);
+    color: white;
+    justify-content: flex-end;
+    font-size: 20px;
+    border: none;
+    padding: .6vh 6vw;
+    border-radius: 12px;
+}
+.login:hover{
+    cursor: pointer;
+}
+
+.emergency-info{
+    margin-top: 35vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+.author{
+    margin-top: 1vh;
+    text-align: center;
+}

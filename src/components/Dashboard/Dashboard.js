@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getUser } from '../ducks/userReducer'
+import { getUser } from '../../ducks/userReducer'
 
 class Dashboard extends Component {
     constructor(){
