@@ -5,11 +5,14 @@ module.exports = {
   async login(req, res) {
     const { username, password } = req.body;
     const [existingUser] = await req.app.get("db").get_user_username(username);
+    // console.log(existingUser)
     if (!existingUser) return res.status(401).send("USER NOT FOUND");
     const result = await bcrypt.compare(password, existingUser.password);
     if (result) {
       req.session.user = {
         username: existingUser.username,
+        first_name: existingUser.first_name, 
+        photo: existingUser.photo,
         id: existingUser.id,
         loggedIn: true
       };
@@ -24,13 +27,18 @@ module.exports = {
     let salt = await bcrypt.genSalt(saltRounds)
     let hash = await bcrypt.hash(password, salt)
     let [user] = await req.app.get('db').create_user([username, hash, first_name, last_name, photo])
-    req.session.user = { username: user.username, id: user.id, loggedIn: true}
+    req.session.user = { username: user.username, first_name, photo, id: user.id, loggedIn: true}
     res.send(req.session.user)
   },
 
   getUser(req, res) {
     console.log(req.session)
     res.send(req.session.user)
+  },
+
+  logout(req, res){
+    req.session.destroy();
+    res.sendStatus(200)
   },
 
   async getAll(req, res) {

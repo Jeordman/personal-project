@@ -1,0 +1,15 @@
+.holder {
+  flex-direction: column;
+  text-align: center;
+}
+
+.profile-pic {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border-style: solid;
+    display: flex;
+    margin-left: 39vw;
+    border-color: gray;
+    margin-top: 2vh;
+}

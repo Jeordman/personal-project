@@ -9,7 +9,7 @@ export default (
     <Switch>
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
-        <Route path='/myCounselor' component={MyCounselor} />
+        <Route path='/myCounselor/:id' component={MyCounselor} />
         <Route exact path='/' component={Dashboard} />
     </Switch>
 )

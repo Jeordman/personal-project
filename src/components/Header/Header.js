@@ -29,7 +29,7 @@ class Header extends Component {
           <div
             className="nav-menu"
           >
-            <button className="nav-link"> counselors </button>
+            <button className="nav-link"> Dashboard </button>
          
             <button className="nav-link" onClick={this.props.logout}>
               {" "}

@@ -18,10 +18,9 @@ class Counselor extends Component {
         <article>{first_name}</article>
         <article>{last_name}</article>
         <img src={photo} className="images" />
-
-        <Link to='/myCounselor' className='link-to'>
+        <Link to={`/myCounselor/${this.props.obj.counselor_id}`} className='link-to'>
         <button className='link-button'>
-          <i class="fa fa-external-link" />
+          <i className="fa fa-external-link fa-sp" />
         </button>
         </Link>
 

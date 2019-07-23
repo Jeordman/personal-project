@@ -30,7 +30,7 @@ class Dashboard extends Component {
     // console.log('propsss', this.props.getCounselors())
     // const counselors = this.props.getCounselors();
     // console.log("count", counselors);
-    // console.log(this.props);
+    console.log('oriii',this.props);
     // console.log(user, error, redirect);
 
     if (error || redirect) return <Redirect to="/login" />;
