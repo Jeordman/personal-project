@@ -18,7 +18,7 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_COUNSELORS + "_FULFILLED":
-      console.log('my payload',payload)
+
       return { counselors: payload, error: false };
     case GET_COUNSELORS + "_REJECTED":
       return { ...state, error: payload };

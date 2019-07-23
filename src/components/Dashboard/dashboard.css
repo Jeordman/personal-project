@@ -12,8 +12,13 @@
 .scroll-right {
   height: 30vh;
   width: 100vw;
-  margin-top: 5vh;
   background-color: rgb(242, 242, 250);
   display: flex;
   overflow: scroll;
+}
+
+.h4{
+  margin-top: 5vh;
+  text-align: center;
+  margin-bottom: 0px;
 }

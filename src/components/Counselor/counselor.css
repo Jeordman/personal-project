@@ -1,12 +1,11 @@
-.repeat{
-    flex-direction: column;
-    text-align: center;
-    margin-top: 2vh;
-    margin-left: 9vw;
+.repeat {
+  flex-direction: column;
+  text-align: center;
+  margin-top: 2vh;
+  margin-left: 9vw;
 }
 
-
-.images{
+.images {
   width: 130px;
   height: 130px;
   border-radius: 50%;
@@ -14,4 +13,18 @@
   display: flex;
   border-color: gray;
   margin-top: 2vh;
+}
+
+.link-to{
+  text-decoration: none;
+}
+
+.link-button {
+  margin-left:13vw;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
 }

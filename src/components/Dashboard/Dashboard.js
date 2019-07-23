@@ -40,7 +40,7 @@ class Dashboard extends Component {
         <Header />
         <img src={user.photo} className="user-pic" />
         <h2>Welcome {user.first_name}</h2>
-
+        <h4 className='h4'>Counselors</h4>
         <section className="scroll-right"> 
         {this.props.counselors.map(obj => {
           return (<div>
