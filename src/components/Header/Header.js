@@ -16,7 +16,9 @@ class Header extends Component {
       this.setState({showMenu: !this.state.showMenu})
   }
 
+ 
   render() {
+    
     return (
       <div>
         <div className="header">
@@ -34,7 +36,6 @@ class Header extends Component {
             </Link>
 
             <button className="nav-link" onClick={this.props.logout}>
-              {" "}
               logout
             </button>
           </div>
