@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import "./counselor.css";
 
 class Counselor extends Component {
@@ -12,20 +12,46 @@ class Counselor extends Component {
   render() {
     console.log(this.props.obj);
     const { first_name, last_name, photo } = this.props.obj;
-    console.log(first_name);
-    return (
-      <section className="repeat">
-        <article>{first_name}</article>
-        <article>{last_name}</article>
-        <img src={photo} className="images" />
-        <Link to={`/myCounselor/${this.props.obj.counselor_id}`} className='link-to'>
-        <button className='link-button'>
-          <i className="fa fa-external-link fa-sp" />
-        </button>
-        </Link>
+    console.log(first_name, last_name, photo);
 
-      </section>
-    );
+
+    if (this.props.obj.counselor_id) {
+      return (
+        <section className="repeat">
+          <article>{first_name}</article>
+          <article>{last_name}</article>
+          <img src={photo} className="images" />
+
+          <Link
+            to={`/myCounselor/${this.props.obj.counselor_id}`}
+            className="link-to"
+          >
+            <button className="link-button">
+              <i className="fa fa-external-link fa-sp" />
+            </button>
+          </Link>
+        </section>
+      );
+    }
+
+    if(this.props.obj.user_id){
+      return (
+        <section className="repeat">
+          <article>{first_name}</article>
+          <article>{last_name}</article>
+          <img src={photo} className="images" />
+
+          <Link
+            to={`/myCounselor/${this.props.obj.user_id}`}
+            className="link-to"
+          >
+            <button className="link-button">
+              <i className="fa fa-external-link fa-sp" />
+            </button>
+          </Link>
+        </section>
+      );
+    }
   }
 }
 

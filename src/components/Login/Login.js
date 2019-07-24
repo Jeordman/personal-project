@@ -80,9 +80,9 @@ class Login extends Component {
 
         <footer>
           <section className="emergency-info">
-            <article>Emergency?</article>
-            <Link to={{ pathname: "/emergency" }}>
-              <div className="emergency">HERE</div>
+            <article>Are you a counselor?</article>
+            <Link to={{ pathname: "/counselorLogin" }}>
+              <div className="emergency">Login Here</div>
             </Link>
           </section>
 

@@ -29,8 +29,10 @@ class Header extends Component {
           <div
             className="nav-menu"
           >
+            <Link to={{ pathname: '/' }}>
             <button className="nav-link"> Dashboard </button>
-         
+            </Link>
+
             <button className="nav-link" onClick={this.props.logout}>
               {" "}
               logout
