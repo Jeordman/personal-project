@@ -23,23 +23,32 @@ class Dashboard extends Component {
     }
     this.props.getCounselors()
     this.props.getUsers()
+    
   }
 
 
   render() {
-    let { user, error, redirect } = this.props.user;
+    let { user, error, redirect} = this.props.user;
+    let { checker }= this.props
+    
+    if (checker){
+      let something = checker.counselor
+      console.log(something)
+    }
+   
+   
     // console.log('propsss', this.props.getCounselors())
     // const counselors = this.props.getCounselors();
     // console.log("count", counselors);
-    console.log('oriii',this.props.user);
-    console.log('this is user', user.counselor)
+    
     // console.log(user, error, redirect);
 
     
     if (error || redirect) return <Redirect to="/login" />;
     if (!user.loggedIn) return <div>LOADING</div>;
+    console.log('ee', user)
 
-    if(!user.counselor) {
+    if(!user.counselor || !checker) {
     return (
       <div>
         <Header />
@@ -57,7 +66,7 @@ class Dashboard extends Component {
     );
       }
 
-    if(user.counselor) {
+    if(user.counselor || checker) {
       return (
         <div>
         < Header />
@@ -77,8 +86,8 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps(state) { console.log('this is state', state.user.users)
-  return { user: state.user, counselors: state.counselors.counselors, users: state.user.users }
+function mapStateToProps(state) { console.log('this is state', state) //state.counselors.counselors.counselor_id
+  return { user: state.user, counselors: state.counselors.counselors, users: state.user.users, checker: state.counselors.counselors[0] }
 }
 
 export default connect(

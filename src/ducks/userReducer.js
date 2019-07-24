@@ -5,7 +5,7 @@ const initialState = {
   users: [],
   user: {},
   redirect: false,
-  error: false
+  error: false,
 };
 
 //functions to login/signout/etc

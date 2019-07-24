@@ -44,7 +44,8 @@ module.exports = {
       first_name,
       photo,
       id: counselor.id,
-      loggedIn: true
+      loggedIn: true,
+      counselor: true
     };
     res.send(req.session.user);
   }

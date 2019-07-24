@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-
+import { connect } from 'react-redux'
+import { signupCounselor } from '../../ducks/counselorsReducer'
 
 class CounselorSignup extends Component {
     constructor() {
@@ -23,7 +24,9 @@ class CounselorSignup extends Component {
   
     signup = () => {
       let { username, password, first_name, last_name, image } = this.state;
-      this.props.signup(username, password, first_name, last_name, image);
+      console.log('STAAAIT', this.state)
+      console.log('COUUUUN', this.props.signupCounselor)
+      this.props.signupCounselor(username, password, first_name, last_name, image);
     };
   
     addDefaultSrc(ev) {
@@ -34,8 +37,8 @@ class CounselorSignup extends Component {
     render() {
       let { username, password, first_name, last_name, image } = this.state;
       let { user } = this.props;
-     
-  
+
+     if (user.loggedIn) return <Redirect to="/" />;
       return (
         <section>
           <h2>Create account</h2>
@@ -100,7 +103,9 @@ class CounselorSignup extends Component {
   }
   
   //need to map state to props!!
-  
+  function mapStateToProps(state){ console.log(state)
+    return state.user
+  }
   //add connect string
-  export default CounselorSignup
+  export default connect( mapStateToProps, { signupCounselor } )(CounselorSignup)
   
