@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_COUNSELORS, LOGIN, SIGNUP } from "./actionTypes";
+import { GET_COUNSELORS, LOGIN_COUNSELOR, SIGNUP, LOGOUT_COUNSELOR } from "./actionTypes";
 
 const initialState = {
   counselors: [],
@@ -22,7 +22,7 @@ export const loginCounselor = (username, password) => {
     .post("/api/loginCounselor", { username, password })
     .then(res => res.data);
   return {
-    type: LOGIN,
+    type: LOGIN_COUNSELOR,
     payload: userInfo
   };
 };
@@ -32,8 +32,7 @@ export const signupCounselor = (
   password,
   first_name,
   last_name,
-  photo, 
-  truth
+  photo
 ) => {
   let res = axios
     .post("/api/signupCounselor", {
@@ -50,26 +49,36 @@ export const signupCounselor = (
   };
 };
 
+export const logoutCounselor = () => { console.log('hit')
+  return {
+    type: LOGOUT_COUNSELOR,
+    payload: axios.delete('/api/logoutCounselor')
+  }
+}
+
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_COUNSELORS + "_FULFILLED":
-      return { counselors: payload, error: false };
+      return { ...state, counselors: payload, error: false };
     case GET_COUNSELORS + "_REJECTED":
       return { ...state, error: payload };
-    case LOGIN + "_FULFILLED":
+    case LOGIN_COUNSELOR + "_FULFILLED":
       return {
         ...state,
         user: payload,
         redirect: false,
-        error: false
+        error: false,
+        counselor: true
       };
-    case LOGIN + "_REJECTED":
-      return { ...state, error: payload };
+    case LOGIN_COUNSELOR + "_REJECTED":
+      return { ...state, error: payload, counselor: true };
     case SIGNUP + "_FULFILLED":
       return { ...state, redirect: false, user: payload, error: false };
     case SIGNUP + '_REJECTED':
         return { ...state, error: payload}
+    case LOGOUT_COUNSELOR + '_FULFILLED':
+        return { ...state, redirect: false, error: false, counselor: false, user: {} }
     default:
       return state;
   }

@@ -10,10 +10,7 @@ class Counselor extends Component {
   }
 
   render() {
-    console.log(this.props.obj);
     const { first_name, last_name, photo } = this.props.obj;
-    console.log(first_name, last_name, photo);
-
 
     if (this.props.obj.counselor_id) {
       return (

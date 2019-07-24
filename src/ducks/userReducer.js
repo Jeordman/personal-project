@@ -83,7 +83,7 @@ export default function(state = initialState, action) {
     case GET_USER + "_REJECTED":
       return { ...state, redirect: true, error: payload };
     case LOGOUT + "_FULFILLED":
-      return { ...state, user: {}, redirect: true, error: false };
+      return { ...state, user: {}, redirect: false, error: false };
     case GET_USERS + "_FULFILLED":
       return { ...state, users: payload, error: false };
     case GET_USERS + "_REJECTED":

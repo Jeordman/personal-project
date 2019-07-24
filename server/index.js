@@ -39,6 +39,8 @@ app.delete("/api/logout", uc.logout);
 
 app.post("/api/loginCounselor", cc.loginCounselor);
 app.post('/api/signupCounselor', cc.signupCounselor)
+app.put('/api/editCounselor/:counselor_id', cc.editCounselor)
+app.delete('/api/logoutCounselor', cc.logoutCounselor);
 
 app.listen(SERVER_PORT, () =>
   console.log(`This server... it's over ${SERVER_PORT}`)

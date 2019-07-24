@@ -19,10 +19,12 @@ module.exports = {
       req.session.user = {
         username: existingCounselor.username,
         first_name: existingCounselor.first_name,
+        last_name: existingCounselor.last_name,
         photo: existingCounselor.photo,
         id: existingCounselor.id,
         counselor: true,
-        loggedIn: true
+        loggedIn: true,
+        info: existingCounselor.info
       };
       res.send(req.session.user);
     } else res.status(401).send("User or Password incorrect");
@@ -48,5 +50,25 @@ module.exports = {
       counselor: true
     };
     res.send(req.session.user);
+  },
+
+  async editCounselor(req, res) {
+    let { counselor_id } = req.params;
+    console.log('idddd', counselor_id)
+    let { new_first_name, new_last_name, new_info} = req.body;
+    const db = req.app.get('db')
+    let counselorInfo = await db.edit_counselor_info([
+      +counselor_id, 
+      new_first_name,
+      new_last_name,
+      new_info,
+    ]);
+    res.send(counselorInfo)
+  },
+
+  logoutCounselor(req, res){
+    req.session.destroy();
+    res.sendStatus(200)
   }
+
 };

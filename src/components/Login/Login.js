@@ -24,7 +24,6 @@ class Login extends Component {
   handleInput = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   };
 
   handleLogin = () => {
@@ -36,7 +35,6 @@ class Login extends Component {
     const { user } = this.props;
     if (user.loggedIn) return <Redirect to="/" />;
 
-    console.log("props", this.props);
 
     return (
       <div>

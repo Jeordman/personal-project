@@ -16,7 +16,6 @@ class CounselorLogin extends Component {
   handleInput = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   };
 
   handleLogin = () => {
@@ -24,10 +23,11 @@ class CounselorLogin extends Component {
   };
 
   render() {
-    console.log(this.state)
-    console.log(this.props)
+    // console.log(this.state)
+    console.log('cLogin props', this.props)
 
     const { user } = this.props;
+    console.log('user in CLogin', user)
     if (user.loggedIn) return <Redirect to="/" />;
     return (
       <div>
@@ -65,7 +65,7 @@ class CounselorLogin extends Component {
 }
 
 function mapStateToProps(state) {
-  return state.user;
+  return state.counselors;
 }
 
 export default connect(
