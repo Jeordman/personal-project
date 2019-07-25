@@ -6,7 +6,6 @@ import { getCounselors, editCounselor } from "../../ducks/counselorsReducer";
 import Header from "../Header/Header";
 import Counselor from "../Counselor/Counselor";
 import "./dashboard.css";
-import { thisTypeAnnotation } from "@babel/types";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -75,7 +74,7 @@ class Dashboard extends Component {
       return (
         <div>
           <Header />
-          <img src={this.state.user_photo} className="user-pic" />
+          <img onError={this.addDefaultSrc} src={this.state.user_photo} className="user-pic" />
           <h2>Welcome {`${this.state.user_first_name} ${this.state.user_last_name}`}</h2>
 
           {editing ? (
@@ -134,8 +133,7 @@ class Dashboard extends Component {
       );
     }
 
-    //------------------------------- if counselor
-//--------------------------------------------------------------
+//--------------------------------------------------------------//------------------------------- if counselor
     if (this.props.counselor.loggedIn) {
       let { counselor: counselorUser } = this.props
       let { counselorError, counselorRedirect } = this.props

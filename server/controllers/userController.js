@@ -28,7 +28,7 @@ module.exports = {
     let salt = await bcrypt.genSalt(saltRounds)
     let hash = await bcrypt.hash(password, salt)
     let [user] = await req.app.get('db').create_user([username, hash, first_name, last_name, photo])
-    req.session.user = { username: user.username, first_name, photo, id: user.id, loggedIn: true}
+    req.session.user = { username: user.username, first_name, last_name, photo, id: user.id, loggedIn: true}
     res.send(req.session.user)
   },
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import {
   GET_COUNSELORS,
   LOGIN_COUNSELOR,
-  SIGNUP,
+  SIGNUP_COUNSELOR,
   LOGOUT_COUNSELOR,
   EDIT_COUNSELOR
 } from "./actionTypes";
@@ -50,7 +50,7 @@ export const signupCounselor = (
     })
     .then(res => res.data);
   return {
-    type: SIGNUP,
+    type: SIGNUP_COUNSELOR,
     payload: res
   };
 };
@@ -100,9 +100,9 @@ export default function(state = initialState, action) {
       };
     case LOGIN_COUNSELOR + "_REJECTED":
       return { ...state, error: payload, counselor: true };
-    case SIGNUP + "_FULFILLED":
-      return { ...state, redirect: false, user: payload, error: false };
-    case SIGNUP + "_REJECTED":
+    case SIGNUP_COUNSELOR + "_FULFILLED":
+      return { ...state, redirect: false, user: payload, error: false, counselor: true };
+    case SIGNUP_COUNSELOR + "_REJECTED":
       return { ...state, error: payload };
     case LOGOUT_COUNSELOR + "_FULFILLED":
       return {

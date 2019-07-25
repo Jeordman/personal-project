@@ -42,6 +42,7 @@ module.exports = {
     req.session.user = {
       username: counselor.username,
       first_name,
+      last_name,
       photo,
       id: counselor.id,
       loggedIn: true,

@@ -20,7 +20,6 @@ class Signup extends Component {
   handleInput = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   };
 
   signup = () => {

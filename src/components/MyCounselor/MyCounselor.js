@@ -13,6 +13,11 @@ class MyCounselor extends Component {
     this.props.getUsers();
   }
 
+  addDefaultSrc(ev) {
+    ev.target.src =
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvlhaYgj0EeSjYPBSHNY3xacbupTZ_EnCvlSWoyJB7jMa1wuhdeA";
+  }
+
   render() {
     let { user, error, redirect} = this.props.user;
     let counselorId = this.props.match.params.id;
@@ -40,7 +45,7 @@ class MyCounselor extends Component {
           <Header />
           <h1 className="holder">
             {`${first_name} ${last_name}`}
-            <img src={photo} className="profile-pic" />
+            <img onError={this.addDefaultSrc} src={photo} className="profile-pic" />
           </h1>
           <h2>BIO</h2>
           <div className='holder'>
@@ -58,7 +63,7 @@ class MyCounselor extends Component {
           <Header />
           <h1 className="hold">
             {`${first_name} ${last_name}`}
-            <img src={photo} className="profile-pic" />
+            <img onError={this.addDefaultSrc} src={photo} className="profile-pic" />
           </h1>
           <h2>BIO</h2>
           <div className='holder'>

@@ -33,11 +33,13 @@ class CounselorSignup extends Component {
   
     render() {
       let { username, password, first_name, last_name, image } = this.state;
-      let { user } = this.props;
+      let { loggedIn } = this.props.counselor;
+      console.log('props', this.props)
+      console.log('loggedIn', loggedIn)
 
-     if (user.loggedIn) return <Redirect to="/" />;
+     if (loggedIn) return <Redirect to="/" />;
       return (
-        <section>
+        <section> COUNSELOR
           <h2>Create account</h2>
           <section className="main">
             <img
@@ -100,8 +102,8 @@ class CounselorSignup extends Component {
   }
   
   //need to map state to props!!
-  function mapStateToProps(state){ 
-    return state.user
+  function mapStateToProps(state){ console.log('state', state)
+    return {counselor: state.counselors.user}
   }
   //add connect string
   export default connect( mapStateToProps, { signupCounselor } )(CounselorSignup)

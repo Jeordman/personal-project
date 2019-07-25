@@ -9,15 +9,19 @@ class Counselor extends Component {
     this.state = {};
   }
 
+  addDefaultSrc(ev) {
+    ev.target.src =
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvlhaYgj0EeSjYPBSHNY3xacbupTZ_EnCvlSWoyJB7jMa1wuhdeA";
+  }
+
   render() {
     const { first_name, last_name, photo } = this.props.obj;
-
     if (this.props.obj.counselor_id) {
       return (
         <section className="repeat">
           <article>{first_name}</article>
           <article>{last_name}</article>
-          <img src={photo} className="images" />
+          <img onError={this.addDefaultSrc} src={photo} className="images" />
 
           <Link
             to={`/myCounselor/${this.props.obj.counselor_id}`}
@@ -36,7 +40,7 @@ class Counselor extends Component {
         <section className="repeat">
           <article>{first_name}</article>
           <article>{last_name}</article>
-          <img src={photo} className="images" />
+          <img onError={this.addDefaultSrc} src={photo} className="images" />
 
           <Link
             to={`/myCounselor/${this.props.obj.user_id}`}
