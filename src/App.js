@@ -3,14 +3,20 @@ import "./App.css";
 import { HashRouter } from "react-router-dom";
 import routes from "./routes";
 import Header from "./components/Header/Header";
+import { Provider } from 'react-redux'
+
+import { PersistGate } from "redux-persist/integration/react";
+
+import {store} from "./ducks/store";
+import {persistor} from "./ducks/store";
 
 function App() {
   return (
-    <div>
-      <HashRouter>
-        {routes}
-      </HashRouter>
-    </div>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <HashRouter>{routes}</HashRouter>
+        </PersistGate>
+      </Provider>
   );
 }
 

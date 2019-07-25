@@ -13,3 +13,14 @@
     border-color: gray;
     margin-top: 2vh;
 }
+
+.holder{
+  display: flex;
+  width: 70vw;
+  height: 30vh;
+}
+
+.loading-spin{
+  width: 10vw;
+  height: 10vh;
+}

@@ -5,15 +5,16 @@ module.exports = {
   async login(req, res) {
     const { username, password } = req.body;
     const [existingUser] = await req.app.get("db").get_user_username(username);
-    // console.log(existingUser)
     if (!existingUser) return res.status(401).send("USER NOT FOUND");
     const result = await bcrypt.compare(password, existingUser.password);
     if (result) {
       req.session.user = {
         username: existingUser.username,
         first_name: existingUser.first_name, 
+        last_name: existingUser.last_name,
         photo: existingUser.photo,
-        id: existingUser.id,
+        id: existingUser.user_id,
+        info: existingUser.info,
         loggedIn: true
       };
       res.send(req.session.user);
@@ -32,7 +33,6 @@ module.exports = {
   },
 
   getUser(req, res) {
-    console.log(req.session)
     res.send(req.session.user)
   },
 
@@ -46,6 +46,20 @@ module.exports = {
     const db = req.app.get("db");
     let existingUser = await db.get_all();
     return res.status(200).send(existingUser);
+  },
+
+  async editUser(req, res) {
+    let { user_id } = req.params;
+    let { new_first_name, new_last_name, new_photo, new_info } = req.body;
+    const db = req.app.get('db')
+    let userInfo = await db.edit_user_info([
+      +user_id,
+      new_first_name,
+      new_last_name,
+      new_photo,
+      new_info
+    ])
+    res.send(userInfo)
   }
 
   //more functions

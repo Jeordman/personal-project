@@ -1,11 +1,11 @@
 import axios from "axios";
-import { LOGIN, LOGOUT, SIGNUP, GET_USER, GET_USERS } from "./actionTypes";
+import { LOGIN, LOGOUT, SIGNUP, GET_USER, GET_USERS, EDIT_USER} from "./actionTypes";
 
 const initialState = {
   users: [],
   user: {},
   redirect: false,
-  error: false,
+  error: false
 };
 
 //functions to login/signout/etc
@@ -52,6 +52,26 @@ export function getUsers() {
   };
 }
 
+export const editUser = (
+  user_id,
+  new_first_name,
+  new_last_name,
+  new_photo,
+  new_info
+) => {
+  let data = axios.put(`/api/editUser/${user_id}`, {
+    new_first_name,
+    new_last_name,
+    new_photo,
+    new_info
+  })
+  .then(res => res.data);
+  return {
+    type: EDIT_USER,
+    payload: data
+  }
+};
+
 //export function
 export default function(state = initialState, action) {
   const { type, payload } = action;
@@ -83,11 +103,19 @@ export default function(state = initialState, action) {
     case GET_USER + "_REJECTED":
       return { ...state, redirect: true, error: payload };
     case LOGOUT + "_FULFILLED":
-      return { ...state, user: {}, redirect: false, error: false };
+      return { users: [], user: {}, redirect: false, error: false };
     case GET_USERS + "_FULFILLED":
       return { ...state, users: payload, error: false };
     case GET_USERS + "_REJECTED":
       return { ...state, error: payload };
+    case EDIT_USER + '_FULFILLED':
+      return {
+        ...state,
+        redirect: false,
+        error: false,
+        counselor: true,
+        user: {payload, loggedIn: true}
+      }
     default:
       return state;
   }

@@ -5,14 +5,15 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./ducks/store";
+import persistor from './ducks/store'
 import { HashRouter as Router } from "react-router-dom";
 
+
+
+//
+
 ReactDOM.render(
-  <Router>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </Router>,
+      <App />,
   document.getElementById("root")
 );
 

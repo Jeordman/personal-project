@@ -1,5 +1,11 @@
 import axios from "axios";
-import { GET_COUNSELORS, LOGIN_COUNSELOR, SIGNUP, LOGOUT_COUNSELOR, EDIT_COUNSELOR } from "./actionTypes";
+import {
+  GET_COUNSELORS,
+  LOGIN_COUNSELOR,
+  SIGNUP,
+  LOGOUT_COUNSELOR,
+  EDIT_COUNSELOR
+} from "./actionTypes";
 
 const initialState = {
   counselors: [],
@@ -49,20 +55,33 @@ export const signupCounselor = (
   };
 };
 
-export const logoutCounselor = () => { 
+export const logoutCounselor = () => {
   return {
     type: LOGOUT_COUNSELOR,
-    payload: axios.delete('/api/logoutCounselor')
-  }
-}
+    payload: axios.delete("/api/logoutCounselor")
+  };
+};
 
-export const editCounselor = ( counselor_id, new_first_name, new_last_name, new_photo, new_info ) =>{ 
- let data = axios.put(`/api/editCounselor/${counselor_id}`, { new_first_name, new_last_name, new_photo, new_info }).then(res => res.data)
- return { 
-   type: EDIT_COUNSELOR,
-   payload: data
- }
-}
+export const editCounselor = (
+  counselor_id,
+  new_first_name,
+  new_last_name,
+  new_photo,
+  new_info
+) => {
+  let data = axios
+    .put(`/api/editCounselor/${counselor_id}`, {
+      new_first_name,
+      new_last_name,
+      new_photo,
+      new_info
+    })
+    .then(res => res.data);
+  return {
+    type: EDIT_COUNSELOR,
+    payload: data
+  };
+};
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
@@ -83,12 +102,24 @@ export default function(state = initialState, action) {
       return { ...state, error: payload, counselor: true };
     case SIGNUP + "_FULFILLED":
       return { ...state, redirect: false, user: payload, error: false };
-    case SIGNUP + '_REJECTED':
-        return { ...state, error: payload}
-    case LOGOUT_COUNSELOR + '_FULFILLED':
-        return { ...state, redirect: false, error: false, counselor: false, user: {} }
-    case EDIT_COUNSELOR + '_FULFILLED':
-        return { ...state, redirect: false, error: false, counselor: true, user: payload}
+    case SIGNUP + "_REJECTED":
+      return { ...state, error: payload };
+    case LOGOUT_COUNSELOR + "_FULFILLED":
+      return {
+        user: {},
+        redirect: false,
+        error: false,
+        counselor: false,
+        counselors: []
+      };
+    case EDIT_COUNSELOR + "_FULFILLED":
+      return {
+        ...state,
+        redirect: false,
+        error: false,
+        counselor: true,
+        user: {payload, loggedIn: true}
+      };
     default:
       return state;
   }

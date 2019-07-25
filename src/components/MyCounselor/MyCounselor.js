@@ -27,6 +27,11 @@ class MyCounselor extends Component {
     const thatUser = thisUser[0]
     if (error || redirect) return <Redirect to="/login" />;
 
+    if(!thatCounselor && !thatUser){
+      if(this.props.user.user) return <Redirect to="/login" />
+      if(this.props.counselor) return <Redirect to="/login" />
+    }
+    // if(this.props.user.user.loggedIn || this.props.counselor.loggedIn) return <Redirect to="/login" />
 
     if (thatUser) {
       const { first_name, last_name, photo } = thatUser;
@@ -37,23 +42,31 @@ class MyCounselor extends Component {
             {`${first_name} ${last_name}`}
             <img src={photo} className="profile-pic" />
           </h1>
+          <h2>BIO</h2>
+          <div className='holder'>
+          <h3 className='bio'>{thatUser.info}</h3>
+          </div>
         </div>
       );
     } 
 
     if (thatCounselor) {
       const { first_name, last_name, photo } = thatCounselor;
-
+      console.log('ey', thatCounselor.info)
       return (
         <div>
           <Header />
-          <h1 className="holder">
+          <h1 className="hold">
             {`${first_name} ${last_name}`}
             <img src={photo} className="profile-pic" />
           </h1>
+          <h2>BIO</h2>
+          <div className='holder'>
+          <h3 className='bio'>{thatCounselor.info}</h3>
+          </div>
         </div>
       );
-    }  else return <h1>loading</h1>
+    }  else return <div className='loading-spin'><i className="fa fa-bars fa-spin" /></div>
     
   }
 }

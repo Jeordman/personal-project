@@ -19,7 +19,7 @@ module.exports = {
         first_name: existingCounselor.first_name,
         last_name: existingCounselor.last_name,
         photo: existingCounselor.photo,
-        id: existingCounselor.id,
+        id: existingCounselor.counselor_id,
         counselor: true,
         loggedIn: true,
         info: existingCounselor.info
@@ -53,7 +53,6 @@ module.exports = {
   async editCounselor(req, res) {
     let { counselor_id } = req.params;
     let { new_first_name, new_last_name, new_photo, new_info} = req.body;
-    // console.log(new_first_name, new_last_name, new_photo, new_info)
     const db = req.app.get('db')
     let counselorInfo = await db.edit_counselor_info([
       +counselor_id, 

@@ -35,6 +35,7 @@ app.get("/api/getCounselors", cc.getAll);
 app.post("/api/login", uc.login);
 app.post("/api/signup", uc.signup);
 app.get("/api/user", authCheck, uc.getUser);
+app.put('/api/editUser/:user_id', uc.editUser)
 app.delete("/api/logout", uc.logout);
 
 app.post("/api/loginCounselor", cc.loginCounselor);

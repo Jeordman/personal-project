@@ -4,7 +4,6 @@ import { logout } from "../../ducks/userReducer";
 import { logoutCounselor } from "../../ducks/counselorsReducer";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import "./header.css";
-import { async } from "q";
 
 class Header extends Component {
   constructor() {
@@ -18,14 +17,9 @@ class Header extends Component {
     this.setState({ showMenu: !this.state.showMenu });
   };
 
-  handleCounselorLogout = async () => {
-   await this.props.logoutCounselor()
-    this.props.history.push('/login')
-    // return <Redirect to="/login"/>
-  }
-
-  handleUserLogout = async () => {
+  handleLogout = async () => {
     await this.props.logout()
+    await this.props.logoutCounselor()
     this.props.history.push('/login')
   }
 
@@ -47,7 +41,7 @@ class Header extends Component {
                 <button className="nav-link"> Dashboard </button>
               </Link>
   
-              <button style={{ zIndex: 6 }} className="nav-link" onClick={this.handleUserLogout}>
+              <button style={{ zIndex: 6 }} className="nav-link" onClick={this.handleLogout}>
                 logout user
               </button>
             </div>
@@ -72,7 +66,7 @@ class Header extends Component {
               <button className="nav-link"> Dashboard </button>
             </Link>
 
-            <button style={{ zIndex: 6}} className="nav-link" onClick={this.handleCounselorLogout}>
+            <button style={{ zIndex: 6}} className="nav-link" onClick={this.handleLogout}>
               logout counselor
             </button>
           </div>
