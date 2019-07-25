@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { getUser } from "../../ducks/userReducer";
-import { getUsers } from "../../ducks/userReducer";
-import { getCounselors } from "../../ducks/counselorsReducer";
+import { getUser, getUsers  } from "../../ducks/userReducer";
+import { getCounselors, editCounselor } from "../../ducks/counselorsReducer";
 import Header from "../Header/Header";
 import Counselor from "../Counselor/Counselor";
 import "./dashboard.css";
@@ -17,8 +16,8 @@ class Dashboard extends Component {
 
       counselor_first_name: props.counselor.first_name,
       counselor_last_name: props.counselor.last_name,
-      counselor_info: props.counselor.info,
       counselor_photo: props.counselor.photo,
+      counselor_info: props.counselor.info,
 
       editing: false
     };
@@ -31,24 +30,19 @@ class Dashboard extends Component {
 
 //   componentDidUpdate(prevProps) {
 //     this.props.getUser()
-// console.log('wow',this.props.user)
 //    if(prevProps.user !== this.props.user) this.props.getUser()
-//   }
-  //broken
-  // setInfo() {
-  //   if (this.props.user.info) {
-  //     this.setState({
-  //       newInfo: this.props.user.info
-  //     })
-  //   }
-  // }
+//   } 
 
   edit = () => {
     this.setState({editing: true})
   }
 
   saveChanges = () => {
-    this.setState({editing: false})
+      // const { counselor_first_name, counselor_last_name, counselor_photo, counselor_info } = this.state
+  
+      // this.props.editCounselor(,counselor_first_name, counselor_last_name, counselor_photo, counselor_info)
+      // this.setState({editing: false})
+
   }
 
   handleChange = e => {
@@ -58,15 +52,9 @@ class Dashboard extends Component {
 
 
   render() {
-    
-    
-    console.log("ee", this.props);
-    
-    console.log('info', this.state)
+      
     let { editing, newInfo } = this.state
-
-    
-    // console.log('newinfo', newInfo)
+   
     //Redirect/loggedIn
     // if (!user.loggedIn || !counselorUser.loggedIn) return <div>LOADING</div>;
     let { error, redirect } = this.props.user
@@ -98,9 +86,8 @@ class Dashboard extends Component {
 //--------------------------------------------------------------
     if (this.props.counselor.loggedIn) {
       let { counselor: counselorUser } = this.props
-      // let { counselorError, counselorRedirect } = this.props
-      // console.log('the user', user)
-      // if (counselorError || counselorRedirect) return <Redirect to="/login" />;
+      let { counselorError, counselorRedirect } = this.props
+      if (counselorError || counselorRedirect) return <Redirect to="/login" />;
       return (
         
         <div>
@@ -114,22 +101,22 @@ class Dashboard extends Component {
               <input
                 value={this.state.counselor_first_name} //what we are changing (on props) (the info)
                 onChange={this.handleChange} //normal handle change
-                name="nameTwo"
+                name="counselor_first_name"
               />
               <input
                 value={this.state.counselor_last_name} //what we are changing (on props) (the info)
                 onChange={this.handleChange} //normal handle change
-                name="nameTwo"
+                name="counselor_last_name"
               />
               <input
                 value={this.state.counselor_photo} //what we are changing (on props) (the info)
                 onChange={this.handleChange} //normal handle change
-                name="nameTwo"
+                name="counselor_photo"
               />
               <input
                 value={this.state.counselor_info} //what we are changing (on props) (the info)
                 onChange={this.handleChange} //normal handle change
-                name="nameTwo"
+                name="counselor_info"
               />
             </div>
           ) : (
@@ -187,5 +174,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { getUser, getCounselors, getUsers }
+  { getUser, getCounselors, getUsers, editCounselor }
 )(Dashboard);

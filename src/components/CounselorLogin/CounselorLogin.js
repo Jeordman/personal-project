@@ -23,11 +23,8 @@ class CounselorLogin extends Component {
   };
 
   render() {
-    // console.log(this.state)
-    console.log('cLogin props', this.props)
 
     const { user } = this.props;
-    console.log('user in CLogin', user)
     if (user.loggedIn) return <Redirect to="/" />;
     return (
       <div>

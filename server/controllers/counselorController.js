@@ -9,10 +9,8 @@ module.exports = {
 
   async loginCounselor(req, res) {
     const { username, password } = req.body;
-    console.log(req.body)
     const db = req.app.get("db")
     const [existingCounselor] = await db.get_counselor_username(username);
-    // console.log(existingCounselor)
     if (!existingCounselor) return res.status(401).send("Counselor Not Found");
     const result = await bcrypt.compare(password, existingCounselor.password);
     if (result) {
@@ -54,13 +52,14 @@ module.exports = {
 
   async editCounselor(req, res) {
     let { counselor_id } = req.params;
-    console.log('idddd', counselor_id)
-    let { new_first_name, new_last_name, new_info} = req.body;
+    let { new_first_name, new_last_name, new_photo, new_info} = req.body;
+    // console.log(new_first_name, new_last_name, new_photo, new_info)
     const db = req.app.get('db')
     let counselorInfo = await db.edit_counselor_info([
       +counselor_id, 
       new_first_name,
       new_last_name,
+      new_photo,
       new_info,
     ]);
     res.send(counselorInfo)

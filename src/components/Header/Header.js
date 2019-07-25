@@ -19,7 +19,6 @@ class Header extends Component {
   };
 
   handleCounselorLogout = async () => {
-    console.log('hit')
    await this.props.logoutCounselor()
     this.props.history.push('/login')
     // return <Redirect to="/login"/>
@@ -31,8 +30,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.props.counselorReducerState.counselor)
-    console.log('props', this.props)
     //user login
     if(!this.props.counselorReducerState.counselor) {
 
@@ -61,7 +58,6 @@ class Header extends Component {
   
     //counselor login
     if(this.props.counselorReducerState.counselor){
-      console.log(this.props)
     return (
       <div>
         <div className="header">
@@ -92,7 +88,6 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("header state", state);
   return {
     userReducerState: state.user,
     counselorReducerState: state.counselors

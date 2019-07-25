@@ -44,7 +44,6 @@ module.exports = {
   async getAll(req, res) {
     // const users = await req.app.get('db').get_all()
     const db = req.app.get("db");
-    console.log("the database", db.getAll);
     let existingUser = await db.get_all();
     return res.status(200).send(existingUser);
   }

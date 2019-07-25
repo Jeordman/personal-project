@@ -14,7 +14,6 @@ class MyCounselor extends Component {
   }
 
   render() {
-    // console.log(this.props.users)
     let { user, error, redirect} = this.props.user;
     let counselorId = this.props.match.params.id;
     const thisCounselor = this.props.counselors.counselors.filter(
@@ -26,13 +25,11 @@ class MyCounselor extends Component {
     //insert ternary
     const thatCounselor = thisCounselor[0];
     const thatUser = thisUser[0]
-    console.log('thatusussss', thatUser)
     if (error || redirect) return <Redirect to="/login" />;
 
 
     if (thatUser) {
       const { first_name, last_name, photo } = thatUser;
-      console.log(first_name, last_name, photo);
        return (
         <div>
           <Header />
@@ -45,9 +42,7 @@ class MyCounselor extends Component {
     } 
 
     if (thatCounselor) {
-      console.log("ey", thatCounselor);
       const { first_name, last_name, photo } = thatCounselor;
-      console.log(first_name, last_name, photo);
 
       return (
         <div>
@@ -63,7 +58,7 @@ class MyCounselor extends Component {
   }
 }
 
-function mapStateToProps(state) { //console.log('this is state', state)
+function mapStateToProps(state) { 
   return { user: state.user, counselors: state.counselors, users: state.user };
 }
 

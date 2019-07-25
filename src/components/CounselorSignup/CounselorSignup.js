@@ -19,13 +19,10 @@ class CounselorSignup extends Component {
     handleInput = e => {
       const { name, value } = e.target;
       this.setState({ [name]: value });
-      console.log(this.state);
     };
   
     signup = () => {
       let { username, password, first_name, last_name, image } = this.state;
-      console.log('STAAAIT', this.state)
-      console.log('COUUUUN', this.props.signupCounselor)
       this.props.signupCounselor(username, password, first_name, last_name, image);
     };
   
@@ -103,7 +100,7 @@ class CounselorSignup extends Component {
   }
   
   //need to map state to props!!
-  function mapStateToProps(state){ console.log(state)
+  function mapStateToProps(state){ 
     return state.user
   }
   //add connect string
