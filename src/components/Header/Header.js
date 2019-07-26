@@ -18,15 +18,14 @@ class Header extends Component {
   };
 
   handleLogout = async () => {
-    await this.props.logout()
-    await this.props.logoutCounselor()
-    this.props.history.push('/login')
-  }
+    await this.props.logout();
+    await this.props.logoutCounselor();
+    this.props.history.push("/login");
+  };
 
   render() {
     //user login
-    if(!this.props.counselorReducerState.counselor) {
-
+    if (!this.props.counselorReducerState.counselor) {
       return (
         <div>
           <div className="header">
@@ -40,8 +39,14 @@ class Header extends Component {
               <Link to={{ pathname: "/" }}>
                 <button className="nav-link"> Dashboard </button>
               </Link>
-  
-              <button style={{ zIndex: 6 }} className="nav-link" onClick={this.handleLogout}>
+              <Link to={`/myGraph`}>
+                <button className="nav-link">My Graph</button>
+              </Link>
+              <button
+                style={{ zIndex: 6 }}
+                className="nav-link"
+                onClick={this.handleLogout}
+              >
                 logout user
               </button>
             </div>
@@ -49,36 +54,35 @@ class Header extends Component {
         </div>
       );
     }
-  
-    //counselor login
-    if(this.props.counselorReducerState.counselor){
-    return (
-      <div>
-        <div className="header">
-          <div className="logo">Logo</div>
-          <button className="menu-btn-content" onClick={this.toggleMenu}>
-            <i className="fa fa-bars fa-lg" />
-          </button>
-        </div>
-        {this.state.showMenu ? (
-          <div className="nav-menu">
-            <Link to={{ pathname: "/" }}>
-              <button className="nav-link"> Dashboard </button>
-            </Link>
 
-            <button style={{ zIndex: 6}} className="nav-link" onClick={this.handleLogout}>
-              logout counselor
+    //counselor login
+    if (this.props.counselorReducerState.counselor) {
+      return (
+        <div>
+          <div className="header">
+            <div className="logo">Logo</div>
+            <button className="menu-btn-content" onClick={this.toggleMenu}>
+              <i className="fa fa-bars fa-lg" />
             </button>
           </div>
-        ) : null}
-      </div>
-    );
+          {this.state.showMenu ? (
+            <div className="nav-menu">
+              <Link to={{ pathname: "/" }}>
+                <button className="nav-link"> Dashboard </button>
+              </Link>
+              <button
+                style={{ zIndex: 6 }}
+                className="nav-link"
+                onClick={this.handleLogout}
+              >
+                logout counselor
+              </button>
+            </div>
+          ) : null}
+        </div>
+      );
+    }
   }
-
-  
-}
-
-
 }
 
 function mapStateToProps(state) {
@@ -88,7 +92,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(
-  mapStateToProps,
-  { logout, logoutCounselor }
-)(Header));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { logout, logoutCounselor }
+  )(Header)
+);

@@ -1,0 +1,14 @@
+.survey-container {
+  margin: 0 auto;
+  width: 70vw;
+  height: 10vh;
+  background-color: beige;
+}
+
+.next-back{
+    width: 70vw;
+    height: 5vh;
+    display: flex;
+    align-content: flex-end;
+    justify-content: space-around;
+}

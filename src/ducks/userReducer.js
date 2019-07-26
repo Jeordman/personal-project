@@ -1,5 +1,14 @@
 import axios from "axios";
-import { LOGIN, LOGOUT, SIGNUP, GET_USER, GET_USERS, EDIT_USER} from "./actionTypes";
+import {
+  LOGIN,
+  LOGOUT,
+  SIGNUP,
+  GET_USER,
+  GET_USERS,
+  EDIT_USER,
+  COMPLETE_SURVEY,
+  ADD_TO_JOURNAL
+} from "./actionTypes";
 
 const initialState = {
   users: [],
@@ -59,18 +68,40 @@ export const editUser = (
   new_photo,
   new_info
 ) => {
-  let data = axios.put(`/api/editUser/${user_id}`, {
-    new_first_name,
-    new_last_name,
-    new_photo,
-    new_info
-  })
-  .then(res => res.data);
+  let data = axios
+    .put(`/api/editUser/${user_id}`, {
+      new_first_name,
+      new_last_name,
+      new_photo,
+      new_info
+    })
+    .then(res => res.data);
   return {
     type: EDIT_USER,
     payload: data
-  }
+  };
 };
+
+//might be useless
+export const completeSurvey = (user_id, date, mood) => {
+  let data = axios
+    .post("/api/completeSurvey", { user_id, date, mood })
+    .then(res => res.data);
+  return {
+    type: COMPLETE_SURVEY,
+    payload: data
+  };
+};
+
+export const addToJournal = (user_id, date, mood, note) => {
+  let data = axios
+  .post('/api/addToJournal', {user_id, date, mood, note})
+  .then(res => res.data);
+  return {
+    type : ADD_TO_JOURNAL,
+    payload: data
+  }
+}
 
 //export function
 export default function(state = initialState, action) {
@@ -108,13 +139,21 @@ export default function(state = initialState, action) {
       return { ...state, users: payload, error: false };
     case GET_USERS + "_REJECTED":
       return { ...state, error: payload };
-    case EDIT_USER + '_FULFILLED':
+    case EDIT_USER + "_FULFILLED":
       return {
         ...state,
         redirect: false,
         error: false,
         counselor: true,
-        user: {payload, loggedIn: true}
+        user: { payload, loggedIn: true }
+      };
+    case COMPLETE_SURVEY + '_FULFILLED':
+      return {
+        ...state
+      }
+    case ADD_TO_JOURNAL + '_FULFILLED':
+      return {
+        ...state
       }
     default:
       return state;
