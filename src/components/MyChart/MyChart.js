@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import { getUserGraph } from "../../ducks/userReducer";
 import "./myChart.css";
-import { async } from "q";
 
 class MyChart extends Component {
   constructor(props) {
@@ -19,7 +18,7 @@ class MyChart extends Component {
         datasets: [
           {
             label: "Mood",
-            backgroundColor: "rgba(0, 255, 2, .75)",
+            backgroundColor: "rgba(34, 167, 240, .5)",
             data: props.graphInfo.map(obj => obj.mood)
           }
         ]
@@ -39,29 +38,46 @@ class MyChart extends Component {
   //     return mood
   // }
 
-//   componentDidMount = () => {
-//     let dateArr = 
-//     let moodArr = ;
-//     this.setState({
-//       data: {
-//         ...this.state.data,
-//         labels: dateArr,
-//         datasets: [{ ...this.state.data.datasets[0], data: moodArr }]
-//       }
-//     });
-//   };
+  //   componentDidMount = () => {
+  //     let dateArr =
+  //     let moodArr = ;
+  //     this.setState({
+  //       data: {
+  //         ...this.state.data,
+  //         labels: dateArr,
+  //         datasets: [{ ...this.state.data.datasets[0], data: moodArr }]
+  //       }
+  //     });
+  //   };
 
   render() {
     return (
-      <div className="chart">
+      <section className="chart-day-mood">
         CHART COMPONENT
         <Line
+          className="chart-day-mood"
           options={{
-            responsive: true
+            responsive: true,
+            animation: {
+              duration: 3500 // general animation time
+            },
+            maintainAspectRatio: false,
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    beginAtZero: true,
+                    steps: 10,
+                    stepSize: 1,
+                    max: 10
+                  }
+                }
+              ]
+            }
           }}
           data={this.state.data}
         />
-      </div>
+      </section>
     );
   }
 }

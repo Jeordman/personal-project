@@ -38,6 +38,11 @@ app.get("/api/user", authCheck, uc.getUser);
 app.put('/api/editUser/:user_id', uc.editUser)
 app.delete("/api/logout", uc.logout);
 
+app.post('/api/completeSurvey', uc.completeSurvey)
+app.get('/api/getUserGraph/:user_id', uc.getUserGraph)
+
+app.post('/api/addToJournal', uc.addToJournal)
+
 app.post("/api/loginCounselor", cc.loginCounselor);
 app.post('/api/signupCounselor', cc.signupCounselor)
 app.put('/api/editCounselor/:counselor_id', cc.editCounselor)

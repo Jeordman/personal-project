@@ -60,7 +60,33 @@ module.exports = {
       new_info
     ])
     res.send(userInfo)
+  },
+
+  async completeSurvey(req, res) {
+    const { user_id, date, mood } = req.body
+    let checkDate = date
+    // const [existingDate] = await req.app.get('db').get_graph_by_date(checkDate)
+    // if (existingDate) return res.status(400).send('You already filled out that date')
+    let response = await req.app.get('db').add_mood_entry(user_id, date, mood)
+    res.send(response)
+  },
+
+  async addToJournal(req, res) {
+    const { user_id, date, mood, note } = req.body
+    console.log(user_id, date, mood, note)
+    console.log(req.app.get('db').add_journal_entry(user_id, date, mood, note))
+    let response = await req.app.get('db').add_journal_entry(user_id, date, mood, note)
+    res.send(response)
+  },
+
+  async getUserGraph(req, res) {
+    const { user_id } = req.params
+    console.log(user_id)
+    let response = await req.app.get('db').get_user_graph(+user_id)
+    res.send(response)
   }
+ 
+  
 
   //more functions
 };
