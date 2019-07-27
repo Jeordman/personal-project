@@ -7,12 +7,14 @@ import {
   GET_USERS,
   EDIT_USER,
   COMPLETE_SURVEY,
-  ADD_TO_JOURNAL
+  ADD_TO_JOURNAL,
+  GET_USER_GRAPH
 } from "./actionTypes";
 
 const initialState = {
   users: [],
   user: {},
+  graphInfo: [],
   redirect: false,
   error: false
 };
@@ -82,6 +84,16 @@ export const editUser = (
   };
 };
 
+export const getUserGraph = user_id => {
+  let response = axios
+    .get(`/api/GetUserGraph/${user_id}`)
+    .then((res => res.data));
+  return {
+    type: GET_USER_GRAPH,
+    payload: response
+  };
+};
+
 //might be useless
 export const completeSurvey = (user_id, date, mood) => {
   let data = axios
@@ -95,13 +107,13 @@ export const completeSurvey = (user_id, date, mood) => {
 
 export const addToJournal = (user_id, date, mood, note) => {
   let data = axios
-  .post('/api/addToJournal', {user_id, date, mood, note})
-  .then(res => res.data);
+    .post("/api/addToJournal", { user_id, date, mood, note })
+    .then(res => res.data);
   return {
-    type : ADD_TO_JOURNAL,
+    type: ADD_TO_JOURNAL,
     payload: data
-  }
-}
+  };
+};
 
 //export function
 export default function(state = initialState, action) {
@@ -134,7 +146,7 @@ export default function(state = initialState, action) {
     case GET_USER + "_REJECTED":
       return { ...state, redirect: true, error: payload };
     case LOGOUT + "_FULFILLED":
-      return { users: [], user: {}, redirect: false, error: false };
+      return { users: [], user: {}, redirect: false, error: false,  graphInfo: []};
     case GET_USERS + "_FULFILLED":
       return { ...state, users: payload, error: false };
     case GET_USERS + "_REJECTED":
@@ -147,13 +159,21 @@ export default function(state = initialState, action) {
         counselor: true,
         user: { payload, loggedIn: true }
       };
-    case COMPLETE_SURVEY + '_FULFILLED':
+    case COMPLETE_SURVEY + "_FULFILLED":
       return {
         ...state
+      };
+    case ADD_TO_JOURNAL + "_FULFILLED":
+      return {
+        ...state
+      };
+    case GET_USER_GRAPH + '_FULFILLED': 
+      return {
+        ...state, graphInfo: payload
       }
-    case ADD_TO_JOURNAL + '_FULFILLED':
+    case GET_USER_GRAPH + '_PENDING':
       return {
-        ...state
+        ...state, redirect: false, error: false
       }
     default:
       return state;

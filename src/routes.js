@@ -6,11 +6,11 @@ import Dashboard from './components/Dashboard/Dashboard'
 import MyCounselor from './components/MyCounselor/MyCounselor'
 import CounselorLogin from './components/CounselorLogin/CounselorLogin'
 import CounselorSignup from './components/CounselorSignup/CounselorSignup'
-import Chart from './components/Chart'
+import GraphHealth from './components/GraphHealth/GraphHealth'
 
 export default (
     <Switch>
-        <Route path='/chart' component={Chart} />
+        <Route path = '/MyGraph' component={GraphHealth} />
         <Route path='/counselorsignup' component ={CounselorSignup} />
         <Route path='/counselorLogin' component={CounselorLogin} />
         <Route path='/login' component={Login} />

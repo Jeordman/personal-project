@@ -1,0 +1,5 @@
+.my-chart-holder{
+    width: 100vw;
+    height: 40vh;
+    scroll-behavior: auto;
+}
