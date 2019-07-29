@@ -4,6 +4,7 @@ import Header from '../Header/Header'
 import { getUserGraph } from '../../ducks/userReducer'
 import MyChart from "../MyChart/MyChart";
 import './graphHealth.css'
+import axios from 'axios'
 
 class GraphHealth extends Component {
   constructor() {
@@ -19,7 +20,7 @@ componentDidMount() {
 
   render() {
     // console.log('this state', this.state.graphInfo)
-      console.log('props', this.props)
+      console.log('graph info', this.props.graphInfo)
     return (
     <div>
         <Header />
@@ -28,7 +29,7 @@ componentDidMount() {
         {
           this.props.graphInfo[0] ? (
             <section className='my-chart-holder'>
-            < MyChart/>
+            < MyChart />
             </section>
           ) : (
             null

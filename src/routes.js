@@ -7,9 +7,11 @@ import MyCounselor from './components/MyCounselor/MyCounselor'
 import CounselorLogin from './components/CounselorLogin/CounselorLogin'
 import CounselorSignup from './components/CounselorSignup/CounselorSignup'
 import GraphHealth from './components/GraphHealth/GraphHealth'
+import Journal from './components/Journal/Journal'
 
 export default (
     <Switch>
+        <Route path = '/Journal' component={Journal} />
         <Route path = '/MyGraph' component={GraphHealth} />
         <Route path='/counselorsignup' component ={CounselorSignup} />
         <Route path='/counselorLogin' component={CounselorLogin} />

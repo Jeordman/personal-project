@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logout } from "../../ducks/userReducer";
 import { logoutCounselor } from "../../ducks/counselorsReducer";
+import { logoutJournal } from "../../ducks/journalReducer";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import "./header.css";
 
@@ -19,12 +20,14 @@ class Header extends Component {
 
   handleLogout = async () => {
     await this.props.logout();
+    await this.props.logoutJournal();
     await this.props.logoutCounselor();
     this.props.history.push("/login");
   };
 
   render() {
     //user login
+    console.log('logout journal', this.props.logoutJournal)
     if (!this.props.counselorReducerState.counselor) {
       return (
         <div>
@@ -41,6 +44,9 @@ class Header extends Component {
               </Link>
               <Link to={`/myGraph`}>
                 <button className="nav-link">My Graph</button>
+              </Link>
+              <Link to={{ pathname: "/Journal" }}>
+                <button className="nav-link"> Journal </button>
               </Link>
               <button
                 style={{ zIndex: 6 }}
@@ -95,6 +101,6 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(
     mapStateToProps,
-    { logout, logoutCounselor }
+    { logout, logoutCounselor, logoutJournal }
   )(Header)
 );

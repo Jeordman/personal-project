@@ -73,20 +73,19 @@ module.exports = {
 
   async addToJournal(req, res) {
     const { user_id, date, mood, note } = req.body
-    console.log(user_id, date, mood, note)
-    console.log(req.app.get('db').add_journal_entry(user_id, date, mood, note))
+    // console.log(user_id, date, mood, note)
+    // console.log(req.app.get('db').add_journal_entry(user_id, date, mood, note))
     let response = await req.app.get('db').add_journal_entry(user_id, date, mood, note)
     res.send(response)
   },
 
   async getUserGraph(req, res) {
     const { user_id } = req.params
-    console.log(user_id)
+    // console.log(user_id)
     let response = await req.app.get('db').get_user_graph(+user_id)
     res.send(response)
-  }
- 
-  
+  },
 
+ 
   //more functions
 };

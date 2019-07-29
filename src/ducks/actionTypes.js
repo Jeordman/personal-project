@@ -11,6 +11,11 @@ export const GET_USER_GRAPH = "GET_USER_GRAPH";
 
 //journal
 export const ADD_TO_JOURNAL = "ADD_TO_JOURNAL";
+export const GET_USER_JOURNAL = "GET_USER_JOURNAL";
+export const LOGOUT_JOURNAL = "LOGOUT_JOURNAL";
+
+//????
+export const GET_QUOTES = "GET_QUOTES";
 
 export const LOGIN_COUNSELOR = "LOGIN_COUNSELOR";
 export const LOGOUT_COUNSELOR = "LOGOUT_COUNSELOR";

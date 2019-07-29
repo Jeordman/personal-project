@@ -38,6 +38,25 @@ class MyChart extends Component {
   //     return mood
   // }
 
+  componentDidUpdate(prevProps) {
+    console.log('hitcompupdate')
+    if(prevProps !== this.props) {
+      console.log('updated', this.props);
+      this.setState({
+        data: {
+          labels: this.props.graphInfo.map(obj => obj.date),
+          datasets: [
+            {
+              label: "Mood",
+              backgroundColor: "rgba(34, 167, 240, .5)",
+              data: this.props.graphInfo.map(obj => obj.mood)
+            }
+          ]
+        }
+      })
+    }
+  }
+
   //   componentDidMount = () => {
   //     let dateArr =
   //     let moodArr = ;
@@ -51,6 +70,8 @@ class MyChart extends Component {
   //   };
 
   render() {
+    console.log('graph info my chart', this.props.graphInfo)
+    console.log('state label', this.state.data)
     return (
       <section className="chart-day-mood">
         CHART COMPONENT
@@ -66,13 +87,21 @@ class MyChart extends Component {
               yAxes: [
                 {
                   ticks: {
+                    autoSkip: false,
                     beginAtZero: true,
                     steps: 10,
                     stepSize: 1,
                     max: 10
                   }
                 }
-              ]
+              ],
+              xAxes: [{
+                
+                ticks: {
+                  autoSkip: true,
+                  maxTicksLimit: 17
+                }
+              }],
             }
           }}
           data={this.state.data}

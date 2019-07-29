@@ -6,10 +6,12 @@ import storage from 'redux-persist/lib/storage'
 //import reducers next
 import userReducer from './userReducer'
 import counselorsReducer from './counselorsReducer'
+import journalReducer from "./journalReducer";
 
 const rootReducer = combineReducers({
   user: userReducer,
-  counselors: counselorsReducer
+  counselors: counselorsReducer,
+  journal: journalReducer
 });
 
 const persistConfig = {

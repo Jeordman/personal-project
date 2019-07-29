@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { getUser, getUsers, editUser } from "../../ducks/userReducer";
+import { getUser, getUsers, editUser, getQuotes } from "../../ducks/userReducer";
 import { getCounselors, editCounselor } from "../../ducks/counselorsReducer";
 import Header from "../Header/Header";
 import Counselor from "../Counselor/Counselor";
@@ -115,7 +115,7 @@ class Dashboard extends Component {
 
   render() {
     let { editing, newInfo } = this.state;
-    console.log(this.getCurrentDate())
+    // console.log('propppps', this.props.getQuotes()) //?????
     let { error, redirect } = this.props.user;
     let { counselorError, counselorRedirect } = this.props;
     if (error || redirect || counselorError || counselorRedirect)
@@ -291,5 +291,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { getUser, getCounselors, getUsers, editCounselor, editUser }
+  { getUser, getCounselors, getUsers, editCounselor, editUser, getQuotes }
 )(Dashboard);

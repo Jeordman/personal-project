@@ -8,15 +8,19 @@ import {
   EDIT_USER,
   COMPLETE_SURVEY,
   ADD_TO_JOURNAL,
-  GET_USER_GRAPH
+  GET_USER_GRAPH,
+  GET_QUOTES
 } from "./actionTypes";
+
+var unirest = require('unirest');
 
 const initialState = {
   users: [],
   user: {},
   graphInfo: [],
   redirect: false,
-  error: false
+  error: false,
+  quotes: []
 };
 
 //functions to login/signout/etc
@@ -83,6 +87,19 @@ export const editUser = (
     payload: data
   };
 };
+//------------------------------------------------------------------?????
+export const getQuotes = () => {
+ const quotes = unirest.get("https://healthruwords.p.rapidapi.com/v1/quotes/?id=731&t=Wisdom&maxR=1&size=medium")
+  .header("X-RapidAPI-Host", "healthruwords.p.rapidapi.com")
+  .header("X-RapidAPI-Key", "7518fc550bmsh1372e67fc6ec9c6p18b9a8jsn835484550200")
+  .then(result => result.data)
+  return {
+    type: GET_QUOTES,
+    payload: quotes
+  };
+}//------------------------------------------------------------------?????
+
+
 
 export const getUserGraph = user_id => {
   let response = axios
@@ -93,6 +110,7 @@ export const getUserGraph = user_id => {
     payload: response
   };
 };
+
 
 //might be useless
 export const completeSurvey = (user_id, date, mood) => {
@@ -174,6 +192,10 @@ export default function(state = initialState, action) {
     case GET_USER_GRAPH + '_PENDING':
       return {
         ...state, redirect: false, error: false
+      }
+    case GET_QUOTES + '_FULFILLED':
+      return {
+       ...state, quotes: payload
       }
     default:
       return state;
