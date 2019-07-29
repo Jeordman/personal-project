@@ -1,0 +1,7 @@
+.repeating {
+    height: 30vh;
+    width: 100vw;
+    background-color: rgb(242, 242, 250);
+    display: flex;
+    overflow: scroll;
+  }

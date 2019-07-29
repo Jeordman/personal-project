@@ -1,5 +1,9 @@
 import axios from "axios";
-import { GET_USER_JOURNAL, LOGOUT_JOURNAL } from "./actionTypes";
+import {
+  GET_USER_JOURNAL,
+  LOGOUT_JOURNAL,
+  EDIT_USER_JOURNAL
+} from "./actionTypes";
 
 const initialState = {
   journalEntries: []
@@ -22,6 +26,15 @@ export const logoutJournal = () => {
   };
 };
 
+export const editUserJournal = (entry_id, user_id, new_note) => {
+  let response = axios
+    .put(`/api/editUserJournal/${entry_id}`, { user_id, new_note })
+    .then(res => res.data);
+  return {
+    type: EDIT_USER_JOURNAL,
+    payload: response
+  };
+};
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
@@ -35,10 +48,14 @@ export default function(state = initialState, action) {
       return {
         ...state
       };
-      case LOGOUT_JOURNAL + "_FULFILLED":
-      return { 
+    case LOGOUT_JOURNAL + "_FULFILLED":
+      return {
         journalEntries: []
       };
+    case EDIT_USER_JOURNAL + '_FULFILLED':
+      return {
+        journalEntries: payload
+      }
     default:
       return {
         ...state

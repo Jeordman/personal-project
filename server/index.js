@@ -49,7 +49,9 @@ app.get('/api/getUserGraph/:user_id', uc.getUserGraph)
 //journal
 app.post('/api/addToJournal', uc.addToJournal)
 app.get('/api/getUserJournal/:user_id', jc.getUserJournal)
+app.put('/api/editUserJournal/:entry_id', jc.editUserJournal)
 app.delete('/api/logoutJournal', jc.logoutJournal)
+
 
 //counselor
 app.post("/api/loginCounselor", cc.loginCounselor);

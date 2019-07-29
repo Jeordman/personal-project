@@ -145,6 +145,9 @@ class Survey extends Component {
             <Link to={`/myGraph`}>
               <button>Check out my graph</button>
             </Link>
+            <Link to={`/Journal`}>
+              <button>Go to journal</button>
+            </Link>
           </section>
         </div>
       );
