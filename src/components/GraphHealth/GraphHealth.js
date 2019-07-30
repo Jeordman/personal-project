@@ -22,9 +22,9 @@ componentDidMount() {
     // console.log('this state', this.state.graphInfo)
       console.log('graph info', this.props.graphInfo)
     return (
-    <div>
+    <div className='full-graph-health'>
         <Header />
-        <div>{`Graph for ${this.props.user.first_name} ${this.props.user.last_name} id: ${this.props.user.id}`}</div>
+        <div className='introduction-graph'>{`Here is how you have felt recently ${this.props.user.first_name}`}</div>
 
         {
           this.props.graphInfo[0] ? (

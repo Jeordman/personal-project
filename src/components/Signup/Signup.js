@@ -38,7 +38,7 @@ class Signup extends Component {
     if (user.loggedIn) return <Redirect to="/" />;
 
     return (
-      <section>
+      <section className='hold-signup'>
         <h2>Create account</h2>
         <section className="main">
           <img

@@ -27,12 +27,17 @@ class Header extends Component {
 
   render() {
     //user login
-    console.log('logout journal', this.props.logoutJournal)
+    console.log("logout journal", this.props.logoutJournal);
     if (!this.props.counselorReducerState.counselor) {
       return (
-        <div>
+        <div classNam="hold-all-header">
           <div className="header">
-            <div className="logo">Logo</div>
+            <img
+              src={
+                "https://images.unsplash.com/photo-1457545255860-f9dc39332def?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
+              }
+              className="img-logo"
+            />
             <button className="menu-btn-content" onClick={this.toggleMenu}>
               <i className="fa fa-bars fa-lg" />
             </button>

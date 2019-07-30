@@ -1,3 +1,9 @@
+.hold-counselor-full{
+    position: absolute;
+    background-image: linear-gradient(#A7D5F7, #0B7BC9);
+    height: 100vh;
+}
+
 login{
     background-color: rgb(0, 0, 255);
     color: white;

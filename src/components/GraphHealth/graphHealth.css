@@ -1,3 +1,17 @@
+.full-graph-health{
+    background-image: linear-gradient(to bottom right, rgb(58, 57, 57), #131313);
+    position: absolute;
+    height: 100vh;
+}
+
+.introduction-graph{
+    text-align: center;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    margin-top: 2vh;
+
+}
+
 .my-chart-holder{
     width: 100vw;
     height: 40vh;

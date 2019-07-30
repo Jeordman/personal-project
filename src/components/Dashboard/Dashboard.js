@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { getUser, getUsers, editUser, getQuotes } from "../../ducks/userReducer";
+import {
+  getUser,
+  getUsers,
+  editUser,
+  getQuotes
+} from "../../ducks/userReducer";
 import { getCounselors, editCounselor } from "../../ducks/counselorsReducer";
 import Header from "../Header/Header";
 import Counselor from "../Counselor/Counselor";
 import "./dashboard.css";
-import '../Survey/Survey'
+import "../Survey/Survey";
 import Survey from "../Survey/Survey";
 
 class Dashboard extends Component {
@@ -104,14 +109,13 @@ class Dashboard extends Component {
   };
 
   getCurrentDate = () => {
-
-    let newDate = new Date()
+    let newDate = new Date();
     let date = newDate.getDate();
     let month = newDate.getMonth() + 1;
     let year = newDate.getFullYear();
-    
-    return `${year} ${month<10?`0${month}`:`${month}`} ${date}`
-    }
+
+    return `${year} ${month < 10 ? `0${month}` : `${month}`} ${date}`;
+  };
 
   render() {
     let { editing, newInfo } = this.state;
@@ -124,7 +128,7 @@ class Dashboard extends Component {
     if (this.props.user.user.loggedIn) {
       let { user } = this.props.user;
       return (
-        <div>
+        <div className="full-dash-holder">
           <Header />
           <img
             onError={this.addDefaultSrc}
@@ -137,26 +141,31 @@ class Dashboard extends Component {
           </h2>
 
           {editing ? (
-            <div>
-              <input
-                value={this.state.user_first_name} //what we are changing (on props) (the info)
-                onChange={this.handleChange} //normal handle change
-                name="user_first_name"
-              />
-              <input
-                value={this.state.user_last_name} //what we are changing (on props) (the info)
-                onChange={this.handleChange} //normal handle change
-                name="user_last_name"
-              />
+            <div className="full-edit-inputs">
+              <section className="first-two-inputs">
+                <input
+                  value={this.state.user_first_name} //what we are changing (on props) (the info)
+                  onChange={this.handleChange} //normal handle change
+                  name="user_first_name"
+                />
+                <input
+                  value={this.state.user_last_name} //what we are changing (on props) (the info)
+                  onChange={this.handleChange} //normal handle change
+                  name="user_last_name"
+                />
+              </section>
               <input
                 value={this.state.user_photo} //what we are changing (on props) (the info)
                 onChange={this.handleChange} //normal handle change
                 name="user_photo"
+                className="edit-photo-url"
               />
-              <input
+              <section className="bio-center">BIO</section>
+              <textarea
                 value={this.state.user_info} //what we are changing (on props) (the info)
                 onChange={this.handleChange} //normal handle change
                 name="user_info"
+                className="homepage-bio"
               />
             </div>
           ) : (
@@ -171,12 +180,26 @@ class Dashboard extends Component {
           )}
           {editing ? (
             <div>
-              <button onClick={this.saveChangesUser}>save changes</button>
-              <button onClick={this.cancel}>cancel </button>
+              <section className="save-cancel-home">
+                <button
+                  onClick={this.saveChangesUser}
+                  className="save-cancel-home"
+                >
+                  save changes
+                </button>
+                <button onClick={this.cancel} className="save-cancel-home">
+                  cancel{" "}
+                </button>
+              </section>
             </div>
           ) : (
-            // <button onClick={this.edit}> Edit </button>
-            <button onClick={this.edit}>Edit</button>
+            <section>
+              <section className="bio-center">BIO</section>
+              <article className='bio-before-edit'>{this.state.user_info}</article>
+              <button onClick={this.edit} className="edit-dash">
+                Edit Profile
+              </button>
+            </section>
           )}
 
           <Survey />

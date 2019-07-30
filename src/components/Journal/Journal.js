@@ -11,7 +11,7 @@ class Journal extends Component {
     super();
 
     this.state = {
-      selectedEntry: 50000,
+      selectedEntry: 40000,
       selectedDate: "",
       selectedMood: 0,
       selectedNote: "",
@@ -25,7 +25,6 @@ class Journal extends Component {
   }
 
   chooseEntry = id => {
-    console.log("select", id);
     this.setState({
       selectedEntry: id,
       selectedDate: this.props.journalEntries.find(item => item.entry_id === id)
@@ -53,10 +52,10 @@ class Journal extends Component {
     this.setState({ [name]: value });
   };
 
-  cancel = (id) => {
+  cancel = () => {
     this.setState({ editing: false });
     this.setState({
-      selectedNote: this.props.journalEntries.find(item => item.entry_id === id)
+      selectedNote: this.props.journalEntries.find(item => item.entry_id === this.state.selectedEntry)
         .note
     });
   };
@@ -65,7 +64,7 @@ class Journal extends Component {
     console.log("journal props", this.props);
     console.log("state", this.state);
     return (
-      <div>
+      <div className='journal-holder-component'>
         <Header />
         <section className="top">Top</section>
 

@@ -27,7 +27,7 @@ class CounselorLogin extends Component {
     const { user } = this.props;
     if (user.loggedIn) return <Redirect to="/" />;
     return (
-      <div>
+      <div className='hold-counselor-full'>
         <h1>Counselor</h1>
         <article className="page-label">Sign in</article>
         <section className="input-holder">
@@ -49,6 +49,10 @@ class CounselorLogin extends Component {
         <article className="no-account">Don't have an account?</article>
 
         <section className="button-holder">
+        <Link to={{ pathname: "/Login" }}>
+            <div className="signup">Back</div>
+          </Link>
+
         <Link to={{ pathname: "/CounselorSignup" }}>
             <div className="signup">Sign up</div>
           </Link>

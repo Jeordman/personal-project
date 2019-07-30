@@ -79,16 +79,15 @@ class Survey extends Component {
     if (this.state.question === 1) {
       return (
         <div className="survey-container">
-          <div>Begin</div>
           <section className="next-back">
-            <button onClick={this.next}>Begin</button>
+            <button onClick={this.next} className='survey-text'>Have time to record your feelings? HERE</button>
           </section>
         </div>
       );
     } else if (this.state.question === 2) {
       return (
         <div className="survey-container">
-          <div>What is the date?</div>
+          <div className='survey-question'>What is the date?</div>
 
           <input
             name={"date"}
@@ -97,15 +96,15 @@ class Survey extends Component {
           />
 
           <section className="next-back">
-            <button onClick={this.back}>Back</button>
-            <button onClick={this.next}>Next</button>
+            <button onClick={this.back} className="next-back">Back</button>
+            <button onClick={this.next} className="next-back">Next</button>
           </section>
         </div>
       );
     } else if (this.state.question === 3) {
       return (
         <div className="survey-container">
-          <div>How do you feel on a scale 1-10</div>
+          <div className='survey-question'>How do you feel on a scale 1-10</div>
 
           <input
             name={"mood"}
@@ -114,25 +113,26 @@ class Survey extends Component {
           />
 
           <section className="next-back">
-            <button onClick={this.back}>Back</button>
-            <button onClick={this.next}>Next</button>
+            <button onClick={this.back} className="next-back">Back</button>
+            <button onClick={this.next} className="next-back">Next</button>
           </section>
         </div>
       );
     } else if (this.state.question === 4) {
       return (
         <div className="survey-container">
-          <div>Please write a little about your day</div>
+          <div className='survey-question-textarea'> Please write a little about your day</div>
 
           <textarea
             name={"note"}
             value={this.state.note}
             onChange={this.handleInput}
+            className='textarea-journal'
           />
 
           <section className="next-back">
-            <button onClick={this.back}>Back</button>
-            <button onClick={this.submit}>Submit</button>
+            <button onClick={this.back} className="next-back">Back</button>
+            <button onClick={this.submit} className="next-back">Submit</button>
           </section>
         </div>
       );
@@ -143,10 +143,10 @@ class Survey extends Component {
           <section className="next-back">
             <button onClick={this.beginAgain}>New Entry</button>
             <Link to={`/myGraph`}>
-              <button>Check out my graph</button>
+              <button className="next-back">Check out my graph</button>
             </Link>
             <Link to={`/Journal`}>
-              <button>Go to journal</button>
+              <button className="next-back">Go to journal</button>
             </Link>
           </section>
         </div>

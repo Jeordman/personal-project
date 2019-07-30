@@ -1,0 +1,32 @@
+.specific-entry {
+  margin: 0 auto;
+  margin-top: 5vh;
+  background-color: #f7ea8b;
+  width: 70vw;
+  height: 30vh;
+}
+
+.selected-date {
+  font-size: 25px;
+}
+
+.selected-mood {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  display: flex;
+  widows: 100vw;
+  margin: 0 auto;
+  font-size: 19px;
+}
+
+.edit-journal-text{
+    width: 50vw;
+    height: 10vh;
+}
+
+.selected-note{
+    display: flex;
+    margin-top: 2vh;
+    width: 70vw;
+    height: 10vh;
+}

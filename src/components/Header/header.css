@@ -2,26 +2,42 @@
     display: flex;
     justify-content: space-between;
     height: 8vh;
-    background-color: rgb(0, 0, 255);
     color: white;
+}
+
+.img-logo{
+    width: 45px;
+  height: 45px;
+  margin-top: 1vh;
+  margin-left: 1vw;
+  border-radius: 50%;
+  border-style: solid;
+  display: flex;
+  border-color: gray;
 }
 
 .menu-btn-content{
     display: flex;
     color: white;
     font-size: 40px;
+    
 }
 
+@keyframes example {
+    
+  }
 
 .nav-menu{
+    animation-name: example;
+  animation-duration: 4s;
     display: flex;
     flex-direction: column;
     position: absolute;
     margin-left: 58vw;
     z-index: +5;
-    background: rgb(0, 0, 255); 
+    background: rgb(54, 54, 54); 
     border-radius: 0px 0px 0px 35px; 
-    opacity: .8; 
+
     -webkit-transition:200ms ease;
     -moz-transition:200ms ease;
     -o-transition:200ms ease;

@@ -1,24 +1,75 @@
+.full-dash-holder {
+  position: absolute;
+  height: 150vh;
+  color: white;
+  background-image: linear-gradient(to bottom right, rgb(58, 57, 57), #131313);
+}
+
+.first-two-inputs {
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-photo-url {
+  display: flex;
+  margin: auto;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  width: 80vw;
+}
+
 .user-pic {
-  width: 90px;
-  height: 90px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   border-style: solid;
   display: flex;
-  margin-left: 39vw;
+  margin: auto;
   border-color: gray;
   margin-top: 4vh;
+}
+
+.bio-center{
+  font-size: 20px;
+  text-align: center;
+}
+
+.homepage-bio{
+  display: flex;
+  margin: 0 auto;
+  width: 80vw;
+  height: 20vh;
+}
+
+.save-cancel-home{
+  display: flex;
+  justify-content: space-around;
+  color: rgb(255, 255, 255);
+}
+
+.edit-dash{
+  color: rgb(255, 255, 255);
+  display: flex;
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+.bio-before-edit{
+  text-align: center;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 .scroll-right {
   height: 30vh;
   width: 100vw;
-  background-color: rgb(242, 242, 250);
+
   display: flex;
   overflow: scroll;
 }
 
-.h4{
+.h4 {
   margin-top: 5vh;
   text-align: center;
-  margin-bottom: 0px;
+  margin-bottom: 2vh;
 }

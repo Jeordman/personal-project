@@ -1,3 +1,10 @@
+.hold-signup{
+    position: absolute;
+    background-image: linear-gradient(#A7D5F7, #0B7BC9);
+    height: 100vh;
+    width: 100vw;
+}
+
 .main{
     display: flex;
     flex-direction: column;
@@ -42,7 +49,7 @@ h2{
 }
 
 .signup{
-    background-color: rgb(0, 0, 255);
+    background-color: #2A56B4;
     color: white;
     justify-content: flex-end;
     font-size: 20px;

@@ -18,7 +18,7 @@ class MyChart extends Component {
         datasets: [
           {
             label: "Mood",
-            backgroundColor: "rgba(34, 167, 240, .5)",
+            backgroundColor: "rgba(34, 167, 240, .7)",
             data: props.graphInfo.map(obj => obj.mood)
           }
         ]
@@ -48,7 +48,7 @@ class MyChart extends Component {
           datasets: [
             {
               label: "Mood",
-              backgroundColor: "rgba(34, 167, 240, .5)",
+              backgroundColor: "rgba(34, 167, 240, .4)",
               data: this.props.graphInfo.map(obj => obj.mood)
             }
           ]
@@ -74,7 +74,6 @@ class MyChart extends Component {
     console.log('state label', this.state.data)
     return (
       <section className="chart-day-mood">
-        CHART COMPONENT
         <Line
           className="chart-day-mood"
           options={{
@@ -82,6 +81,12 @@ class MyChart extends Component {
             animation: {
               duration: 3500 // general animation time
             },
+            legend: {
+              labels: {
+                  // This more specific font property overrides the global property
+                  fontColor: 'white'
+              }
+          },
             maintainAspectRatio: false,
             scales: {
               yAxes: [
@@ -91,7 +96,9 @@ class MyChart extends Component {
                     beginAtZero: true,
                     steps: 10,
                     stepSize: 1,
-                    max: 10
+                    max: 10,
+                    fontColor: 'white',
+                    fontSize: 15
                   }
                 }
               ],
@@ -99,7 +106,9 @@ class MyChart extends Component {
                 
                 ticks: {
                   autoSkip: true,
-                  maxTicksLimit: 17
+                  maxTicksLimit: 17,
+                  fontColor: 'white',
+                  fontSize: 15
                 }
               }],
             }

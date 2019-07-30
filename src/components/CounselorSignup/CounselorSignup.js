@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { signupCounselor } from '../../ducks/counselorsReducer'
+import './counselorSignup.css'
 
 class CounselorSignup extends Component {
     constructor() {
@@ -39,7 +40,7 @@ class CounselorSignup extends Component {
 
      if (loggedIn) return <Redirect to="/" />;
       return (
-        <section> COUNSELOR
+        <section className='counselor-signup-hold'> COUNSELOR
           <h2>Create account</h2>
           <section className="main">
             <img
@@ -91,6 +92,7 @@ class CounselorSignup extends Component {
             </section>
           </section>
           <section className="button-holder">
+          
             <Link to={{ pathname: "/login" }}>
               <article className='login'>Sign in</article>
             </Link>

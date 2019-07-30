@@ -3,6 +3,11 @@
     margin: 5vh 0vh .5vh 0vh;
 }
 
+.hold-all{
+    position: absolute;
+    background-image: linear-gradient(to bottom right, rgb(255, 255, 255), #131313);
+}
+
 .title{
     text-align: center;
     margin: .5vh 0vh 5vh 0vh;
@@ -73,7 +78,7 @@
 
 .signup{
     text-decoration: none;
-    color: rgb(0, 0, 255);
+    color: #2A56B4;
     margin-top: .5vh;
 }
 
@@ -82,7 +87,7 @@
 }
 
 .login{
-    background-color: rgb(0, 0, 255);
+    background-color: #2A56B4;
     color: white;
     justify-content: flex-end;
     font-size: 20px;

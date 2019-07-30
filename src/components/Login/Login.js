@@ -37,7 +37,7 @@ class Login extends Component {
 
 
     return (
-      <div>
+      <div className='hold-all'>
         <article className="welcome-message">Welcome to</article>
         <article className="title">SAFE HAVEN</article>
 
