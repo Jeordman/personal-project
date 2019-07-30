@@ -22,7 +22,6 @@ class Survey extends Component {
 
   next = () => {
     let now = this.state.question;
-    console.log("hit");
     if (this.state.question <= 4) {
       this.setState({ question: (now += 1) });
     }
@@ -30,7 +29,6 @@ class Survey extends Component {
 
   back = () => {
     let now = this.state.question;
-    console.log("hit");
     if (this.state.question >= 2) {
       this.setState({ question: (now -= 1) });
     }
@@ -75,8 +73,6 @@ class Survey extends Component {
   };
 
   render() {
-    console.log("props", this.props);
-    console.log(this.state);
     if (this.state.question === 1) {
       return (
         <div className="survey-container">

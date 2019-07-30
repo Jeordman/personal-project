@@ -20,6 +20,10 @@
   margin-top: 2vh;
 }
 
+.request-counselor-button{
+  color: rgb(255, 255, 255);
+}
+
 .loading-spin {
   width: 10vw;
   height: 10vh;

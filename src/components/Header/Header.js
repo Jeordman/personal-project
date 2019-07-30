@@ -4,6 +4,7 @@ import { logout } from "../../ducks/userReducer";
 import { logoutCounselor } from "../../ducks/counselorsReducer";
 import { logoutJournal } from "../../ducks/journalReducer";
 import { Link, Redirect, withRouter } from "react-router-dom";
+import { logoutRequestCounselor } from "../../ducks/requestCounselorReducer";
 import "./header.css";
 
 class Header extends Component {
@@ -22,12 +23,12 @@ class Header extends Component {
     await this.props.logout();
     await this.props.logoutJournal();
     await this.props.logoutCounselor();
+    await this.props.logoutRequestCounselor()
     this.props.history.push("/login");
   };
 
   render() {
     //user login
-    console.log("logout journal", this.props.logoutJournal);
     if (!this.props.counselorReducerState.counselor) {
       return (
         <div classNam="hold-all-header">
@@ -106,6 +107,6 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(
     mapStateToProps,
-    { logout, logoutCounselor, logoutJournal }
+    { logout, logoutCounselor, logoutJournal, logoutRequestCounselor }
   )(Header)
 );

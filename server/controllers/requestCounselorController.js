@@ -2,11 +2,11 @@ module.exports = {
   async requestCounselor(req, res) {
     const { user_id, counselor_id } = req.body;
     await req.app.get("db").user_counselor_request(user_id, counselor_id);
-    res.status(200).send("YAY");
+    res.status(200).send("Request Sent");
   },
 
   async checkIfRequested(req, res) {
-    const { counselor_id } = req.body;
+    const { counselor_id } = req.params;
     const requested = await req.app.get("db").check_if_requested(counselor_id);
     let requestedCheck = requested[0];
     if (!requestedCheck) return res.status(401).send("No Requests");
@@ -48,5 +48,10 @@ module.exports = {
     if (!requestAcceptedCheck)
       return res.status(401).send("No Accepted Counselors");
     res.status(200).send(acceptedCounselors);
+  },
+
+  logoutRequestCounselor(req, res) {
+    req.session.destroy();
+    res.sendStatus(200);
   }
 };

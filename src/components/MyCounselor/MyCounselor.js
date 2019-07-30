@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getUser } from "../../ducks/userReducer";
 import { getCounselors } from "../../ducks/counselorsReducer";
 import { getUsers } from "../../ducks/userReducer";
+import { requestCounselor } from "../../ducks/requestCounselorReducer";
 import "./myCounselor.css";
 
 class MyCounselor extends Component {
@@ -61,7 +62,7 @@ class MyCounselor extends Component {
 
     if (thatCounselor) {
       const { first_name, last_name, photo } = thatCounselor;
-      console.log("ey", thatCounselor.info);
+      console.log("props", thatCounselor.counselor_id);
       return (
         <div className="holder">
           <Header />
@@ -77,6 +78,12 @@ class MyCounselor extends Component {
           <div>
             <h3 className="bio">{thatCounselor.info}</h3>
           </div>
+          <button
+            className="request-counselor-button"
+            onClick={() => this.props.requestCounselor(this.props.user.user.id,thatCounselor.counselor_id)}
+          >
+            REQUEST COUNSELOR
+          </button>
         </div>
       );
     } else
@@ -94,5 +101,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { getUser, getCounselors, getUsers }
+  { getUser, getCounselors, getUsers, requestCounselor }
 )(MyCounselor);
