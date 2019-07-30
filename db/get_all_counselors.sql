@@ -1,1 +1,2 @@
-select * from counselors
+select *
+from counselors

@@ -35,9 +35,8 @@ class Login extends Component {
     const { user } = this.props;
     if (user.loggedIn) return <Redirect to="/" />;
 
-
     return (
-      <div className='hold-all'>
+      <div className="hold-all">
         <article className="welcome-message">Welcome to</article>
         <article className="title">SAFE HAVEN</article>
 
@@ -45,9 +44,9 @@ class Login extends Component {
           <img src={this.state.image} className="image" />
           <img src={this.state.image2} className="image2" />
         </section>
-        <section className='image-holder2'>
-        <img src={this.state.image3} className="image3" />
-        <img src={this.state.image4} className="image4" />
+        <section className="image-holder2">
+          <img src={this.state.image3} className="image3" />
+          <img src={this.state.image4} className="image4" />
         </section>
         <article className="page-label">Sign in</article>
         <section className="input-holder">

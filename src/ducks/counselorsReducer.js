@@ -101,7 +101,13 @@ export default function(state = initialState, action) {
     case LOGIN_COUNSELOR + "_REJECTED":
       return { ...state, error: payload, counselor: true };
     case SIGNUP_COUNSELOR + "_FULFILLED":
-      return { ...state, redirect: false, user: payload, error: false, counselor: true };
+      return {
+        ...state,
+        redirect: false,
+        user: payload,
+        error: false,
+        counselor: true
+      };
     case SIGNUP_COUNSELOR + "_REJECTED":
       return { ...state, error: payload };
     case LOGOUT_COUNSELOR + "_FULFILLED":
@@ -118,7 +124,7 @@ export default function(state = initialState, action) {
         redirect: false,
         error: false,
         counselor: true,
-        user: {payload, loggedIn: true}
+        user: { payload, loggedIn: true }
       };
     default:
       return state;

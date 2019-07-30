@@ -43,7 +43,7 @@ class MyCounselor extends Component {
       return (
         <div>
           <Header />
-          <div  className="holder">
+          <div className="holder">
             {`${first_name} ${last_name}`}
             <img
               onError={this.addDefaultSrc}
@@ -65,7 +65,7 @@ class MyCounselor extends Component {
       return (
         <div className="holder">
           <Header />
-          <h1 >
+          <h1>
             {`${first_name} ${last_name}`}
             <img
               onError={this.addDefaultSrc}

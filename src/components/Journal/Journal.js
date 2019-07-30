@@ -41,10 +41,15 @@ class Journal extends Component {
   };
 
   saveChangesJournal = () => {
-    const { selectedEntry, selectedNote} = this.state
-    console.log('select entry, userid, selected note', selectedEntry, this.props.user.id, selectedNote,  )
-    this.props.editUserJournal(selectedEntry, this.props.user.id, selectedNote)
-    this.setState({editing: false})
+    const { selectedEntry, selectedNote } = this.state;
+    console.log(
+      "select entry, userid, selected note",
+      selectedEntry,
+      this.props.user.id,
+      selectedNote
+    );
+    this.props.editUserJournal(selectedEntry, this.props.user.id, selectedNote);
+    this.setState({ editing: false });
   };
 
   handleChange = e => {
@@ -55,8 +60,9 @@ class Journal extends Component {
   cancel = () => {
     this.setState({ editing: false });
     this.setState({
-      selectedNote: this.props.journalEntries.find(item => item.entry_id === this.state.selectedEntry)
-        .note
+      selectedNote: this.props.journalEntries.find(
+        item => item.entry_id === this.state.selectedEntry
+      ).note
     });
   };
 
@@ -64,7 +70,7 @@ class Journal extends Component {
     console.log("journal props", this.props);
     console.log("state", this.state);
     return (
-      <div className='journal-holder-component'>
+      <div className="journal-holder-component">
         <Header />
         <section className="repeating">
           {this.props.journalEntries.map(obj => {

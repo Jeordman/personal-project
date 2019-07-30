@@ -12,7 +12,7 @@ import {
   GET_QUOTES
 } from "./actionTypes";
 
-var unirest = require('unirest');
+var unirest = require("unirest");
 
 const initialState = {
   users: [],
@@ -89,28 +89,31 @@ export const editUser = (
 };
 //------------------------------------------------------------------?????
 export const getQuotes = () => {
- const quotes = unirest.get("https://healthruwords.p.rapidapi.com/v1/quotes/?id=731&t=Wisdom&maxR=1&size=medium")
-  .header("X-RapidAPI-Host", "healthruwords.p.rapidapi.com")
-  .header("X-RapidAPI-Key", "7518fc550bmsh1372e67fc6ec9c6p18b9a8jsn835484550200")
-  .then(result => result.data)
+  const quotes = unirest
+    .get(
+      "https://healthruwords.p.rapidapi.com/v1/quotes/?id=731&t=Wisdom&maxR=1&size=medium"
+    )
+    .header("X-RapidAPI-Host", "healthruwords.p.rapidapi.com")
+    .header(
+      "X-RapidAPI-Key",
+      "7518fc550bmsh1372e67fc6ec9c6p18b9a8jsn835484550200"
+    )
+    .then(result => result.data);
   return {
     type: GET_QUOTES,
     payload: quotes
   };
-}//------------------------------------------------------------------?????
-
-
+}; //------------------------------------------------------------------?????
 
 export const getUserGraph = user_id => {
   let response = axios
     .get(`/api/GetUserGraph/${user_id}`)
-    .then((res => res.data));
+    .then(res => res.data);
   return {
     type: GET_USER_GRAPH,
     payload: response
   };
 };
-
 
 //might be useless
 export const completeSurvey = (user_id, date, mood) => {
@@ -164,7 +167,13 @@ export default function(state = initialState, action) {
     case GET_USER + "_REJECTED":
       return { ...state, redirect: true, error: payload };
     case LOGOUT + "_FULFILLED":
-      return { users: [], user: {}, redirect: false, error: false,  graphInfo: []};
+      return {
+        users: [],
+        user: {},
+        redirect: false,
+        error: false,
+        graphInfo: []
+      };
     case GET_USERS + "_FULFILLED":
       return { ...state, users: payload, error: false };
     case GET_USERS + "_REJECTED":
@@ -185,18 +194,22 @@ export default function(state = initialState, action) {
       return {
         ...state
       };
-    case GET_USER_GRAPH + '_FULFILLED': 
+    case GET_USER_GRAPH + "_FULFILLED":
       return {
-        ...state, graphInfo: payload
-      }
-    case GET_USER_GRAPH + '_PENDING':
+        ...state,
+        graphInfo: payload
+      };
+    case GET_USER_GRAPH + "_PENDING":
       return {
-        ...state, redirect: false, error: false
-      }
-    case GET_QUOTES + '_FULFILLED':
+        ...state,
+        redirect: false,
+        error: false
+      };
+    case GET_QUOTES + "_FULFILLED":
       return {
-       ...state, quotes: payload
-      }
+        ...state,
+        quotes: payload
+      };
     default:
       return state;
   }

@@ -1,60 +1,59 @@
-.hold-signup{
-    position: absolute;
-    background-image: linear-gradient(#A7D5F7, #0B7BC9);
-    height: 100vh;
-    width: 100vw;
+.hold-signup {
+  position: absolute;
+  background-image: linear-gradient(#a7d5f7, #0b7bc9);
+  height: 100vh;
+  width: 100vw;
 }
 
-.main{
-    display: flex;
-    flex-direction: column;
+.main {
+  display: flex;
+  flex-direction: column;
 }
 
-h2{
- text-align: center;
+h2 {
+  text-align: center;
 }
 
-.img{
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    border-style: solid;
-    display: flex;
-    margin-left: 39vw;
-    border-color: gray;
+.img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border-style: solid;
+  display: flex;
+  margin-left: 39vw;
+  border-color: gray;
 }
 
-.input-holder{
-    width: 85vw;
-    margin: 0 auto;
-    margin-top: 2vh;
+.input-holder {
+  width: 85vw;
+  margin: 0 auto;
+  margin-top: 2vh;
 }
 
-.input{
-    height: 5vh;
-    margin: 1vh 0vh 1vh 0vh;
-    border-style: solid;
-    border-radius: 5px;
-    border-color: gray;
-    font-size: 15px
+.input {
+  height: 5vh;
+  margin: 1vh 0vh 1vh 0vh;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: gray;
+  font-size: 15px;
 }
 
-.button-holder{
-    display: flex;
+.button-holder {
+  display: flex;
 }
 
-.login{
-    font-size: 20px;
-    margin-top: .5vh;
+.login {
+  font-size: 20px;
+  margin-top: 0.5vh;
 }
 
-.signup{
-    background-color: #2A56B4;
-    color: white;
-    justify-content: flex-end;
-    font-size: 20px;
-    border: none;
-    padding: .6vh 6vw;
-    border-radius: 12px;
+.signup {
+  background-color: #2a56b4;
+  color: white;
+  justify-content: flex-end;
+  font-size: 20px;
+  border: none;
+  padding: 0.6vh 6vw;
+  border-radius: 12px;
 }
-

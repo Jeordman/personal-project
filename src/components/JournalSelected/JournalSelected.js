@@ -28,7 +28,7 @@ class JournalSelected extends Component {
               value={this.props.journalState.selectedNote} //what we are changing (on props) (the info)
               onChange={this.props.handleChange} //normal handle change
               name="selectedNote"
-              className='edit-journal-text'
+              className="edit-journal-text"
             />
           </div>
         ) : null}

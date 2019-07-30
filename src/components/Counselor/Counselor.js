@@ -35,7 +35,7 @@ class Counselor extends Component {
       );
     }
 
-    if(this.props.obj.user_id){
+    if (this.props.obj.user_id) {
       return (
         <section className="repeat">
           <article>{first_name}</article>

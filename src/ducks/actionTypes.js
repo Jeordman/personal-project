@@ -13,7 +13,7 @@ export const GET_USER_GRAPH = "GET_USER_GRAPH";
 export const ADD_TO_JOURNAL = "ADD_TO_JOURNAL";
 export const GET_USER_JOURNAL = "GET_USER_JOURNAL";
 export const LOGOUT_JOURNAL = "LOGOUT_JOURNAL";
-export const EDIT_USER_JOURNAL = 'EDIT_USER_JOURNAL'
+export const EDIT_USER_JOURNAL = "EDIT_USER_JOURNAL";
 
 //????
 export const GET_QUOTES = "GET_QUOTES";

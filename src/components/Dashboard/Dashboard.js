@@ -195,7 +195,9 @@ class Dashboard extends Component {
           ) : (
             <section>
               <section className="bio-center">BIO</section>
-              <article className='bio-before-edit'>{this.state.user_info}</article>
+              <article className="bio-before-edit">
+                {this.state.user_info}
+              </article>
               <button onClick={this.edit} className="edit-dash">
                 Edit Profile
               </button>

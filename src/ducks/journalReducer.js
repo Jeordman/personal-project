@@ -52,10 +52,10 @@ export default function(state = initialState, action) {
       return {
         journalEntries: []
       };
-    case EDIT_USER_JOURNAL + '_FULFILLED':
+    case EDIT_USER_JOURNAL + "_FULFILLED":
       return {
         journalEntries: payload
-      }
+      };
     default:
       return {
         ...state

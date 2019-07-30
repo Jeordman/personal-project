@@ -39,9 +39,9 @@ class MyChart extends Component {
   // }
 
   componentDidUpdate(prevProps) {
-    console.log('hitcompupdate')
-    if(prevProps !== this.props) {
-      console.log('updated', this.props);
+    console.log("hitcompupdate");
+    if (prevProps !== this.props) {
+      console.log("updated", this.props);
       this.setState({
         data: {
           labels: this.props.graphInfo.map(obj => obj.date),
@@ -53,7 +53,7 @@ class MyChart extends Component {
             }
           ]
         }
-      })
+      });
     }
   }
 
@@ -70,8 +70,8 @@ class MyChart extends Component {
   //   };
 
   render() {
-    console.log('graph info my chart', this.props.graphInfo)
-    console.log('state label', this.state.data)
+    console.log("graph info my chart", this.props.graphInfo);
+    console.log("state label", this.state.data);
     return (
       <section className="chart-day-mood">
         <Line
@@ -83,10 +83,10 @@ class MyChart extends Component {
             },
             legend: {
               labels: {
-                  // This more specific font property overrides the global property
-                  fontColor: 'white'
+                // This more specific font property overrides the global property
+                fontColor: "white"
               }
-          },
+            },
             maintainAspectRatio: false,
             scales: {
               yAxes: [
@@ -97,20 +97,21 @@ class MyChart extends Component {
                     steps: 10,
                     stepSize: 1,
                     max: 10,
-                    fontColor: 'white',
+                    fontColor: "white",
                     fontSize: 15
                   }
                 }
               ],
-              xAxes: [{
-                
-                ticks: {
-                  autoSkip: true,
-                  maxTicksLimit: 17,
-                  fontColor: 'white',
-                  fontSize: 15
+              xAxes: [
+                {
+                  ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 17,
+                    fontColor: "white",
+                    fontSize: 15
+                  }
                 }
-              }],
+              ]
             }
           }}
           data={this.state.data}

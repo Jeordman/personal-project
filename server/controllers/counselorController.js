@@ -9,7 +9,7 @@ module.exports = {
 
   async loginCounselor(req, res) {
     const { username, password } = req.body;
-    const db = req.app.get("db")
+    const db = req.app.get("db");
     const [existingCounselor] = await db.get_counselor_username(username);
     if (!existingCounselor) return res.status(401).send("Counselor Not Found");
     const result = await bcrypt.compare(password, existingCounselor.password);
@@ -53,21 +53,20 @@ module.exports = {
 
   async editCounselor(req, res) {
     let { counselor_id } = req.params;
-    let { new_first_name, new_last_name, new_photo, new_info} = req.body;
-    const db = req.app.get('db')
+    let { new_first_name, new_last_name, new_photo, new_info } = req.body;
+    const db = req.app.get("db");
     let counselorInfo = await db.edit_counselor_info([
-      +counselor_id, 
+      +counselor_id,
       new_first_name,
       new_last_name,
       new_photo,
-      new_info,
+      new_info
     ]);
-    res.send(counselorInfo)
+    res.send(counselorInfo);
   },
 
-  logoutCounselor(req, res){
+  logoutCounselor(req, res) {
     req.session.destroy();
-    res.sendStatus(200)
+    res.sendStatus(200);
   }
-
 };

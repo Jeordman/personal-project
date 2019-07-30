@@ -1,112 +1,116 @@
-.welcome-message{
-    text-align: center;
-    margin: 5vh 0vh .5vh 0vh;
+.welcome-message {
+  text-align: center;
+  margin: 5vh 0vh 0.5vh 0vh;
 }
 
-.hold-all{
-    position: absolute;
-    background-image: linear-gradient(to bottom right, rgb(255, 255, 255), #131313);
+.hold-all {
+  position: absolute;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(255, 255, 255),
+    #131313
+  );
 }
 
-.title{
-    text-align: center;
-    margin: .5vh 0vh 5vh 0vh;
-    font-size: 30px;
-    letter-spacing: 5px;
-    border-bottom: 2px solid;
-    border-radius: 10vh;
+.title {
+  text-align: center;
+  margin: 0.5vh 0vh 5vh 0vh;
+  font-size: 30px;
+  letter-spacing: 5px;
+  border-bottom: 2px solid;
+  border-radius: 10vh;
 }
 
-.page-label{
-    text-align: center;
-    margin: 10vh 0vh .5vh 0vh;
-    font-size: 25px;
+.page-label {
+  text-align: center;
+  margin: 10vh 0vh 0.5vh 0vh;
+  font-size: 25px;
 }
 
-.image-holder1{
-    display: flex;
-    justify-content: space-evenly
+.image-holder1 {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.image-holder2{
-    margin-top: 4vh;
-    display: flex;
-    justify-content: space-evenly;
+.image-holder2 {
+  margin-top: 4vh;
+  display: flex;
+  justify-content: space-evenly;
 }
-.image{
-    width: 40vw;
+.image {
+  width: 40vw;
 }
-.image2{
-    width: 40vw;
+.image2 {
+  width: 40vw;
 }
-.image3{
-    width: 40vw;
+.image3 {
+  width: 40vw;
 }
-.image4{
-    width: 40vw;
-}
-
-.input-holder{
-    width: 85vw;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
+.image4 {
+  width: 40vw;
 }
 
-.input{
-    height: 5vh;
-    margin: 1vh 0vh 1vh 0vh;
+.input-holder {
+  width: 85vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.input:hover{
-    cursor: pointer;
+.input {
+  height: 5vh;
+  margin: 1vh 0vh 1vh 0vh;
 }
 
-.no-account{
-    margin-left: 2vw;
-    font-size: 15px;
-    margin: 2vh 0vh 1vh 5vw;
+.input:hover {
+  cursor: pointer;
 }
 
-.button-holder{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100vw;
-    margin: 0vh 0vh 1vh 0vh;
+.no-account {
+  margin-left: 2vw;
+  font-size: 15px;
+  margin: 2vh 0vh 1vh 5vw;
 }
 
-.signup{
-    text-decoration: none;
-    color: #2A56B4;
-    margin-top: .5vh;
+.button-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100vw;
+  margin: 0vh 0vh 1vh 0vh;
 }
 
-.signup:hover{
-    cursor: pointer;
+.signup {
+  text-decoration: none;
+  color: #2a56b4;
+  margin-top: 0.5vh;
 }
 
-.login{
-    background-color: #2A56B4;
-    color: white;
-    justify-content: flex-end;
-    font-size: 20px;
-    border: none;
-    padding: .6vh 6vw;
-    border-radius: 12px;
-}
-.login:hover{
-    cursor: pointer;
+.signup:hover {
+  cursor: pointer;
 }
 
-.emergency-info{
-    margin-top: 20vh;
-    display: flex;
-    justify-content: space-around;
+.login {
+  background-color: #2a56b4;
+  color: white;
+  justify-content: flex-end;
+  font-size: 20px;
+  border: none;
+  padding: 0.6vh 6vw;
+  border-radius: 12px;
+}
+.login:hover {
+  cursor: pointer;
 }
 
-.author{
-    margin-top: 1vh;
-    text-align: center;
-    margin-bottom: 2vh;
+.emergency-info {
+  margin-top: 20vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+.author {
+  margin-top: 1vh;
+  text-align: center;
+  margin-bottom: 2vh;
 }

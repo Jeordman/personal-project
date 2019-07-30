@@ -19,14 +19,14 @@
   font-size: 19px;
 }
 
-.edit-journal-text{
-    width: 50vw;
-    height: 5vh;
+.edit-journal-text {
+  width: 50vw;
+  height: 5vh;
 }
 
-.selected-note{
-    display: flex;
-    margin-top: 2vh;
-    width: 70vw;
-    height: 10vh;
+.selected-note {
+  display: flex;
+  margin-top: 2vh;
+  width: 70vw;
+  height: 10vh;
 }

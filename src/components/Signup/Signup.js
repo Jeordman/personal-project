@@ -38,7 +38,7 @@ class Signup extends Component {
     if (user.loggedIn) return <Redirect to="/" />;
 
     return (
-      <section className='hold-signup'>
+      <section className="hold-signup">
         <h2>Create account</h2>
         <section className="main">
           <img
@@ -91,9 +91,11 @@ class Signup extends Component {
         </section>
         <section className="button-holder">
           <Link to={{ pathname: "/login" }}>
-            <article className='login'>Sign in</article>
+            <article className="login">Sign in</article>
           </Link>
-          <button onClick={this.signup} className='signup'>Sign up --></button>
+          <button onClick={this.signup} className="signup">
+            Sign up -->
+          </button>
         </section>
       </section>
     );
