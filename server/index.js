@@ -7,6 +7,7 @@ const uc = require("./controllers/userController");
 const cc = require("./controllers/counselorController");
 const oc = require('./controllers/outsideController')
 const jc = require('./controllers/journalController')
+const rcc = require('./controllers/requestCounselorController')
 
 const unirest = require('unirest');
 
@@ -61,6 +62,14 @@ app.delete('/api/logoutCounselor', cc.logoutCounselor);
 
 //outside api
 
+
+//Request Counselor 
+app.post('/api/requestCounselor', rcc.requestCounselor) //add request
+app.get('/api/checkIfRequested' , rcc.checkIfRequested) //check for notifications
+app.delete('/api/rejectRequest', rcc.rejectRequest) //counselor reject user
+app.put('/api/acceptRequest', rcc.acceptRequest) //counselor accept user
+app.get('/api/getAcceptedUsers', rcc.getAcceptedUsers)
+app.get('/api/getAcceptedCounselors', rcc.getAcceptedCounselors)
 
 app.listen(SERVER_PORT, () =>
   console.log(`This server... it's over ${SERVER_PORT}`)

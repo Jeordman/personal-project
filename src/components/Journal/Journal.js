@@ -66,8 +66,6 @@ class Journal extends Component {
     return (
       <div className='journal-holder-component'>
         <Header />
-        <section className="top">Top</section>
-
         <section className="repeating">
           {this.props.journalEntries.map(obj => {
             return (
