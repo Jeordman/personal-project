@@ -5,7 +5,10 @@ import { connect } from "react-redux";
 import { getUser } from "../../ducks/userReducer";
 import { getCounselors } from "../../ducks/counselorsReducer";
 import { getUsers } from "../../ducks/userReducer";
-import { requestCounselor } from "../../ducks/requestCounselorReducer";
+import {
+  requestCounselor,
+  sendText
+} from "../../ducks/requestCounselorReducer";
 import "./myCounselor.css";
 
 class MyCounselor extends Component {
@@ -18,6 +21,19 @@ class MyCounselor extends Component {
     ev.target.src =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvlhaYgj0EeSjYPBSHNY3xacbupTZ_EnCvlSWoyJB7jMa1wuhdeA";
   }
+
+  requestCounselor = () => {
+    let counselorId = this.props.match.params.id;
+    const thisCounselor = this.props.counselors.counselors.filter(
+      id => id.counselor_id === +counselorId
+    );
+    const thatCounselor = thisCounselor[0];
+    this.props.requestCounselor(
+      this.props.user.user.id,
+      thatCounselor.counselor_id
+    );
+    this.props.sendText(this.props.user.user.first_name, this.props.user.user.last_name);
+  };
 
   render() {
     let { user, error, redirect } = this.props.user;
@@ -62,7 +78,7 @@ class MyCounselor extends Component {
 
     if (thatCounselor) {
       const { first_name, last_name, photo } = thatCounselor;
-      console.log("props", thatCounselor.counselor_id);
+      console.log("props", this.props);
       return (
         <div className="holder">
           <Header />
@@ -80,7 +96,7 @@ class MyCounselor extends Component {
           </div>
           <button
             className="request-counselor-button"
-            onClick={() => this.props.requestCounselor(this.props.user.user.id,thatCounselor.counselor_id)}
+            onClick={() => this.requestCounselor()}
           >
             REQUEST COUNSELOR
           </button>
@@ -101,5 +117,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { getUser, getCounselors, getUsers, requestCounselor }
+  { getUser, getCounselors, getUsers, requestCounselor, sendText }
 )(MyCounselor);

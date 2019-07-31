@@ -7,7 +7,8 @@ import {
   REJECT_REQUEST,
   ACCEPT_REQUEST,
   GET_ACCEPTED_USERS,
-  LOGOUT_REQUEST_COUNSELOR
+  LOGOUT_REQUEST_COUNSELOR,
+  SEND_TEXT
 } from "./actionTypes";
 
 const initialState = {
@@ -25,6 +26,31 @@ export const requestCounselor = (user_id, counselor_id) => {
     payload: response
   };
 };
+
+// export const sendText = () => {
+//   const recipient = 18015776800;
+//   const textmessage = "You have a new request";
+//   let response = axios
+//     .get(
+//       `localhost:9000/api/send-text?recipient=${recipient}&textmessage=${textmessage}`
+//     )
+//     .then(res => res.data);
+//   return {
+//     type: SEND_TEXT,
+//     payload: response
+//   };
+// };
+
+export function sendText(first_name, last_name) {
+  const name = first_name + ' ' + last_name
+  const message = 'You have a new counseling request from'
+  let response = axios.post('/api/sendText', { name, message })
+  .then(res => res.data)
+  return {
+    type: SEND_TEXT,
+    payload: response
+  }
+}
 
 export const checkIfRequested = counselor_id => {
   let requests = axios
@@ -62,12 +88,12 @@ export const rejectRequest = (user_counselor_id, counselor_id) => {
 export const acceptRequest = (user_counselor_id, counselor_id) => {
   const updated = axios
     .put("/api/acceptRequest", { user_counselor_id, counselor_id })
-    .then(res =>  
-      {console.log(res.data)
-      return res.data}
-    );
+    .then(res => {
+      console.log(res.data);
+      return res.data;
+    });
 
-      console.log(updated)
+  console.log(updated);
   return {
     type: ACCEPT_REQUEST,
     payload: updated
@@ -96,6 +122,8 @@ export default function(state = initialState, action) {
   switch (type) {
     case REQUEST_COUNSELOR + "_FULFILLED":
       return { ...state };
+    case SEND_TEXT + "_FULFILLED":
+      return { ...state };
     case CHECK_IF_REQUESTED + "_FULFILLED":
       return { ...state, requestedUsers: payload };
     case CHECK_IF_REQUESTED + "_PENDING":
@@ -107,7 +135,11 @@ export default function(state = initialState, action) {
     case REJECT_REQUEST + "_FULFILLED":
       return { ...state, requestedUsers: payload };
     case ACCEPT_REQUEST + "_FULFILLED":
-      return { ...state, requestedUsers: payload.updatedRequests, acceptedUsers: payload.updatedUsers };
+      return {
+        ...state,
+        requestedUsers: payload.updatedRequests,
+        acceptedUsers: payload.updatedUsers
+      };
     case GET_ACCEPTED_USERS + "_FULFILLED":
       return { ...state, acceptedUsers: payload };
     case GET_ACCEPTED_USERS + "_PENDING":

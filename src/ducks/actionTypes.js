@@ -25,6 +25,9 @@ export const GET_ACCEPTED_USERS = "GET_ACCEPTED_USERS";
 export const GET_ACCEPTED_COUNSELORS = "GET_ACCEPTED_USERS";
 export const LOGOUT_REQUEST_COUNSELOR = "LOGOUT_REQUEST_COUNSELOR";
 
+//twilio
+export const SEND_TEXT = 'SEND_TEXT'
+
 //????
 export const GET_QUOTES = "GET_QUOTES";
 

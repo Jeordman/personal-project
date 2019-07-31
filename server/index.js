@@ -68,7 +68,10 @@ app.delete("/api/rejectRequest/:user_counselor_id", rcc.rejectRequest); //counse
 app.put("/api/acceptRequest", rcc.acceptRequest); //counselor accept user
 app.get("/api/getAcceptedUsers/:counselor_id", rcc.getAcceptedUsers);
 app.get("/api/getAcceptedCounselors", rcc.getAcceptedCounselors);
-app.delete('/api/logoutRequestCounselor', rcc.logoutRequestCounselor)
+app.delete("/api/logoutRequestCounselor", rcc.logoutRequestCounselor);
+
+//twilio
+app.post("/api/sendText", rcc.sendText);
 
 app.listen(SERVER_PORT, () =>
   console.log(`This server... it's over ${SERVER_PORT}`)
