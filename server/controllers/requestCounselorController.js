@@ -14,7 +14,9 @@ module.exports = {
   },
 
   async rejectRequest(req, res) {
-    const { user_counselor_id, counselor_id } = req.body;
+    const { user_counselor_id } = req.params;
+    const { counselor_id } = req.query;
+    console.log('userid, counselorid', user_counselor_id, counselor_id)
     const updatedRequests = await req.app
       .get("db")
       .reject_request(user_counselor_id, counselor_id);
@@ -22,15 +24,17 @@ module.exports = {
   },
 
   async acceptRequest(req, res) {
+    const db = req.app.get('db')
     const { user_counselor_id, counselor_id } = req.body;
-    const updatedRequests = await req.app
-      .get("db")
-      .accept_request(user_counselor_id, counselor_id);
-    res.status(200).send(updatedRequests);
+    const updatedRequests = await db.accept_request(user_counselor_id, counselor_id);
+
+    const updatedUsers = await db.get_accepted_users(counselor_id)
+    console.log('users/req', updatedUsers, updatedRequests)
+    res.status(200).send({updatedRequests, updatedUsers});
   },
 
   async getAcceptedUsers(req, res) {
-    const { counselor_id } = req.body;
+    const { counselor_id } = req.params;
     const acceptedUsers = await req.app
       .get("db")
       .get_accepted_users(counselor_id);

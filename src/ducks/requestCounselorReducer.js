@@ -13,8 +13,7 @@ import {
 const initialState = {
   acceptedCounselors: [],
   acceptedUsers: [],
-  requestedUsers: [],
-  userRequests: {}
+  requestedUsers: []
 };
 
 export const requestCounselor = (user_id, counselor_id) => {
@@ -37,13 +36,51 @@ export const checkIfRequested = counselor_id => {
   };
 };
 
-export const getRequestedUsers = counselor_id  => {
+export const getRequestedUsers = counselor_id => {
   let requestsList = axios
     .get(`/api/getRequestedUsers/${counselor_id}`)
     .then(res => res.data);
   return {
     type: GET_REQUESTED_USERS,
     payload: requestsList
+  };
+};
+
+export const rejectRequest = (user_counselor_id, counselor_id) => {
+  console.log("hit", user_counselor_id, counselor_id);
+  const updated = axios
+    .delete(
+      `/api/rejectRequest/${+user_counselor_id}?counselor_id=${+counselor_id}`
+    )
+    .then(res => res.data);
+  return {
+    type: REJECT_REQUEST,
+    payload: updated
+  };
+};
+
+export const acceptRequest = (user_counselor_id, counselor_id) => {
+  const updated = axios
+    .put("/api/acceptRequest", { user_counselor_id, counselor_id })
+    .then(res =>  
+      {console.log(res.data)
+      return res.data}
+    );
+
+      console.log(updated)
+  return {
+    type: ACCEPT_REQUEST,
+    payload: updated
+  };
+};
+
+export const getAcceptedUsers = counselor_id => {
+  const allAccepted = axios
+    .get(`/api/getAcceptedUsers/${counselor_id}`)
+    .then(res => res.data);
+  return {
+    type: GET_ACCEPTED_USERS,
+    payload: allAccepted
   };
 };
 
@@ -67,12 +104,19 @@ export default function(state = initialState, action) {
       return { ...state, userRequests: payload };
     case GET_REQUESTED_USERS + "_PENDING":
       return { ...state };
+    case REJECT_REQUEST + "_FULFILLED":
+      return { ...state, requestedUsers: payload };
+    case ACCEPT_REQUEST + "_FULFILLED":
+      return { ...state, requestedUsers: payload.updatedRequests, acceptedUsers: payload.updatedUsers };
+    case GET_ACCEPTED_USERS + "_FULFILLED":
+      return { ...state, acceptedUsers: payload };
+    case GET_ACCEPTED_USERS + "_PENDING":
+      return { ...state };
     case LOGOUT_REQUEST_COUNSELOR + "_FULFILLED":
       return {
         acceptedCounselors: [],
         acceptedUsers: [],
-        requestedUsers: [],
-        userRequests: []
+        requestedUsers: []
       };
     default:
       return {

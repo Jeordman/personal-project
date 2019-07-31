@@ -13,7 +13,8 @@ import Counselor from "../Counselor/Counselor";
 import "./dashboard.css";
 import "../Survey/Survey";
 import Survey from "../Survey/Survey";
-import RequestInbox from '../RequestInbox/RequestInbox'
+import RequestInbox from "../RequestInbox/RequestInbox";
+import { getAcceptedUsers } from "../../ducks/requestCounselorReducer";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -40,7 +41,17 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.getCounselors();
     this.props.getUsers();
+
+    if (this.props.counselor.loggedIn) {
+      this.props.getAcceptedUsers(this.props.counselor.id);
+    }
   }
+
+  // componentDidUpdate = prevProps => {
+  //   if (prevProps !== this.props) {
+  //     this.props.getAcceptedUsers(this.props.counselor.id);
+  //   }
+  // }
 
   addDefaultSrc(ev) {
     ev.target.src =
@@ -285,11 +296,12 @@ class Dashboard extends Component {
             </section>
           )}
 
-            <RequestInbox />
+          <RequestInbox />
 
           <h4 className="h4">Users</h4>
+
           <section className="scroll-right">
-            {this.props.users.map(obj => {
+            {this.props.acceptedUsers.map(obj => {
               return (
                 <div>
                   <Counselor obj={obj} />
@@ -314,11 +326,20 @@ function mapStateToProps(state) {
     counselor: state.counselors.user,
     users: state.user.users,
     counselorError: state.counselors.error,
-    counselorRedirect: state.counselors.redirect
+    counselorRedirect: state.counselors.redirect,
+    acceptedUsers: state.requestCounselor.acceptedUsers
   };
 }
 
 export default connect(
   mapStateToProps,
-  { getUser, getCounselors, getUsers, editCounselor, editUser, getQuotes }
+  {
+    getUser,
+    getCounselors,
+    getUsers,
+    editCounselor,
+    editUser,
+    getQuotes,
+    getAcceptedUsers
+  }
 )(Dashboard);

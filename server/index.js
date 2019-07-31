@@ -64,9 +64,9 @@ app.delete("/api/logoutCounselor", cc.logoutCounselor);
 //Request Counselor
 app.post("/api/requestCounselor", rcc.requestCounselor); //add request
 app.get("/api/checkIfRequested/:counselor_id", rcc.checkIfRequested); //check for notifications
-app.delete("/api/rejectRequest", rcc.rejectRequest); //counselor reject user
+app.delete("/api/rejectRequest/:user_counselor_id", rcc.rejectRequest); //counselor reject user
 app.put("/api/acceptRequest", rcc.acceptRequest); //counselor accept user
-app.get("/api/getAcceptedUsers", rcc.getAcceptedUsers);
+app.get("/api/getAcceptedUsers/:counselor_id", rcc.getAcceptedUsers);
 app.get("/api/getAcceptedCounselors", rcc.getAcceptedCounselors);
 app.delete('/api/logoutRequestCounselor', rcc.logoutRequestCounselor)
 
