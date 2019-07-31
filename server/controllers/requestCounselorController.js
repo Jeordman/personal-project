@@ -13,6 +13,14 @@ module.exports = {
     res.status(200).send(requested);
   },
 
+  async getRequestedUsers(req, res) {
+    const  { counselor_id } = req.params
+    const requestedUsers = await req.app.get('db').get_requested_users(counselor_id)
+    let requestedUsersCheck = requestedUsers[0]
+    if (!requestedUsersCheck) return res.status(401).send('No Requests')
+    res.status(200).send(requestedUsers)
+  },
+
   async rejectRequest(req, res) {
     const { user_counselor_id, counselor_id } = req.body;
     const updatedRequests = await req.app

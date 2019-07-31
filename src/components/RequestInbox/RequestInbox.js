@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { checkIfRequested } from "../../ducks/requestCounselorReducer";
+import RequestInboxRepeating from "../RequestInboxRepeating/RequestInboxRepeating";
+import "./requestInbox.css";
 
 class RequestInbox extends Component {
   constructor() {
@@ -16,14 +18,32 @@ class RequestInbox extends Component {
   };
 
   render() {
-    return <div>Grabbing Requests</div>;
+    console.log("props", this.props);
+    if (this.props.requestedUsers[0]) {
+      return (
+        <div className="inbox-full-box">
+          Here are your requests
+          <section className="repeating-requests">
+            {this.props.requestedUsers.map(obj => {
+              return (
+                <div>
+                  <RequestInboxRepeating obj={obj} key={this.props.requestedUsers.user_counselor_id}/>
+                </div>
+              );
+            })}
+          </section>
+        </div>
+      );
+    } else {
+      return <div>NO REQUESTS FOUND</div>;
+    }
   }
 }
 
 function mapStateToProps(state) {
   console.log("state", state);
   return {
-    requestedUsers: state.requestedUsers,
+    requestedUsers: state.requestCounselor.requestedUsers,
     loggedInCounselor: state.counselors.user
   };
 }
