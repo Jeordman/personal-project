@@ -14,6 +14,7 @@ class ChatRoom extends Component {
 
       joined: false, //from example
       newMessageInput: "",
+      newMessageInputUser: "",
       messages: [],
       room: 0
     };
@@ -39,7 +40,7 @@ class ChatRoom extends Component {
     });
 
     this.socket.on("message sent", data => {
-      console.log('hit message sent',data);
+      console.log("hit message sent", data);
       this.updateMessages(data);
     });
   };
@@ -50,9 +51,9 @@ class ChatRoom extends Component {
 
   sendMessageUser = () => {
     this.socket.emit("send message", {
-      message: this.state.newMessageInput,
+      message: this.state.newMessageInputUser,
       room: this.state.room,
-      sender: this.props.user.user.first_name,  //figure out
+      sender: this.props.user.user.first_name, //figure out
       is_counselor: false //figure out
     });
   };
@@ -89,7 +90,7 @@ class ChatRoom extends Component {
   }
 
   updateMessages = messages => {
-    console.log('message hit', messages)
+    console.log("message hit", messages);
     this.setState({
       messages: messages
     });
@@ -130,7 +131,7 @@ class ChatRoom extends Component {
       //if they are a counselor
       // if (this.props.room) console.log(this.props.room.user_counselor_id)
       console.log("state", this.state);
-      console.log('props', this.props)
+      console.log("props", this.props);
       const { first_name, last_name, photo } = thatUser;
       return (
         <div className="holder">
@@ -183,8 +184,6 @@ class ChatRoom extends Component {
             />
           </h1>
 
-          <button onClick={() => {}}>BEGIN CHATTING</button>
-
           <div>
             {this.state.joined ? <h1>My Room: {this.state.room}</h1> : null}
             <div>
@@ -195,28 +194,14 @@ class ChatRoom extends Component {
             {this.state.joined ? (
               <div>
                 <input
-                  value={this.state.input}
-                  onChange={e => {
-                    this.setState({
-                      input: e.target.value
-                    });
-                  }}
+                  type="text"
+                  name="newMessageInputUser"
+                  value={this.state.newMessageInputUser}
+                  onChange={this.handleInput}
                 />
                 <button onClick={this.sendMessageUser}>Send</button>
               </div>
-            ) : (
-              <div>
-                <input
-                  value={this.state.room}
-                  onChange={e => {
-                    this.setState({
-                      room: e.target.value
-                    });
-                  }}
-                />
-                <button onClick={this.joinRoom}>Join</button>
-              </div>
-            )}
+            ) : null}
           </div>
         </div>
       );
