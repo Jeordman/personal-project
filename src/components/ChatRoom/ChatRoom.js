@@ -3,23 +3,23 @@ import Header from "../Header/Header";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMatchingUserCounselor } from "../../ducks/requestCounselorReducer";
+import io from "socket.io-client";
 
 class ChatRoom extends Component {
   constructor() {
     super();
 
     this.state = {
-      showChat: false
+      showChat: false,
+
+      joined: false, //from example
+      newMessageInput: "",
+      messages: [],
+      room: ""
     };
   }
 
   componentDidMount = () => {
-    console.log(
-      "lil bitch",
-      +this.props.match.params.id,
-      this.props.counselors.user.id,
-      this.props.user.user.loggedIn
-    );
     if (this.props.user.user.loggedIn) {
       this.props.getMatchingUserCounselor(
         this.props.user.user.id,
@@ -27,10 +27,47 @@ class ChatRoom extends Component {
       );
     } else if (this.props.counselors.user.loggedIn) {
       this.props.getMatchingUserCounselor(
-       +this.props.match.params.id,
+        +this.props.match.params.id,
         this.props.counselors.user.id
       );
     }
+
+    this.socket = io();
+    this.socket.on("room entered", data => {
+      console.log("hit");
+      this.joinSuccess(data);
+    });
+
+    this.socket.on('message sent', data => {
+      console.log(data)
+      this.updateMessages(data);
+    })
+  };
+  
+  componentWillUnmount =() => {
+    this.socket.disconnect();
+  }
+
+  sendMessage = () => {
+    this.socket.emit('send message', {
+      message: this.state.newMessageInput,
+      room: this.state.room,
+      sender: '', //figure this out
+      is_counselor: '' //figure out
+    })
+  }
+
+  updateMessages = messages => {
+    this.setState({
+      messages
+    })
+  }
+
+  joinSuccess = messages => {
+    this.setState({
+      joined: true,
+      messages
+    });
   };
 
   addDefaultSrc(ev) {
@@ -40,6 +77,11 @@ class ChatRoom extends Component {
 
   toggleChat = () => {
     this.setState({ showChat: !this.state.showChat });
+
+
+    if (this.state.showChat) { //disconnect on second toggle
+      this.socket.disconnect();
+    }
   };
 
   render() {
@@ -85,9 +127,7 @@ class ChatRoom extends Component {
     }
 
     if (thatCounselor) {
-      console.log("bums");
       const { first_name, last_name, photo } = thatCounselor;
-      console.log("props", this.props);
       return (
         <div className="holder">
           <Header />

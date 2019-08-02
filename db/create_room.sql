@@ -1,4 +1,4 @@
 insert into socket_rooms
-    (id)
+    (room_id)
 values
     ($1)

@@ -104,7 +104,7 @@ io.on("connection", socket => {
 
   //send messages
   socket.on("send message", async data => {
-    const { room, message } = data;
+    const { room, message, sender, is_counselor } = data;
     const db = app.get("db");
     await db.send_message(room, message);
     let messages = await db.get_messages(room);
