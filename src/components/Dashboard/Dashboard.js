@@ -14,7 +14,10 @@ import "./dashboard.css";
 import "../Survey/Survey";
 import Survey from "../Survey/Survey";
 import RequestInbox from "../RequestInbox/RequestInbox";
-import { getAcceptedUsers } from "../../ducks/requestCounselorReducer";
+import {
+  getAcceptedUsers,
+  getAcceptedCounselors
+} from "../../ducks/requestCounselorReducer";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -45,13 +48,11 @@ class Dashboard extends Component {
     if (this.props.counselor.loggedIn) {
       this.props.getAcceptedUsers(this.props.counselor.id);
     }
-  }
 
-  // componentDidUpdate = prevProps => {
-  //   if (prevProps !== this.props) {
-  //     this.props.getAcceptedUsers(this.props.counselor.id);
-  //   }
-  // }
+    if (this.props.user.user.loggedIn) {
+      this.props.getAcceptedCounselors(this.props.user.user.id);
+    }
+  }
 
   addDefaultSrc(ev) {
     ev.target.src =
@@ -340,6 +341,7 @@ export default connect(
     editCounselor,
     editUser,
     getQuotes,
-    getAcceptedUsers
+    getAcceptedUsers,
+    getAcceptedCounselors
   }
 )(Dashboard);

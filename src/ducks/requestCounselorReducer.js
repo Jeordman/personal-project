@@ -7,6 +7,7 @@ import {
   REJECT_REQUEST,
   ACCEPT_REQUEST,
   GET_ACCEPTED_USERS,
+  GET_ACCEPTED_COUNSELORS,
   LOGOUT_REQUEST_COUNSELOR,
   SEND_TEXT
 } from "./actionTypes";
@@ -42,14 +43,15 @@ export const requestCounselor = (user_id, counselor_id) => {
 // };
 
 export function sendText(first_name, last_name) {
-  const name = first_name + ' ' + last_name
-  const message = 'You have a new counseling request from'
-  let response = axios.post('/api/sendText', { name, message })
-  .then(res => res.data)
+  const name = first_name + " " + last_name;
+  const message = "You have a new counseling request from";
+  let response = axios
+    .post("/api/sendText", { name, message })
+    .then(res => res.data);
   return {
     type: SEND_TEXT,
     payload: response
-  }
+  };
 }
 
 export const checkIfRequested = counselor_id => {
@@ -110,6 +112,18 @@ export const getAcceptedUsers = counselor_id => {
   };
 };
 
+export const getAcceptedCounselors = user_id => {
+  console.log("hit", user_id);
+  const allAcceptedCounselors = axios
+    .get(`/api/getAcceptedCounselors/${user_id}`)
+    .then(res => res.data);
+  console.log(allAcceptedCounselors);
+  return {
+    type: GET_ACCEPTED_COUNSELORS,
+    payload: allAcceptedCounselors
+  };
+};
+
 export const logoutRequestCounselor = () => {
   return {
     type: LOGOUT_REQUEST_COUNSELOR,
@@ -140,6 +154,10 @@ export default function(state = initialState, action) {
         requestedUsers: payload.updatedRequests,
         acceptedUsers: payload.updatedUsers
       };
+    case GET_ACCEPTED_COUNSELORS + "_FULFILLED":
+      return { ...state, acceptedCounselors: payload };
+    case GET_ACCEPTED_COUNSELORS + "_PENDING":
+      return { ...state };
     case GET_ACCEPTED_USERS + "_FULFILLED":
       return { ...state, acceptedUsers: payload };
     case GET_ACCEPTED_USERS + "_PENDING":

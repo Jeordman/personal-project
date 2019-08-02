@@ -54,7 +54,7 @@ module.exports = {
   },
 
   async getAcceptedCounselors(req, res) {
-    const { user_id } = req.body;
+    const { user_id } = req.params;
     const acceptedCounselors = await req.app
       .get("db")
       .get_accepted_counselors(user_id);
@@ -72,7 +72,7 @@ module.exports = {
 
     client.messages
       .create({
-        body: message + " from: "+ name ,
+        body: message + " from: " + name,
         from: TWILIO_PHONE_NUMBER,
         to: PERSONAL_PHONE_NUMBER
       })

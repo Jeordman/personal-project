@@ -5,11 +5,14 @@ const massive = require("massive");
 const session = require("express-session");
 const uc = require("./controllers/userController");
 const cc = require("./controllers/counselorController");
-const oc = require("./controllers/outsideController");
 const jc = require("./controllers/journalController");
 const rcc = require("./controllers/requestCounselorController");
 
-const unirest = require("unirest");
+//socket ----------------------
+const socket = require("socket.io");
+
+const oc = require("./controllers/outsideController"); //unused
+const unirest = require("unirest"); //unused
 
 //middleware
 const initSession = require("./middleware/initSession");
@@ -18,6 +21,12 @@ const authCheck = require("./middleware/authCheck");
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 const app = express();
+const io = socket(
+  app.listen(SERVER_PORT, () =>
+    console.log(`This server... it's over ${SERVER_PORT}`)
+  )
+);
+
 app.use(express.json());
 
 app.use(
@@ -28,7 +37,10 @@ app.use(
   })
 );
 
-massive(CONNECTION_STRING).then(db => app.set("db", db));
+massive(CONNECTION_STRING).then(db => {
+  app.set("db", db);
+  console.log("Database initialized");
+});
 
 app.unsubscribe(initSession);
 
@@ -67,12 +79,40 @@ app.get("/api/checkIfRequested/:counselor_id", rcc.checkIfRequested); //check fo
 app.delete("/api/rejectRequest/:user_counselor_id", rcc.rejectRequest); //counselor reject user
 app.put("/api/acceptRequest", rcc.acceptRequest); //counselor accept user
 app.get("/api/getAcceptedUsers/:counselor_id", rcc.getAcceptedUsers);
-app.get("/api/getAcceptedCounselors", rcc.getAcceptedCounselors);
+app.get("/api/getAcceptedCounselors/:user_id", rcc.getAcceptedCounselors);
 app.delete("/api/logoutRequestCounselor", rcc.logoutRequestCounselor);
 
 //twilio
 app.post("/api/sendText", rcc.sendText);
 
-app.listen(SERVER_PORT, () =>
-  console.log(`This server... it's over ${SERVER_PORT}`)
-);
+//socket ----------------------
+io.on("connection", socket => {
+  console.log("CONNECTED TO SOCKET");
+
+  //allow joining a chat
+  socket.on("enter room", async data => {
+    const { room } = data;
+    const db = app.get("db");
+    console.log("You just joined ", room);
+    const existingRoom = await db.look_for_room(room);
+    !existingRoom.length ? db.create_room(room) : null;
+    let messages = await db.get_messages(room);
+    socket.join(room);
+    io.to(room).emit("room entered", messages);
+  });
+
+  //send messages
+  socket.on("send message", async data => {
+    const { room, message } = data;
+    const db = app.get("db");
+    await db.send_message(room, message);
+    let messages = await db.get_messages(room);
+    io.to(data.room).emit("message sent", messages);
+  });
+
+  //disconnected
+  socket.on("disconnect", () => {
+    console.log("Disconnected from room");
+  });
+});
+//socket ----------------------
