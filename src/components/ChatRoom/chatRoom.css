@@ -1,0 +1,52 @@
+.mapped-message-holder{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    height: 50vh;
+    width: 100vw;
+}
+
+
+
+.received-message{
+display: flex;
+flex-direction: row-reverse;
+justify-content: flex-end;
+}
+
+.sent-message{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.messaging-picture{
+    width: 25px;
+    height: 25px;
+   margin-top: 8px;
+    border-radius: 50%;
+    display: flex;
+}
+
+.received-message-color{
+    background-color: #3d4043;
+    border-radius: 25px;
+    margin-left: 3vw;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+    font-weight: 300;
+}
+
+.sent-message-color{
+    background-color: #8ab4f8;
+    border-radius: 25px;
+    color: black;
+    margin-right: 3vw;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+    font-weight: 300;
+}

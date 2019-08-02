@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMatchingUserCounselor } from "../../ducks/requestCounselorReducer";
 import io from "socket.io-client";
+import "./chatRoom.css";
 
 class ChatRoom extends Component {
   constructor() {
@@ -170,7 +171,7 @@ class ChatRoom extends Component {
 
     if (thatCounselor) {
       //if they are a user
-
+      console.log(this.state.counselors);
       const { first_name, last_name, photo } = thatCounselor;
       return (
         <div className="holder">
@@ -186,9 +187,23 @@ class ChatRoom extends Component {
 
           <div>
             {this.state.joined ? <h1>My Room: {this.state.room}</h1> : null}
-            <div>
-              {this.state.messages.map(messageObj => (
-                <h2 key={messageObj.id}>{messageObj.message}</h2>
+            <div className="mapped-message-holder">
+              {this.state.messages.map((
+                messageObj //change this mapping function... new component?
+              ) => (
+                <h2 className="chat-repeating" key={messageObj.id}>
+                  {messageObj.is_counselor ? (
+                    <div className='received-message'>
+                      <div className='received-message-color'>{messageObj.message}</div>
+                      <img className='messaging-picture' src={photo} />
+                    </div>
+                  ) : (
+                    <div className='sent-message'>
+                      <div className='sent-message-color'>{messageObj.message}</div>{" "}
+                      <img className='messaging-picture' src={this.props.user.user.photo} />
+                    </div>
+                  )}
+                </h2>
               ))}
             </div>
             {this.state.joined ? (

@@ -70,7 +70,7 @@ class Header extends Component {
     //counselor login
     if (this.props.counselorReducerState.counselor) {
       return (
-        <div>
+        <div classNam="hold-all-header">
           <div className="header">
             <div className="logo">Logo</div>
             <button className="menu-btn-content" onClick={this.toggleMenu}>

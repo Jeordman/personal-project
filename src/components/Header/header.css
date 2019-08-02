@@ -1,3 +1,7 @@
+.hold-all-header{
+  position: sticky;
+  position: absolute;
+}
 .header {
   display: flex;
   justify-content: space-between;
