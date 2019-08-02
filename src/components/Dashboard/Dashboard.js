@@ -242,6 +242,7 @@ class Dashboard extends Component {
     if (this.props.counselor.loggedIn) {
       let { counselor: counselorUser } = this.props;
       let { counselorError, counselorRedirect } = this.props;
+      console.log('props', this.props)
       if (counselorError || counselorRedirect) return <Redirect to="/login" />;
       return (
         <div className="full-dash-holder">
@@ -317,10 +318,10 @@ class Dashboard extends Component {
           <h4 className="h4">Users</h4>
 
           <section className="scroll-right">
-            {this.props.acceptedUsers.map(obj => {
+            {this.props.acceptedCounselors.map(obj => { //dont know why I am mapping over this !!!!!
               return (
                 <div>
-                  <Counselor obj={obj} />
+                  <ChatMap obj={obj} />
                 </div>
               );
             })}

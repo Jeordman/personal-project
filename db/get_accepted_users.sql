@@ -4,3 +4,4 @@ from users
 where counselor_id = 8
     and accepted = true
 order by user_counselor_id;
+

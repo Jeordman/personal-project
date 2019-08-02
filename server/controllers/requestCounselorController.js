@@ -87,6 +87,13 @@ module.exports = {
       });
   },
 
+  async getMatchingUserCounselor(req, res) {
+    const {user_id} = req.params
+    const {counselor_id} = req.query
+    const matching = await req.app.get('db').get_matching_user_counselor(user_id, counselor_id)
+    res.status(200).send(matching)
+  },
+
   logoutRequestCounselor(req, res) {
     req.session.destroy();
     res.sendStatus(200);

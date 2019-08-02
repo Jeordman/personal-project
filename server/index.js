@@ -86,9 +86,10 @@ app.delete("/api/logoutRequestCounselor", rcc.logoutRequestCounselor);
 app.post("/api/sendText", rcc.sendText);
 
 //socket ----------------------
+app.get('/api/getMatchingUserCounselor/:user_id', rcc.getMatchingUserCounselor)
+
 io.on("connection", socket => {
   console.log("CONNECTED TO SOCKET");
-
   //allow joining a chat
   socket.on("enter room", async data => {
     const { room } = data;

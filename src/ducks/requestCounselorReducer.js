@@ -9,13 +9,15 @@ import {
   GET_ACCEPTED_USERS,
   GET_ACCEPTED_COUNSELORS,
   LOGOUT_REQUEST_COUNSELOR,
+  GET_MATCHING_USER_COUNSELOR,
   SEND_TEXT
 } from "./actionTypes";
 
 const initialState = {
   acceptedCounselors: [],
   acceptedUsers: [],
-  requestedUsers: []
+  requestedUsers: [],
+  userCounselorMatch: ""
 };
 
 export const requestCounselor = (user_id, counselor_id) => {
@@ -113,14 +115,24 @@ export const getAcceptedUsers = counselor_id => {
 };
 
 export const getAcceptedCounselors = user_id => {
-  console.log("hit", user_id);
   const allAcceptedCounselors = axios
     .get(`/api/getAcceptedCounselors/${user_id}`)
     .then(res => res.data);
-  console.log(allAcceptedCounselors);
   return {
     type: GET_ACCEPTED_COUNSELORS,
     payload: allAcceptedCounselors
+  };
+};
+
+export const getMatchingUserCounselor = (user_id, counselor_id) => {
+  const match = axios
+    .get(
+      `/api/getMatchingUserCounselor/${user_id}?counselor_id=${counselor_id}`
+    )
+    .then(res => res.data);
+  return {
+    type: GET_MATCHING_USER_COUNSELOR,
+    payload: match
   };
 };
 
@@ -162,11 +174,14 @@ export default function(state = initialState, action) {
       return { ...state, acceptedUsers: payload };
     case GET_ACCEPTED_USERS + "_PENDING":
       return { ...state };
+    case GET_MATCHING_USER_COUNSELOR + "_FULFILLED":
+      return { ...state, userCounselorMatch: payload };
     case LOGOUT_REQUEST_COUNSELOR + "_FULFILLED":
       return {
         acceptedCounselors: [],
         acceptedUsers: [],
-        requestedUsers: []
+        requestedUsers: [],
+        userCounselorMatch: ""
       };
     default:
       return {

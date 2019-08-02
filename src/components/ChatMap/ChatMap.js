@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class ChatMap extends Component {
   constructor() {
@@ -15,8 +16,10 @@ class ChatMap extends Component {
 
   render() {
     const { first_name, last_name, photo } = this.props.obj;
-    console.log('ello?', this.props.obj)
-    if (this.props.obj.counselor_id) {
+    console.log("ello?", this.props);
+
+    if (this.props.userLoggedIn) {
+      console.log("myprops", this.props);
       return (
         <section className="repeat">
           <article>{first_name}</article>
@@ -35,25 +38,35 @@ class ChatMap extends Component {
       );
     }
 
-    if (this.props.obj.user_id) {
+    if (this.props.counselorLoggedIn) {
+      console.log("working?");
       return (
         <section className="repeat">
           <article>{first_name}</article>
           <article>{last_name}</article>
           <img onError={this.addDefaultSrc} src={photo} className="images" />
 
-          <Link
-            to={`/chatRoom/${this.props.obj.user_id}`}
-            className="link-to"
-          >
+          <Link to={`/chatRoom/${this.props.obj.user_id}`} className="link-to">
             <button className="link-button">
               <i className="fa fa-external-link fa-sp" />
             </button>
           </Link>
         </section>
       );
+    } else {
+      return <div>loading</div>;
     }
   }
 }
 
-export default ChatMap;
+function mapStateToProps(state) {
+  return {
+    userLoggedIn: state.user.user.loggedIn,
+    counselorLoggedIn: state.counselors.user.loggedIn
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  {}
+)(ChatMap);

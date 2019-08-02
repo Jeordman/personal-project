@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "../Header/Header";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { getMatchingUserCounselor } from "../../ducks/requestCounselorReducer";
 
 class ChatRoom extends Component {
   constructor() {
@@ -12,14 +13,34 @@ class ChatRoom extends Component {
     };
   }
 
+  componentDidMount = () => {
+    console.log(
+      "lil bitch",
+      +this.props.match.params.id,
+      this.props.counselors.user.id,
+      this.props.user.user.loggedIn
+    );
+    if (this.props.user.user.loggedIn) {
+      this.props.getMatchingUserCounselor(
+        this.props.user.user.id,
+        +this.props.match.params.id
+      );
+    } else if (this.props.counselors.user.loggedIn) {
+      this.props.getMatchingUserCounselor(
+       +this.props.match.params.id,
+        this.props.counselors.user.id
+      );
+    }
+  };
+
   addDefaultSrc(ev) {
     ev.target.src =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvlhaYgj0EeSjYPBSHNY3xacbupTZ_EnCvlSWoyJB7jMa1wuhdeA";
   }
 
   toggleChat = () => {
-    this.setState({ showChat: !this.state.showChat})
-  }
+    this.setState({ showChat: !this.state.showChat });
+  };
 
   render() {
     let { error, redirect } = this.props.user;
@@ -42,30 +63,29 @@ class ChatRoom extends Component {
 
     if (thatUser) {
       //if they are a counselor
+      console.log("ass");
       const { first_name, last_name, photo } = thatUser;
       return (
-        <div>
+        <div className="holder">
           <Header />
-          <div className="holder">
+          <h1>
             {`${first_name} ${last_name}`}
             <img
               onError={this.addDefaultSrc}
               src={photo}
               className="profile-pic"
             />
-          </div>
+          </h1>
 
           <button onClick={() => this.toggleChat()}>BEGIN CHATTING</button>
 
-          {this.state.showChat ? (
-            <div>ey</div>
-          ) : null}
-          
+          {this.state.showChat ? <div>ey</div> : null}
         </div>
       );
     }
 
     if (thatCounselor) {
+      console.log("bums");
       const { first_name, last_name, photo } = thatCounselor;
       console.log("props", this.props);
       return (
@@ -82,11 +102,8 @@ class ChatRoom extends Component {
 
           <button onClick={() => this.toggleChat()}>BEGIN CHATTING</button>
 
-          {this.state.showChat ? (
-            <div>ey</div>
-          ) : null}
+          {this.state.showChat ? <div>ey</div> : null}
         </div>
-
       );
     } else
       return (
@@ -103,6 +120,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { }
+  { getMatchingUserCounselor }
 )(ChatRoom);
-
