@@ -19,6 +19,9 @@ import {
   getAcceptedCounselors
 } from "../../ducks/requestCounselorReducer";
 
+import ChatRoom from '../ChatRoom/ChatRoom'
+import ChatMap from "../ChatMap/ChatMap";
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -209,6 +212,18 @@ class Dashboard extends Component {
 
           <Survey />
 
+          <h4 className="h4">My Counselors</h4>
+
+          <section className="scroll-right">
+            {this.props.acceptedCounselors.map(obj => {
+              return (
+                <div>
+                  <ChatMap obj={obj} />
+                </div>
+              );
+            })}
+          </section>
+
           <h4 className="h4">Counselors</h4>
           <section className="scroll-right">
             {this.props.counselors.map(obj => {
@@ -328,7 +343,8 @@ function mapStateToProps(state) {
     users: state.user.users,
     counselorError: state.counselors.error,
     counselorRedirect: state.counselors.redirect,
-    acceptedUsers: state.requestCounselor.acceptedUsers
+    acceptedUsers: state.requestCounselor.acceptedUsers,
+    acceptedCounselors: state.requestCounselor.acceptedCounselors
   };
 }
 

@@ -8,6 +8,7 @@ import CounselorLogin from './components/CounselorLogin/CounselorLogin'
 import CounselorSignup from './components/CounselorSignup/CounselorSignup'
 import GraphHealth from './components/GraphHealth/GraphHealth'
 import Journal from './components/Journal/Journal'
+import ChatRoom from './components/ChatRoom/ChatRoom'
 
 export default (
     <Switch>
@@ -18,6 +19,7 @@ export default (
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/myCounselor/:id' component={MyCounselor} />
+        <Route path='/chatRoom/:id' component={ChatRoom} />
         <Route exact path='/' component={Dashboard} />
     </Switch>
 )
