@@ -86,28 +86,37 @@ app.delete("/api/logoutRequestCounselor", rcc.logoutRequestCounselor);
 app.post("/api/sendText", rcc.sendText);
 
 //socket ----------------------
-app.get('/api/getMatchingUserCounselor/:user_id', rcc.getMatchingUserCounselor)
+app.get("/api/getMatchingUserCounselor/:user_id", rcc.getMatchingUserCounselor);
 
 io.on("connection", socket => {
   console.log("CONNECTED TO SOCKET");
   //allow joining a chat
   socket.on("enter room", async data => {
-    const { room } = data;
+    let { room } = data;
     const db = app.get("db");
     console.log("You just joined ", room);
-    const existingRoom = await db.look_for_room(room);
-    !existingRoom.length ? db.create_room(room) : null;
+    const [existingRoom] = await db.look_for_room(room);
+    console.log("exist", existingRoom);
+    if (!existingRoom) {
+      return (room = await db.create_room(room));
+    } else {
+      room.id = existingRoom.id;
+    }
     let messages = await db.get_messages(room);
+    console.log("messages", messages);
     socket.join(room);
     io.to(room).emit("room entered", messages);
+    console.log("room entered");
   });
 
   //send messages
   socket.on("send message", async data => {
     const { room, message, sender, is_counselor } = data;
+    console.log(room, message, sender, is_counselor);
     const db = app.get("db");
-    await db.send_message(room, message);
+    await db.send_message(room, message, sender, is_counselor);
     let messages = await db.get_messages(room);
+    console.log('messages',messages);
     io.to(data.room).emit("message sent", messages);
   });
 

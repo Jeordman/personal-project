@@ -1,3 +1,3 @@
 select *
-from socket_room
+from socket_rooms
 where id = $1

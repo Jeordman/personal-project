@@ -15,7 +15,7 @@ class ChatRoom extends Component {
       joined: false, //from example
       newMessageInput: "",
       messages: [],
-      room: ""
+      room: 0
     };
   }
 
@@ -34,34 +34,66 @@ class ChatRoom extends Component {
 
     this.socket = io();
     this.socket.on("room entered", data => {
-      console.log("hit");
+      console.log("hit", data);
       this.joinSuccess(data);
     });
 
-    this.socket.on('message sent', data => {
-      console.log(data)
+    this.socket.on("message sent", data => {
+      console.log('hit message sent',data);
       this.updateMessages(data);
-    })
+    });
   };
-  
-  componentWillUnmount =() => {
-    this.socket.disconnect();
-  }
 
-  sendMessage = () => {
-    this.socket.emit('send message', {
+  componentWillUnmount = () => {
+    this.socket.disconnect();
+  };
+
+  sendMessageUser = () => {
+    this.socket.emit("send message", {
       message: this.state.newMessageInput,
       room: this.state.room,
-      sender: '', //figure this out
-      is_counselor: '' //figure out
-    })
+      sender: this.props.user.user.first_name,  //figure out
+      is_counselor: false //figure out
+    });
+  };
+
+  sendMessageCounselor = () => {
+    this.socket.emit("send message", {
+      message: this.state.newMessageInput,
+      room: this.state.room,
+      sender: this.props.counselors.user.first_name, //figure this out
+      is_counselor: true //figure out
+    });
+  };
+
+  handleInput = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState(
+        {
+          room: this.props.room.user_counselor_id
+        },
+        () => {
+          if (this.state.room !== 0) {
+            this.socket.emit("enter room", {
+              room: this.state.room
+            });
+          }
+        }
+      );
+    }
   }
 
   updateMessages = messages => {
+    console.log('message hit', messages)
     this.setState({
-      messages
-    })
-  }
+      messages: messages
+    });
+  };
 
   joinSuccess = messages => {
     this.setState({
@@ -74,15 +106,6 @@ class ChatRoom extends Component {
     ev.target.src =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvlhaYgj0EeSjYPBSHNY3xacbupTZ_EnCvlSWoyJB7jMa1wuhdeA";
   }
-
-  toggleChat = () => {
-    this.setState({ showChat: !this.state.showChat });
-
-
-    if (this.state.showChat) { //disconnect on second toggle
-      this.socket.disconnect();
-    }
-  };
 
   render() {
     let { error, redirect } = this.props.user;
@@ -105,7 +128,9 @@ class ChatRoom extends Component {
 
     if (thatUser) {
       //if they are a counselor
-      console.log("ass");
+      // if (this.props.room) console.log(this.props.room.user_counselor_id)
+      console.log("state", this.state);
+      console.log('props', this.props)
       const { first_name, last_name, photo } = thatUser;
       return (
         <div className="holder">
@@ -119,14 +144,32 @@ class ChatRoom extends Component {
             />
           </h1>
 
-          <button onClick={() => this.toggleChat()}>BEGIN CHATTING</button>
-
-          {this.state.showChat ? <div>ey</div> : null}
+          <div>
+            {this.state.joined ? <h1>My Room: {this.state.room}</h1> : null}
+            <div>
+              {this.state.messages.map(messageObj => (
+                <h2 key={messageObj.id}>{messageObj.message}</h2>
+              ))}
+            </div>
+            {this.state.joined ? (
+              <div>
+                <input
+                  type="text"
+                  name="newMessageInput"
+                  value={this.state.newMessageInput}
+                  onChange={this.handleInput}
+                />
+                <button onClick={this.sendMessageCounselor}>Send</button>
+              </div>
+            ) : null}
+          </div>
         </div>
       );
     }
 
     if (thatCounselor) {
+      //if they are a user
+
       const { first_name, last_name, photo } = thatCounselor;
       return (
         <div className="holder">
@@ -140,9 +183,41 @@ class ChatRoom extends Component {
             />
           </h1>
 
-          <button onClick={() => this.toggleChat()}>BEGIN CHATTING</button>
+          <button onClick={() => {}}>BEGIN CHATTING</button>
 
-          {this.state.showChat ? <div>ey</div> : null}
+          <div>
+            {this.state.joined ? <h1>My Room: {this.state.room}</h1> : null}
+            <div>
+              {this.state.messages.map(messageObj => (
+                <h2 key={messageObj.id}>{messageObj.message}</h2>
+              ))}
+            </div>
+            {this.state.joined ? (
+              <div>
+                <input
+                  value={this.state.input}
+                  onChange={e => {
+                    this.setState({
+                      input: e.target.value
+                    });
+                  }}
+                />
+                <button onClick={this.sendMessageUser}>Send</button>
+              </div>
+            ) : (
+              <div>
+                <input
+                  value={this.state.room}
+                  onChange={e => {
+                    this.setState({
+                      room: e.target.value
+                    });
+                  }}
+                />
+                <button onClick={this.joinRoom}>Join</button>
+              </div>
+            )}
+          </div>
         </div>
       );
     } else
@@ -155,7 +230,12 @@ class ChatRoom extends Component {
 }
 
 function mapStateToProps(state) {
-  return { user: state.user, counselors: state.counselors, users: state.user };
+  return {
+    user: state.user,
+    counselors: state.counselors,
+    users: state.user,
+    room: state.requestCounselor.userCounselorMatch[0]
+  };
 }
 
 export default connect(
