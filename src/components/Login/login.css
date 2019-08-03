@@ -5,11 +5,7 @@
 
 .hold-all {
   position: absolute;
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(255, 255, 255),
-    #131313
-  );
+  background-color: #f6f6f6;
 }
 
 .title {

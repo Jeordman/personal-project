@@ -1,12 +1,16 @@
-.hold-all-header{
-  position: sticky;
-  position: absolute;
+.hold-all-header {
+  position: fixed;
+  top: 0;
 }
 .header {
   display: flex;
   justify-content: space-between;
   height: 8vh;
+  width: 100vw;
   color: white;
+  position: fixed;
+  background-color: rgba(255,255,255, .4);
+  top: 0;
 }
 
 .img-logo {
@@ -17,21 +21,33 @@
   border-radius: 50%;
   border-style: solid;
   display: flex;
-  border-color: gray;
+  border-color: #ffb008;
 }
 
 .menu-btn-content {
   display: flex;
-  color: white;
+  color: #3ea7f1;
   font-size: 40px;
 }
 
-@keyframes example {
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-.nav-menu {
-  animation-name: example;
-  animation-duration: 4s;
+.slideInDown {
+  animation-name: slideInDown;
+}
+
+
+/* 
+nav-menu {  
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -39,12 +55,7 @@
   z-index: +5;
   background: rgb(54, 54, 54);
   border-radius: 0px 0px 0px 35px;
-
-  -webkit-transition: 200ms ease;
-  -moz-transition: 200ms ease;
-  -o-transition: 200ms ease;
-  transition: 200ms ease;
-}
+} */
 
 .nav-link {
   color: white;

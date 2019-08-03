@@ -11,9 +11,8 @@
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  border-style: solid;
   display: flex;
-  border-color: gray;
+  border: 4px solid #3ea7f1;
   margin: auto;
 }
 
@@ -26,6 +25,6 @@
   margin-top: 1vh;
   display: flex;
   display: flex;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-size: 20px;
 }

@@ -139,27 +139,35 @@ class ChatRoom extends Component {
           <Header />
           <h1>
             {`${first_name} ${last_name}`}
-            <img
-              onError={this.addDefaultSrc}
-              src={photo}
-              className="profile-pic"
-            />
           </h1>
-
-          <div>
-            {this.state.joined ? <h1>My Room: {this.state.room}</h1> : null}
             <div>
-              {this.state.messages.map(messageObj => (
-                <h2 key={messageObj.id}>{messageObj.message}</h2>
+            <div className="mapped-message-holder">
+              {this.state.messages.map((
+                messageObj //change this mapping function... new component?
+              ) => (
+                <h2 className="chat-repeating" key={messageObj.id}>
+                  {messageObj.is_counselor ? (
+                    <div className='sent-message'>
+                      <div className='sent-message-color'>{messageObj.message}</div>
+                      <img className='messaging-picture' src={this.props.counselors.user.photo} />
+                    </div>
+                  ) : (
+                    <div className='received-message'>
+                      <div className='received-message-color'>{messageObj.message}</div>{" "}
+                      <img className='messaging-picture' src={photo} />
+                    </div>
+                  )}
+                </h2>
               ))}
             </div>
             {this.state.joined ? (
-              <div>
+              <div className='message-footer'>
                 <input
                   type="text"
                   name="newMessageInput"
                   value={this.state.newMessageInput}
                   onChange={this.handleInput}
+                  className="message-input"
                 />
                 <button onClick={this.sendMessageCounselor}>Send</button>
               </div>
@@ -186,7 +194,6 @@ class ChatRoom extends Component {
           </h1>
 
           <div>
-            {this.state.joined ? <h1>My Room: {this.state.room}</h1> : null}
             <div className="mapped-message-holder">
               {this.state.messages.map((
                 messageObj //change this mapping function... new component?
@@ -207,12 +214,13 @@ class ChatRoom extends Component {
               ))}
             </div>
             {this.state.joined ? (
-              <div>
+              <div className='message-footer'>
                 <input
                   type="text"
                   name="newMessageInputUser"
                   value={this.state.newMessageInputUser}
                   onChange={this.handleInput}
+                  className="message-input"
                 />
                 <button onClick={this.sendMessageUser}>Send</button>
               </div>

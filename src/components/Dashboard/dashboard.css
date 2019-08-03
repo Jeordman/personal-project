@@ -1,8 +1,15 @@
 .full-dash-holder {
-  position: absolute;
+  margin-top: 8vh;
   height: 190vh;
-  color: white;
-  background-image: linear-gradient(to bottom right, rgb(58, 57, 57), #131313);
+  color: rgb(12, 12, 12);
+  background-color: #f6f6f6;
+}
+
+.full-dash-holder-counselor {
+  position: absolute;
+  height: 100vh;
+  color: rgb(12, 12, 12);
+  background-color: #f6f6f6;
 }
 
 .first-two-inputs {
@@ -22,10 +29,9 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border-style: solid;
   display: flex;
   margin: auto;
-  border-color: gray;
+  border: 4px solid #ffb008;
   margin-top: 4vh;
 }
 
@@ -44,15 +50,16 @@
 .save-cancel-home{
   display: flex;
   justify-content: space-around;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 .edit-dash{
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   display: flex;
   margin: 0 auto;
   font-size: 20px;
 }
+
 
 .bio-before-edit{
   text-align: center;
@@ -63,7 +70,7 @@
 .scroll-right {
   height: 30vh;
   width: 100vw;
-
+background-color: white;
   display: flex;
   overflow: scroll;
 }

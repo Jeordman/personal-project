@@ -2,11 +2,9 @@
   margin: 0 auto;
   width: 90vw;
   height: 25vh;
-  background-image: url("https://images.unsplash.com/photo-1488503618301-156ce946f2e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60");
-  background-position: center;
-  background-repeat: no-repeat;
-  border-style: ridge;
-  border-color: #a7d5f7;
+  background-color:#ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10%;
   margin-top: 2vh;
 }
 

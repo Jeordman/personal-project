@@ -1,9 +1,14 @@
+.holder{
+    margin-top: 7vh;
+}
+
 .mapped-message-holder{
     display: flex;
     flex-direction: column;
     overflow: scroll;
-    height: 50vh;
     width: 100vw;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 20vh;
 }
 
 
@@ -29,7 +34,7 @@ justify-content: flex-end;
 }
 
 .received-message-color{
-    background-color: #3d4043;
+    background-color: #ffb008;
     border-radius: 25px;
     margin-left: 3vw;
     padding-top: 7px;
@@ -40,7 +45,7 @@ justify-content: flex-end;
 }
 
 .sent-message-color{
-    background-color: #8ab4f8;
+    background-color: #3ea7f1;
     border-radius: 25px;
     color: black;
     margin-right: 3vw;
@@ -49,4 +54,20 @@ justify-content: flex-end;
     padding-bottom: 7px;
     padding-left: 7px;
     font-weight: 300;
+}
+
+.message-footer{
+    background-position: 0% 0%;
+    position: fixed;
+    height: 8vh;
+    width: 100vw;
+    bottom: 0pt;
+    background-color: rgba(255,255,255, .4);
+}
+
+.message-input{
+    margin-top: 2vh;
+    background-attachment: scroll;
+    height: 3vh;
+    border-radius: 25px;
 }

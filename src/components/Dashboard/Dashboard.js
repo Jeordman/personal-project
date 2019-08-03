@@ -201,9 +201,11 @@ class Dashboard extends Component {
           ) : (
             <section>
               <section className="bio-center">BIO</section>
+              <section className='bio-before-edit-holder'>
               <article className="bio-before-edit">
                 {this.state.user_info}
               </article>
+              </section>
               <button onClick={this.edit} className="edit-dash">
                 Edit Profile
               </button>
@@ -245,7 +247,7 @@ class Dashboard extends Component {
       console.log('props', this.props)
       if (counselorError || counselorRedirect) return <Redirect to="/login" />;
       return (
-        <div className="full-dash-holder">
+        <div className="full-dash-holder-counselor">
           <Header />
           <img
             onError={this.addDefaultSrc}
@@ -304,9 +306,11 @@ class Dashboard extends Component {
           ) : (
             <section>
               <section className="bio-center">BIO</section>
+              <section className='bio-before-edit-holder'>
               <article className="bio-before-edit">
                 {this.state.counselor_info}
               </article>
+              </section>
               <button onClick={this.edit} className="edit-dash">
                 Edit Profile
               </button>
