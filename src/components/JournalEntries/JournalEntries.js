@@ -7,7 +7,7 @@ class JournalEntries extends Component {
     console.log("dis d id ", entry_id);
     return (
       <section className="repeating-days">
-        <article className="repeating-date">{`DATE:  ${date}`}</article>
+        <article className="repeating-date">{`${date}`}</article>
         <article className="repeating-mood">{`${mood}/10`}</article>
         <button
           className="link-button"

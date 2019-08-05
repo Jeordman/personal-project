@@ -1,9 +1,10 @@
 .specific-entry {
   margin: 0 auto;
   margin-top: 5vh;
-  background-color: #f7ea8b;
+  background-color: #ffffff;
   width: 70vw;
   height: 30vh;
+  border-radius: 6%;
 }
 
 .selected-date {

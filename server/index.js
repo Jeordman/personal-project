@@ -8,6 +8,8 @@ const cc = require("./controllers/counselorController");
 const jc = require("./controllers/journalController");
 const rcc = require("./controllers/requestCounselorController");
 
+const path = require("path");
+
 //socket ----------------------
 const socket = require("socket.io");
 
@@ -21,6 +23,7 @@ const authCheck = require("./middleware/authCheck");
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 const app = express();
+
 const io = socket(
   app.listen(SERVER_PORT, () =>
     console.log(`This server... it's over ${SERVER_PORT}`)
@@ -88,6 +91,11 @@ app.post("/api/sendText", rcc.sendText);
 //socket ----------------------
 app.get("/api/getMatchingUserCounselor/:user_id", rcc.getMatchingUserCounselor);
 
+app.use(express.static(__dirname + "/../build")); //send full build
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
+
 io.on("connection", socket => {
   console.log("CONNECTED TO SOCKET");
   //allow joining a chat
@@ -116,7 +124,7 @@ io.on("connection", socket => {
     const db = app.get("db");
     await db.send_message(room, message, sender, is_counselor);
     let messages = await db.get_messages(room);
-    console.log('messages',messages);
+    console.log("messages", messages);
     io.to(data.room).emit("message sent", messages);
   });
 

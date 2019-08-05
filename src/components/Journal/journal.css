@@ -1,16 +1,20 @@
 .journal-holder-component {
   height: 100vh;
   margin-top: 8vh;
-  background-image: linear-gradient(to bottom right, rgb(58, 57, 57), #131313);
+  background-color: #f6f6f6;
 }
 
 .repeating {
   margin: 0 auto;
+  border: 2px solid #ffb008;
+  border-radius: 6%;
   color: rgb(31, 31, 31);
   height: 50vh;
   width: 90vw;
-  background-color: #a7d5f7;
+  background-color: #ffffff;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   overflow: scroll;
+justify-content: space-around;
+  
 }
