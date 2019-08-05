@@ -1,5 +1,6 @@
 .journal-holder-component {
   height: 100vh;
+  margin-top: 8vh;
   background-image: linear-gradient(to bottom right, rgb(58, 57, 57), #131313);
 }
 

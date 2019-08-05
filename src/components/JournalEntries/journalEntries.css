@@ -1,8 +1,8 @@
 .repeating-days {
   border-style: groove;
   width: 70vw;
+
   margin: 0 auto;
-  margin-top: 2vh;
   display: flex;
   flex-direction: column;
 }

@@ -18,7 +18,7 @@ class MyChart extends Component {
         datasets: [
           {
             label: "Mood",
-            backgroundColor: "rgba(34, 167, 240, .7)",
+            backgroundColor: "rgba(255,176,8, .7)",
             data: props.graphInfo.map(obj => obj.mood)
           }
         ]
@@ -48,7 +48,7 @@ class MyChart extends Component {
           datasets: [
             {
               label: "Mood",
-              backgroundColor: "rgba(34, 167, 240, .4)",
+              backgroundColor: "rgba(62,167,241, .4)",
               data: this.props.graphInfo.map(obj => obj.mood)
             }
           ]
@@ -84,7 +84,7 @@ class MyChart extends Component {
             legend: {
               labels: {
                 // This more specific font property overrides the global property
-                fontColor: "white"
+                fontColor: "black"
               }
             },
             maintainAspectRatio: false,
@@ -97,7 +97,7 @@ class MyChart extends Component {
                     steps: 10,
                     stepSize: 1,
                     max: 10,
-                    fontColor: "white",
+                    fontColor: "black",
                     fontSize: 15
                   }
                 }
@@ -107,7 +107,7 @@ class MyChart extends Component {
                   ticks: {
                     autoSkip: true,
                     maxTicksLimit: 17,
-                    fontColor: "white",
+                    fontColor: "black",
                     fontSize: 15
                   }
                 }

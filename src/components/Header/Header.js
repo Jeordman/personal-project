@@ -7,6 +7,8 @@ import { Link, Redirect, withRouter } from "react-router-dom";
 import { logoutRequestCounselor } from "../../ducks/requestCounselorReducer";
 import "./header.css";
 
+import { slideInDown } from "react-animations";
+
 class Header extends Component {
   constructor() {
     super();
@@ -23,7 +25,7 @@ class Header extends Component {
     await this.props.logout();
     await this.props.logoutJournal();
     await this.props.logoutCounselor();
-    await this.props.logoutRequestCounselor()
+    await this.props.logoutRequestCounselor();
     this.props.history.push("/login");
   };
 
@@ -72,6 +74,12 @@ class Header extends Component {
       return (
         <div classNam="hold-all-header">
           <div className="header">
+          <img
+              src={
+                "https://images.unsplash.com/photo-1457545255860-f9dc39332def?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
+              }
+              className="img-logo"
+            />
             <div className="logo">Logo</div>
             <button className="menu-btn-content" onClick={this.toggleMenu}>
               <i className="fa fa-bars fa-lg" />

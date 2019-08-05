@@ -214,7 +214,7 @@ class Dashboard extends Component {
 
           <Survey />
 
-          <h4 className="h4">My Counselors</h4>
+          <h4 className="h4">Active Conversations</h4>
 
           <section className="scroll-right">
             {this.props.acceptedCounselors.map(obj => {
