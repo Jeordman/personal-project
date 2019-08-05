@@ -1,13 +1,39 @@
-.inbox-full-box{
-    width: 100vw;
-    height: 20vh;
-    background-color: white;
-    color: black;
+.inbox-full-box {
+  width: 80vw;
+  height: 20vh;
+  background-color: white;
+  color: black;
+  animation: slideInRight 1s ease-in-out;
+
+  position: absolute;
+  border: 4px solid #ffb008;
+  border-radius: 15px;
 }
 
-.repeating-requests{
-    display: flex;
-    width: 100vw;
-    height: 15vh;
-    scroll-behavior: auto;
+@keyframes slideInRight {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.slideInRight {
+  animation-name: slideInRight;
+}
+
+.notification-requests {
+  position: absolute;
+  font-size: 25px;
+}
+
+.notification-requests-back {
+  font-size: 25px;
+}
+
+.repeating-requests {
+  display: flex;
+  width: 100vw;
+  height: 15vh;
+  scroll-behavior: auto;
 }

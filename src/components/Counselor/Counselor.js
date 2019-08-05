@@ -19,17 +19,12 @@ class Counselor extends Component {
     if (this.props.obj.counselor_id) {
       return (
         <section className="repeat">
-          <article>{first_name}</article>
-          <article>{last_name}</article>
-          <img onError={this.addDefaultSrc} src={photo} className="images" />
-
-          <Link
-            to={`/myCounselor/${this.props.obj.counselor_id}`}
-            className="link-to"
-          >
-            <button className="link-button">
-              <i className="fa fa-external-link fa-sp" />
-            </button>
+          <section className='names'>
+            <article>{first_name}</article>
+            <article>{last_name}</article>
+          </section>
+          <Link to={`/myCounselor/${this.props.obj.counselor_id}`}>
+            <img onError={this.addDefaultSrc} src={photo} className="images" />
           </Link>
         </section>
       );
@@ -40,15 +35,8 @@ class Counselor extends Component {
         <section className="repeat">
           <article>{first_name}</article>
           <article>{last_name}</article>
-          <img onError={this.addDefaultSrc} src={photo} className="images" />
-
-          <Link
-            to={`/myCounselor/${this.props.obj.user_id}`}
-            className="link-to"
-          >
-            <button className="link-button">
-              <i className="fa fa-external-link fa-sp" />
-            </button>
+          <Link to={`/myCounselor/${this.props.obj.user_id}`}>
+            <img onError={this.addDefaultSrc} src={photo} className="images" />
           </Link>
         </section>
       );

@@ -8,8 +8,14 @@ class RequestInbox extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      showMenu: false
+    };
   }
+
+  toggleMenu = () => {
+    this.setState({ showMenu: !this.state.showMenu });
+  };
 
   componentDidMount = () => {
     if (this.props.loggedInCounselor) {
@@ -20,22 +26,37 @@ class RequestInbox extends Component {
   render() {
     console.log("props", this.props);
     if (this.props.requestedUsers[0]) {
-      return (
-        <div className="inbox-full-box">
-          Here are your requests
-          <section className="repeating-requests">
-            {this.props.requestedUsers.map(obj => {
-              return (
-                <div>
-                  <RequestInboxRepeating obj={obj} key={this.props.requestedUsers.user_counselor_id}/>
-                </div>
-              );
-            })}
-          </section>
-        </div>
-      );
+      if (this.state.showMenu) {
+        return (
+          <div className="inbox-full-box">
+            <section className="repeating-requests">
+              {this.props.requestedUsers.map(obj => {
+                return (
+                  <div>
+                    <RequestInboxRepeating
+                      obj={obj}
+                      key={this.props.requestedUsers.user_counselor_id}
+                    />
+                  </div>
+                );
+              })}
+            </section>
+            <button
+              onClick={this.toggleMenu}
+              className="notification-requests-back"
+            >{`<`}</button>
+          </div>
+        );
+      } else {
+        return (
+          <button
+            onClick={this.toggleMenu}
+            className="notification-requests"
+          >{`${this.props.requestedUsers.length} New  >`}</button>
+        );
+      }
     } else {
-      return <div>NO REQUESTS FOUND</div>;
+      return null;
     }
   }
 }

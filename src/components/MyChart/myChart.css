@@ -1,6 +1,16 @@
-.chart-day-mood {
-  width: 100vw;
-  height: 40vh;
-  margin-top: 4vh;
+@media (max-width: 800px) {
+  .chart-day-mood {
+    width: 100vw;
+    height: 40vh;
+    margin-top: 4vh;
+  }
+}
 
+@media (min-width: 800px) {
+  .chart-day-mood {
+    width: 80vw;
+    height: 50vh;
+    margin-top: 10vh;
+    margin: 0 auto;
+  }
 }

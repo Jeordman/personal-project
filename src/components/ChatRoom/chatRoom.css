@@ -1,39 +1,38 @@
-.holder{
+@media (max-width: 800px) {
+  .holder {
     margin-top: 7vh;
-}
+  }
 
-.mapped-message-holder{
+  .mapped-message-holder {
     display: flex;
     flex-direction: column;
     overflow: scroll;
     width: 100vw;
     background-color: rgb(255, 255, 255);
     margin-bottom: 20vh;
-}
+  }
 
+  .received-message {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
 
-
-.received-message{
-display: flex;
-flex-direction: row-reverse;
-justify-content: flex-end;
-}
-
-.sent-message{
+  .sent-message {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-}
+  }
 
-.messaging-picture{
+  .messaging-picture {
     width: 25px;
     height: 25px;
-   margin-top: 8px;
+    margin-top: 8px;
     border-radius: 50%;
     display: flex;
-}
+  }
 
-.received-message-color{
+  .received-message-color {
     background-color: #ffb008;
     border-radius: 25px;
     margin-left: 3vw;
@@ -42,9 +41,9 @@ justify-content: flex-end;
     padding-bottom: 7px;
     padding-left: 7px;
     font-weight: 300;
-}
+  }
 
-.sent-message-color{
+  .sent-message-color {
     background-color: #3ea7f1;
     border-radius: 25px;
     color: black;
@@ -54,20 +53,97 @@ justify-content: flex-end;
     padding-bottom: 7px;
     padding-left: 7px;
     font-weight: 300;
-}
+  }
 
-.message-footer{
+  .message-footer {
     background-position: 0% 0%;
     position: fixed;
     height: 8vh;
     width: 100vw;
     bottom: 0pt;
-    background-color: rgba(255,255,255, .4);
-}
+    background-color: rgba(255, 255, 255, 0.4);
+  }
 
-.message-input{
+  .message-input {
     margin-top: 2vh;
     background-attachment: scroll;
     height: 3vh;
     border-radius: 25px;
+  }
+}
+
+@media (min-width: 800px) {
+  .holder {
+    margin-top: 7vh;
+    background-color: white;
+  }
+
+  .mapped-message-holder {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    width: 60vw;
+    background-color: #f6f6f6;
+    margin-bottom: 20vh;
+  }
+
+  .received-message {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  .sent-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .messaging-picture {
+    width: 25px;
+    height: 25px;
+    margin-top: 8px;
+    border-radius: 50%;
+    display: flex;
+  }
+
+  .received-message-color {
+    background-color: #ffb008;
+    border-radius: 25px;
+    margin-left: 3vw;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+    font-weight: 300;
+  }
+
+  .sent-message-color {
+    background-color: #3ea7f1;
+    border-radius: 25px;
+    color: black;
+    margin-right: 3vw;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+    font-weight: 300;
+  }
+
+  .message-footer {
+    background-position: 0% 0%;
+    position: fixed;
+    height: 6vh;
+    width: 100vw;
+    bottom: 0pt;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .message-input {
+    margin-top: 2vh;
+    background-attachment: scroll;
+    height: 3vh;
+    border-radius: 25px;
+  }
 }

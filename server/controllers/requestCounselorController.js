@@ -8,7 +8,10 @@ const {
 module.exports = {
   async requestCounselor(req, res) {
     const { user_id, counselor_id } = req.body;
-    await req.app.get("db").user_counselor_request(user_id, counselor_id);
+    const [checker] = await req.app.get('db').user_counselor_checker(user_id, counselor_id)
+    console.log(checker)
+    if (checker) return res.status(401).send('Already requested')
+    req.app.get("db").user_counselor_request(user_id, counselor_id);
     res.status(200).send("Request Sent");
   },
 
@@ -23,7 +26,6 @@ module.exports = {
   async rejectRequest(req, res) {
     const { user_counselor_id } = req.params;
     const { counselor_id } = req.query;
-    console.log("userid, counselorid", user_counselor_id, counselor_id);
     const updatedRequests = await req.app
       .get("db")
       .reject_request(user_counselor_id, counselor_id);

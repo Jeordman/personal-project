@@ -1,17 +1,37 @@
-.full-graph-health {
-  background-color: #f6f6f6;
-  color: black;
-  height: 100vh;
+@media (max-width: 800px) {
+  .full-graph-health {
+    background-color: #f6f6f6;
+    color: black;
+    height: 100vh;
+  }
+
+  .introduction-graph {
+    margin-top: 8vh;
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .my-chart-holder {
+    width: 100vw;
+    height: 40vh;
+  }
 }
 
-.introduction-graph {
-  margin-top: 8vh;
-  text-align: center;
-  font-size: 25px;
+@media (min-width: 800px) {
+  .full-graph-health {
+    background-color: #f6f6f6;
+    color: black;
+    height: 100vh;
+    margin-top: 12vh;
+  }
 
-}
+  .introduction-graph {
+    text-align: center;
+    font-size: 25px;
+  }
 
-.my-chart-holder {
-  width: 100vw;
-  height: 40vh;
+  .my-chart-holder {
+    width: 100vw;
+    height: 40vh;
+  }
 }

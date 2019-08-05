@@ -19,7 +19,7 @@ import {
   getAcceptedCounselors
 } from "../../ducks/requestCounselorReducer";
 
-import ChatRoom from '../ChatRoom/ChatRoom'
+import ChatRoom from "../ChatRoom/ChatRoom";
 import ChatMap from "../ChatMap/ChatMap";
 
 class Dashboard extends Component {
@@ -144,98 +144,103 @@ class Dashboard extends Component {
       let { user } = this.props.user;
       return (
         <div className="full-dash-holder">
-          <Header />
-          <img
-            onError={this.addDefaultSrc}
-            src={this.state.user_photo}
-            className="user-pic"
-          />
-          <h2>
-            Welcome{" "}
-            {`${this.state.user_first_name} ${this.state.user_last_name}`}
-          </h2>
-
-          {editing ? (
-            <div className="full-edit-inputs">
-              <section className="first-two-inputs">
-                <input
-                  value={this.state.user_first_name} //what we are changing (on props) (the info)
-                  onChange={this.handleChange} //normal handle change
-                  name="user_first_name"
-                />
-                <input
-                  value={this.state.user_last_name} //what we are changing (on props) (the info)
-                  onChange={this.handleChange} //normal handle change
-                  name="user_last_name"
-                />
-              </section>
-              <input
-                value={this.state.user_photo} //what we are changing (on props) (the info)
-                onChange={this.handleChange} //normal handle change
-                name="user_photo"
-                className="edit-photo-url"
+          <div className="desktop-dash-left">
+            <Header />
+            <section className="img-holder-center">
+              <img
+                onError={this.addDefaultSrc}
+                src={this.state.user_photo}
+                className="user-pic"
               />
-              <section className="bio-center">BIO</section>
-              <textarea
-                value={this.state.user_info} //what we are changing (on props) (the info)
-                onChange={this.handleChange} //normal handle change
-                name="user_info"
-                className="homepage-bio"
-              />
-            </div>
-          ) : null}
-          {editing ? (
-            <div>
-              <section className="save-cancel-home">
-                <button
-                  onClick={this.saveChangesUser}
-                  className="save-cancel-home"
-                >
-                  save changes
-                </button>
-                <button onClick={this.cancel} className="save-cancel-home">
-                  cancel{" "}
-                </button>
-              </section>
-            </div>
-          ) : (
-            <section>
-              <section className="bio-center">BIO</section>
-              <section className='bio-before-edit-holder'>
-              <article className="bio-before-edit">
-                {this.state.user_info}
-              </article>
-              </section>
-              <button onClick={this.edit} className="edit-dash">
-                Edit Profile
-              </button>
             </section>
-          )}
+            <h2>
+              Welcome{" "}
+              {`${this.state.user_first_name} ${this.state.user_last_name}`}
+            </h2>
 
-          <Survey />
+            {editing ? (
+              <div className="full-edit-inputs">
+                <section className="first-two-inputs">
+                  <input
+                    value={this.state.user_first_name} //what we are changing (on props) (the info)
+                    onChange={this.handleChange} //normal handle change
+                    name="user_first_name"
+                  />
+                  <input
+                    value={this.state.user_last_name} //what we are changing (on props) (the info)
+                    onChange={this.handleChange} //normal handle change
+                    name="user_last_name"
+                  />
+                </section>
+                <input
+                  value={this.state.user_photo} //what we are changing (on props) (the info)
+                  onChange={this.handleChange} //normal handle change
+                  name="user_photo"
+                  className="edit-photo-url"
+                />
+                <section className="bio-center">BIO</section>
+                <textarea
+                  value={this.state.user_info} //what we are changing (on props) (the info)
+                  onChange={this.handleChange} //normal handle change
+                  name="user_info"
+                  className="homepage-bio"
+                />
+              </div>
+            ) : null}
+            {editing ? (
+              <div>
+                <section className="save-cancel-home">
+                  <button
+                    onClick={this.saveChangesUser}
+                    className="save-cancel-home"
+                  >
+                    save changes
+                  </button>
+                  <button onClick={this.cancel} className="save-cancel-home">
+                    cancel{" "}
+                  </button>
+                </section>
+              </div>
+            ) : (
+              <section className='all-bio-info'>
+                <section className="bio-center">BIO</section>
+                <section className="bio-before-edit-holder">
+                  <article className="bio-before-edit">
+                    {this.state.user_info}
+                  </article>
+                </section>
+                <button onClick={this.edit} className="edit-dash">
+                  Edit Profile
+                </button>
+              </section>
+            )}
 
-          <h4 className="h4">Active Conversations</h4>
+            <Survey />
+          </div>
+          <div className="desktop-dash-right">
+            <h4 className="h4">Active Conversations</h4>
 
-          <section className="scroll-right">
-            {this.props.acceptedCounselors.map(obj => {
-              return (
-                <div>
-                  <ChatMap obj={obj} />
-                </div>
-              );
-            })}
-          </section>
+            <section className="scroll-right">
+              {this.props.acceptedCounselors.map(obj => {
+                return (
+                  <div>
+                    <ChatMap obj={obj} />
+                  </div>
+                );
+              })}
+            </section>
 
-          <h4 className="h4">Counselors</h4>
-          <section className="scroll-right">
-            {this.props.counselors.map(obj => {
-              return (
-                <div>
-                  <Counselor obj={obj} />
-                </div>
-              );
-            })}
-          </section>
+            <h4 className="h4">Counselors</h4>
+            <section className="scroll-right">
+              {this.props.counselors.map(obj => {
+                return (
+                  <div>
+                    <Counselor obj={obj} />
+                  </div>
+                );
+              })}
+            </section>
+          </div>
         </div>
       );
     }
@@ -244,7 +249,7 @@ class Dashboard extends Component {
     if (this.props.counselor.loggedIn) {
       let { counselor: counselorUser } = this.props;
       let { counselorError, counselorRedirect } = this.props;
-      console.log('props', this.props)
+      console.log("props", this.props);
       if (counselorError || counselorRedirect) return <Redirect to="/login" />;
       return (
         <div className="full-dash-holder-counselor">
@@ -306,10 +311,10 @@ class Dashboard extends Component {
           ) : (
             <section>
               <section className="bio-center">BIO</section>
-              <section className='bio-before-edit-holder'>
-              <article className="bio-before-edit">
-                {this.state.counselor_info}
-              </article>
+              <section className="bio-before-edit-holder">
+                <article className="bio-before-edit">
+                  {this.state.counselor_info}
+                </article>
               </section>
               <button onClick={this.edit} className="edit-dash">
                 Edit Profile
@@ -322,7 +327,8 @@ class Dashboard extends Component {
           <h4 className="h4">Users</h4>
 
           <section className="scroll-right">
-            {this.props.acceptedCounselors.map(obj => { //dont know why I am mapping over this !!!!!
+            {this.props.acceptedCounselors.map(obj => {
+              //dont know why I am mapping over this !!!!!
               return (
                 <div>
                   <ChatMap obj={obj} />

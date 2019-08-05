@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import './chatMap.css'
 
 class ChatMap extends Component {
   constructor() {
@@ -24,15 +25,11 @@ class ChatMap extends Component {
         <section className="repeat">
           <article>{first_name}</article>
           <article>{last_name}</article>
-          <img onError={this.addDefaultSrc} src={photo} className="images" />
-
           <Link
             to={`/chatRoom/${this.props.obj.counselor_id}`}
-            className="link-to"
+
           >
-            <button className="link-button">
-              <i className="fa fa-external-link fa-sp" />
-            </button>
+          <img onError={this.addDefaultSrc} src={photo} className="images" />
           </Link>
         </section>
       );

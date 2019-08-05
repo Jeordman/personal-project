@@ -3,25 +3,25 @@
   flex-direction: column;
   text-align: center;
   position: absolute;
-  height:100vh;
+  height: 100vh;
   width: 100vw;
   background-color: #f6f6f6;
   color: rgb(0, 0, 0);
 }
 
 .profile-pic {
+  display: flex;
+  margin: auto;
   width: 90px;
   height: 90px;
   border-radius: 50%;
   border-style: solid;
-  display: flex;
-  margin-left: 39vw;
   border-color: gray;
   margin-top: 2vh;
 }
 
-.request-counselor-button{
-  color: rgb(255, 255, 255);
+.request-counselor-button {
+  color: rgb(7, 7, 7);
 }
 
 .loading-spin {
