@@ -158,59 +158,66 @@ class Dashboard extends Component {
             </h2>
 
             {editing ? (
-              <div className="full-edit-inputs">
-                <section className="first-two-inputs">
+              <div className="dark-dash">
+                <div className="full-edit-inputs">
+                  <section className="first-two-inputs">
+                    <input
+                      value={this.state.user_first_name} //what we are changing (on props) (the info)
+                      onChange={this.handleChange} //normal handle change
+                      name="user_first_name"
+                    />
+                    <input
+                      value={this.state.user_last_name} //what we are changing (on props) (the info)
+                      onChange={this.handleChange} //normal handle change
+                      name="user_last_name"
+                    />
+                  </section>
                   <input
-                    value={this.state.user_first_name} //what we are changing (on props) (the info)
+                    value={this.state.user_photo} //what we are changing (on props) (the info)
                     onChange={this.handleChange} //normal handle change
-                    name="user_first_name"
+                    name="user_photo"
+                    className="edit-photo-url"
                   />
-                  <input
-                    value={this.state.user_last_name} //what we are changing (on props) (the info)
+
+                  <section className="bio-center">BIO</section>
+                  <textarea
+                    value={this.state.user_info} //what we are changing (on props) (the info)
                     onChange={this.handleChange} //normal handle change
-                    name="user_last_name"
+                    name="user_info"
+                    className="homepage-bio"
                   />
-                </section>
-                <input
-                  value={this.state.user_photo} //what we are changing (on props) (the info)
-                  onChange={this.handleChange} //normal handle change
-                  name="user_photo"
-                  className="edit-photo-url"
-                />
-                <section className="bio-center">BIO</section>
-                <textarea
-                  value={this.state.user_info} //what we are changing (on props) (the info)
-                  onChange={this.handleChange} //normal handle change
-                  name="user_info"
-                  className="homepage-bio"
-                />
+
+                  <div>
+                    <section className="save-cancel-home">
+                      <button
+                        onClick={this.saveChangesUser}
+                        className="save-cancel-home"
+                      >
+                        save changes
+                      </button>
+                      <button
+                        onClick={this.cancel}
+                        className="save-cancel-home"
+                      >
+                        cancel{" "}
+                      </button>
+                    </section>
+                  </div>
+                </div>
               </div>
             ) : null}
-            {editing ? (
-              <div>
-                <section className="save-cancel-home">
-                  <button
-                    onClick={this.saveChangesUser}
-                    className="save-cancel-home"
-                  >
-                    save changes
-                  </button>
-                  <button onClick={this.cancel} className="save-cancel-home">
-                    cancel{" "}
-                  </button>
-                </section>
-              </div>
-            ) : (
+            {editing ? null : (
               <section className="all-bio-info">
-                <section className="bio-center">BIO</section>
                 <section className="bio-before-edit-holder">
+                  <button onClick={this.edit} className="edit-dash">
+                    Edit Profile
+                  </button>
+                  <section className="bio-before">BIO</section>
+
                   <article className="bio-before-edit">
                     {this.state.user_info}
                   </article>
                 </section>
-                <button onClick={this.edit} className="edit-dash">
-                  Edit Profile
-                </button>
               </section>
             )}
 
@@ -250,7 +257,7 @@ class Dashboard extends Component {
       let { counselorError, counselorRedirect } = this.props;
       if (counselorError || counselorRedirect) return <Redirect to="/login" />;
       return (
-        <div className="full-dash-holder">
+        <div className="full-dash-holder-counselor">
           <div className="desktop-dash-left">
             <Header />
             <section className="img-holder-center">
@@ -268,48 +275,53 @@ class Dashboard extends Component {
             </h2>
 
             {editing ? (
-              <div className="full-edit-inputs">
-                <section className="first-two-inputs">
+              <div className="dark-dash-counselor">
+                <div className="full-edit-inputs" >
+                  <section className="first-two-inputs">
+                    <input
+                      value={this.state.counselor_first_name} //what we are changing (on props) (the info)
+                      onChange={this.handleChange} //normal handle change
+                      name="counselor_first_name"
+                    />
+                    <input
+                      value={this.state.counselor_last_name} //what we are changing (on props) (the info)
+                      onChange={this.handleChange} //normal handle change
+                      name="counselor_last_name"
+                    />
+                  </section>
                   <input
-                    value={this.state.counselor_first_name} //what we are changing (on props) (the info)
+                    value={this.state.counselor_photo} //what we are changing (on props) (the info)
                     onChange={this.handleChange} //normal handle change
-                    name="counselor_first_name"
+                    name="counselor_photo"
+                    className="edit-photo-url"
                   />
                   <input
-                    value={this.state.counselor_last_name} //what we are changing (on props) (the info)
+                    value={this.state.counselor_info} //what we are changing (on props) (the info)
                     onChange={this.handleChange} //normal handle change
-                    name="counselor_last_name"
+                    name="counselor_info"
+                    className="homepage-bio"
                   />
-                </section>
-                <input
-                  value={this.state.counselor_photo} //what we are changing (on props) (the info)
-                  onChange={this.handleChange} //normal handle change
-                  name="counselor_photo"
-                  className="edit-photo-url"
-                />
-                <input
-                  value={this.state.counselor_info} //what we are changing (on props) (the info)
-                  onChange={this.handleChange} //normal handle change
-                  name="counselor_info"
-                  className="homepage-bio"
-                />
+
+                  <div>
+                    <section className="save-cancel-home">
+                      <button
+                        onClick={this.saveChangesCounselor}
+                        className="save-cancel-home"
+                      >
+                        save changes
+                      </button>
+                      <button
+                        onClick={this.cancel}
+                        className="save-cancel-home"
+                      >
+                        cancel{" "}
+                      </button>
+                    </section>
+                  </div>
+                </div>
               </div>
             ) : null}
-            {editing ? (
-              <div>
-                <section className="save-cancel-home">
-                  <button
-                    onClick={this.saveChangesCounselor}
-                    className="save-cancel-home"
-                  >
-                    save changes
-                  </button>
-                  <button onClick={this.cancel} className="save-cancel-home">
-                    cancel{" "}
-                  </button>
-                </section>
-              </div>
-            ) : (
+            {editing ? null : (
               <section className="all-bio-info">
                 <section className="bio-center">BIO</section>
                 <section className="bio-before-edit-holder">

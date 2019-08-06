@@ -1,7 +1,8 @@
 @media (max-width: 850px) {
-  .survey-container {
+
+  .first-survey-container {
     width: 90vw;
-    height: 25vh;
+    /* height: 25vh; */
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10%;
@@ -9,10 +10,43 @@
     margin: 0 auto;
   }
 
+  .dark-dash{
+    position: absolute;
+    background-color: rgba(39, 39, 39, 0.9);
+    top: 0;
+    width: 100vw;
+    height: 150vh;
+    margin: 0 auto;
+  }
+
+  .dark-dash-counselor{
+    position: absolute;
+    background-color: rgba(39, 39, 39, 0.9);
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+  }
+
+  .survey-container {
+
+    width: 90vw;
+    /* height: 25vh; */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10%;
+    
+   
+    position: absolute;
+    margin-left: 4.5vw;
+    margin-top: 30vh;
+   
+  }
+
   .survey-text {
     font-size: 20px;
     width: 100vw;
-    height: 15vh;
+
   }
 
   .survey-question {

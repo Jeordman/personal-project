@@ -2,6 +2,7 @@
   .hold-all-header {
     position: fixed;
     top: 0;
+    
   }
   .header {
     display: flex;
@@ -10,8 +11,9 @@
     width: 100vw;
     color: white;
     position: fixed;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     top: 0;
+    border-radius: 0px 0px 15px 15px;
   }
 
   .img-logo {
@@ -33,7 +35,7 @@
 
   @keyframes slideInDown {
     0% {
-      transform: translateY(-260px);
+      transform: translateY(-200px);
     }
     100% {
       transform: translateY(0);
@@ -44,16 +46,34 @@
     animation-name: slideInDown;
   }
 
+  .dark-dash-menu{
+    position: fixed;
+    background-color: rgba(39, 39, 39, 0.9);
+    top: 8;
+    width: 100vw;
+    height: 150vh;
+    margin: 0 auto;
+  }
+
+  .dark-dash-counselor-menu{
+    position: fixed;
+    background-color: rgba(39, 39, 39, 0.9);
+    top: 8;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+  }
+
   .nav-menu {
-    animation: slideInDown 1s ease-in-out;
+    animation: slideInDown .4s;
     display: flex;
     flex-direction: column;
     position: absolute;
     text-align: center;
     width: 100vw;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     position: fixed;
-    transition: transform 0.6s ease-in-out;
+    transition: transform 0.1s ease-in-out;
     border-radius: 0px 0px 50px 50px;
   }
 

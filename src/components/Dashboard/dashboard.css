@@ -1,20 +1,20 @@
 @media (max-width: 800px) {
   .full-dash-holder {
     margin-top: 8vh;
-    height: 190vh;
+    height: 140vh;
     color: rgb(12, 12, 12);
     background-color: #f6f6f6;
   }
 
   .full-dash-holder-counselor {
     margin-top: 8vh;
-    position: absolute;
-    height: 100vh;
+    height: 95vh;
     color: rgb(12, 12, 12);
     background-color: #f6f6f6;
   }
 
   .first-two-inputs {
+    position: relative;
     display: flex;
     justify-content: space-around;
   }
@@ -47,6 +47,7 @@
     margin: 0 auto;
     width: 80vw;
     height: 20vh;
+    background-color: #f6f6f6;
   }
 
   .save-cancel-home {
@@ -62,10 +63,23 @@
     font-size: 20px;
   }
 
-  .bio-before-edit {
-    text-align: center;
+  .full-edit-inputs{
+    margin: 0 auto;
+    margin-top: 38vh;
+    background-color: rgb(255, 255, 255);
+    width: 95vw;
+    border-radius: 7%;
+  }
+
+  .bio-before-edit-holder {
     margin-top: 2vh;
     margin-bottom: 2vh;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .bio-before-edit {
+    margin-top: 2vh;
+    margin-bottom: 2vh
   }
 
   @media (max-height: 900px) {
@@ -152,6 +166,7 @@
 
   .homepage-bio {
     display: flex;
+    background-color: #f6f6f6;
     margin: 0 auto;
     width: 50vw;
     height: 10vh;
@@ -164,9 +179,9 @@
   }
 
   .edit-dash {
-    color: rgb(0, 0, 0);
     display: flex;
-    margin: 0 auto;
+    color: rgb(0, 0, 0);
+    float: right;
     font-size: 20px;
   }
 

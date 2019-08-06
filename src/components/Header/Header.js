@@ -34,7 +34,7 @@ class Header extends Component {
     if (!this.props.counselorReducerState.counselor) {
       return (
         <div classNam="hold-all-header">
-          <div className="header">
+          <div className="header" style={{ zIndex: 8 }}>
             <img
               src={
                 "https://images.unsplash.com/photo-1457545255860-f9dc39332def?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
@@ -46,23 +46,25 @@ class Header extends Component {
             </button>
           </div>
           {this.state.showMenu ? (
-            <div className="nav-menu">
-              <Link to={{ pathname: "/" }}>
-                <button className="nav-link"> Dashboard </button>
-              </Link>
-              <Link to={`/myGraph`}>
-                <button className="nav-link">My Graph</button>
-              </Link>
-              <Link to={{ pathname: "/Journal" }}>
-                <button className="nav-link"> Journal </button>
-              </Link>
-              <button
-                style={{ zIndex: 6 }}
-                className="nav-link"
-                onClick={this.handleLogout}
-              >
-                logout user
-              </button>
+            <div className="dark-dash-menu">
+              <div className="nav-menu">
+                <Link to={{ pathname: "/" }}>
+                  <button className="nav-link"> Dashboard </button>
+                </Link>
+                <Link to={`/myGraph`}>
+                  <button className="nav-link">My Graph</button>
+                </Link>
+                <Link to={{ pathname: "/Journal" }}>
+                  <button className="nav-link"> Journal </button>
+                </Link>
+                <button
+                  style={{ zIndex: 6 }}
+                  className="nav-link"
+                  onClick={this.handleLogout}
+                >
+                  logout user
+                </button>
+              </div>
             </div>
           ) : null}
         </div>
@@ -73,30 +75,32 @@ class Header extends Component {
     if (this.props.counselorReducerState.counselor) {
       return (
         <div classNam="hold-all-header">
-          <div className="header">
-          <img
+          <div className="header" style={{ zIndex: 8 }}>
+            <img
               src={
                 "https://images.unsplash.com/photo-1457545255860-f9dc39332def?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
               }
               className="img-logo"
             />
-            <div className="logo">Logo</div>
+         
             <button className="menu-btn-content" onClick={this.toggleMenu}>
               <i className="fa fa-bars fa-lg" />
             </button>
           </div>
           {this.state.showMenu ? (
-            <div className="nav-menu">
-              <Link to={{ pathname: "/" }}>
-                <button className="nav-link"> Dashboard </button>
-              </Link>
-              <button
-                style={{ zIndex: 6 }}
-                className="nav-link"
-                onClick={this.handleLogout}
-              >
-                logout counselor
-              </button>
+            <div className="dark-dash-counselor-menu">
+              <div className="nav-menu">
+                <Link to={{ pathname: "/" }}>
+                  <button className="nav-link"> Dashboard </button>
+                </Link>
+                <button
+                  style={{ zIndex: 6 }}
+                  className="nav-link"
+                  onClick={this.handleLogout}
+                >
+                  logout counselor
+                </button>
+              </div>
             </div>
           ) : null}
         </div>

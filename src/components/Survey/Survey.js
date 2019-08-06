@@ -77,96 +77,106 @@ class Survey extends Component {
     if (this.state.question === 1) {
       console.log("state", this.state, this.props);
       return (
-        <div className="survey-container">
+        <div className="first-survey-container">
           <section className="next-back">
             <button onClick={this.next} className="survey-text">
-              Have time to record your feelings? HERE
+              Touch Here
             </button>
           </section>
         </div>
       );
     } else if (this.state.question === 2) {
       return (
-        <div className="survey-container">
-          <div className="survey-question">What is the date?</div>
-          <section className="align-input-center">
-            <input
-              name={"date"}
-              value={this.state.date}
-              onChange={this.handleInput}
-              className="input-color"
-            />
-          </section>
-          <section className="next-back">
-            <button onClick={this.back} className="next-back">
-              Back
-            </button>
-            <button onClick={this.next} className="next-back">
-              Next
-            </button>
-          </section>
+        <div className="dark-dash">
+          <div className="survey-container">
+            <div className="survey-question">What is the date?</div>
+            <section className="align-input-center">
+              <input
+                name={"date"}
+                value={this.state.date}
+                onChange={this.handleInput}
+                className="input-color"
+              />
+            </section>
+            <section className="next-back">
+              <button onClick={this.back} className="next-back">
+                Back
+              </button>
+              <button onClick={this.next} className="next-back">
+                Next
+              </button>
+            </section>
+          </div>
         </div>
       );
     } else if (this.state.question === 3) {
       return (
-        <div className="survey-container">
-          <div className="survey-question">How do you feel on a scale 1-10</div>
-          <section className="align-input-center">
-            <input
-              name={"mood"}
-              value={this.state.mood}
-              onChange={this.handleInput}
-              className="input-color"
-            />
-          </section>
-          <section className="next-back">
-            <button onClick={this.back} className="next-back">
-              Back
-            </button>
-            <button onClick={this.next} className="next-back">
-              Next
-            </button>
-          </section>
+        <div className="dark-dash">
+          <div className="survey-container">
+            <div className="survey-question">
+              How do you feel on a scale 1-10
+            </div>
+            <section className="align-input-center">
+              <input
+                name={"mood"}
+                value={this.state.mood}
+                onChange={this.handleInput}
+                className="input-color"
+              />
+            </section>
+            <section className="next-back">
+              <button onClick={this.back} className="next-back">
+                Back
+              </button>
+              <button onClick={this.next} className="next-back">
+                Next
+              </button>
+            </section>
+          </div>
         </div>
       );
     } else if (this.state.question === 4) {
       return (
-        <div className="survey-container">
-          <div className="survey-question">
-            {" "}
-            Please write a little about your day
+        <div className="dark-dash">
+          <div className="survey-container">
+            <div className="survey-question">
+              {" "}
+              Please write a little about your day
+            </div>
+            <section className="align-input-center">
+              <textarea
+                name={"note"}
+                value={this.state.note}
+                onChange={this.handleInput}
+                className="textarea-journal"
+              />
+            </section>
+            <section className="next-back">
+              <button onClick={this.back} className="next-back">
+                Back
+              </button>
+              <button onClick={this.submit} className="next-back">
+                Submit
+              </button>
+            </section>
           </div>
-          <section className="align-input-center">
-            <textarea
-              name={"note"}
-              value={this.state.note}
-              onChange={this.handleInput}
-              className="textarea-journal"
-            />
-          </section>
-          <section className="next-back">
-            <button onClick={this.back} className="next-back">
-              Back
-            </button>
-            <button onClick={this.submit} className="next-back">
-              Submit
-            </button>
-          </section>
         </div>
       );
     } else if (this.state.question === 5) {
       return (
-        <div className="survey-container">
-          <div>Thank you</div>
-          <section className="next-back">
-            <button onClick={this.beginAgain}>New Entry</button>
-            <Link to={`/myGraph`}>
-              <button className="next-back">Check out my graph</button>
-            </Link>
-            <Link to={`/Journal`}>
-              <button className="next-back">Go to journal</button>
-            </Link>
-          </section>
+        <div className="dark-dash">
+          <div className="survey-container">
+            <div>Thank you</div>
+            <section className="next-back">
+              <button onClick={this.beginAgain}>New Entry</button>
+              <Link to={`/myGraph`}>
+                <button className="next-back">Check out my graph</button>
+              </Link>
+              <Link to={`/Journal`}>
+                <button className="next-back">Go to journal</button>
+              </Link>
+            </section>
+          </div>
         </div>
       );
     }

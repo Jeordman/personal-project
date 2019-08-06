@@ -28,6 +28,7 @@ class RequestInbox extends Component {
     if (this.props.requestedUsers[0]) {
       if (this.state.showMenu) {
         return (
+          <div className="dark-dash-counselor">
           <div className="inbox-full-box">
             <section className="repeating-requests">
               {this.props.requestedUsers.map(obj => {
@@ -45,6 +46,7 @@ class RequestInbox extends Component {
               onClick={this.toggleMenu}
               className="notification-requests-back"
             >{`< Back`}</button>
+          </div>
           </div>
         );
       } else {
