@@ -7,6 +7,7 @@ import {
   getAcceptedUsers
 } from "../../ducks/requestCounselorReducer";
 import { thisExpression } from "@babel/types";
+import './requestInboxRepeating.css'
 
 class RequestInboxRepeating extends Component {
   constructor() {
@@ -25,10 +26,11 @@ class RequestInboxRepeating extends Component {
       this.props.rejectRequest
     );
     return (
-      <div>
+      <div className='full-request-repeat'>
         <section>{`${this.props.obj.first_name} ${
           this.props.obj.last_name
         }`}</section>
+        <div className='all-accept-request-buttons'>
         <button
           onClick={() =>
             this.acceptRequest(
@@ -49,6 +51,7 @@ class RequestInboxRepeating extends Component {
         >
           Deny
         </button>
+        </div>
       </div>
     );
   }

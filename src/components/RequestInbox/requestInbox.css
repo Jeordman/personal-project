@@ -23,8 +23,8 @@
 }
 
 .notification-requests {
-  position: absolute;
   font-size: 25px;
+  position: absolute;
 }
 
 .notification-requests-back {
@@ -32,8 +32,10 @@
 }
 
 .repeating-requests {
+  position: absolute;
   display: flex;
-  width: 100vw;
-  height: 15vh;
-  scroll-behavior: auto;
+  width: 78vw;
+  height: 20vh;
+  overflow-x: scroll;
+  font-size: 30px;
 }

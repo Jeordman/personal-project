@@ -1,0 +1,17 @@
+.full-request-repeat {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  width: 40vw;
+  height: 15vh;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+.all-accept-request-buttons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}

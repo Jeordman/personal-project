@@ -12,6 +12,14 @@ import {
 import "./myCounselor.css";
 
 class MyCounselor extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      toggle: false
+    };
+  }
+
   componentDidMount() {
     this.props.getCounselors();
     this.props.getUsers();
@@ -32,7 +40,15 @@ class MyCounselor extends Component {
       this.props.user.user.id,
       thatCounselor.counselor_id
     );
-    this.props.sendText(this.props.user.user.first_name, this.props.user.user.last_name);
+    this.props.sendText(
+      this.props.user.user.first_name,
+      this.props.user.user.last_name
+    );
+  };
+
+  toggleState = () => {
+    this.setState({ toggle: !this.state.toggle });
+    this.requestCounselor();
   };
 
   render() {
@@ -41,6 +57,7 @@ class MyCounselor extends Component {
     const thisCounselor = this.props.counselors.counselors.filter(
       id => id.counselor_id === +counselorId
     );
+    console.log("this", thisCounselor);
     const thisUser = this.props.users.users.filter(
       id => id.user_id === +counselorId
     );
@@ -55,7 +72,7 @@ class MyCounselor extends Component {
     }
     // if(this.props.user.user.loggedIn || this.props.counselor.loggedIn) return <Redirect to="/login" />
 
-    if (thatUser) {
+    if (this.props.counselors.counselor) {
       const { first_name, last_name, photo } = thatUser;
       return (
         <div>
@@ -76,7 +93,7 @@ class MyCounselor extends Component {
       );
     }
 
-    if (thatCounselor) {
+    if (this.props.user.user) {
       const { first_name, last_name, photo } = thatCounselor;
       console.log("props", this.props);
       return (
@@ -94,12 +111,16 @@ class MyCounselor extends Component {
           <div>
             <h3 className="bio">{thatCounselor.info}</h3>
           </div>
-          <button
-            className="request-counselor-button"
-            onClick={() => this.requestCounselor()}
-          >
-            REQUEST COUNSELOR
-          </button>
+          {this.state.toggle ? (
+            <section>REQUEST SENT</section>
+          ) : (
+            <button
+              className="request-counselor-button"
+              onClick={() => this.toggleState()}
+            >
+              REQUEST COUNSELOR
+            </button>
+          )}
         </div>
       );
     } else

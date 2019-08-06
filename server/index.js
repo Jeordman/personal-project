@@ -105,16 +105,11 @@ io.on("connection", socket => {
     console.log("You just joined ", room);
     const [existingRoom] = await db.look_for_room(room);
     console.log("exist", existingRoom);
-    if (!existingRoom) {
-      return (room = await db.create_room(room));
-    } else {
-      room.id = existingRoom.id;
-    }
+    if (!existingRoom) await db.create_room(room);
     let messages = await db.get_messages(room);
     console.log("messages", messages);
     socket.join(room);
     io.in(room).emit("room entered", messages);
-    console.log("room entered");
   });
 
   //send messages

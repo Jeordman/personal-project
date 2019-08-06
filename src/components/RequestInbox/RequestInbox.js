@@ -44,7 +44,7 @@ class RequestInbox extends Component {
             <button
               onClick={this.toggleMenu}
               className="notification-requests-back"
-            >{`<`}</button>
+            >{`< Back`}</button>
           </div>
         );
       } else {

@@ -22,6 +22,7 @@ class ChatRoom extends Component {
   }
 
   componentDidMount = () => {
+    console.log("logged", this.props);
     if (this.props.user.user.loggedIn) {
       this.props.getMatchingUserCounselor(
         this.props.user.user.id,
@@ -37,6 +38,7 @@ class ChatRoom extends Component {
 
     this.socket = io();
     this.socket.on("room entered", data => {
+      console.log('hit emit')
       this.joinSuccess(data);
     });
 
@@ -56,6 +58,19 @@ class ChatRoom extends Component {
       room: this.state.room,
       sender: this.props.user.user.first_name, //figure out
       is_counselor: false //figure out
+    });
+  };
+
+  firstTime = () => {
+    console.log('first time')
+    this.setState({
+      showChat: false,
+
+      joined: true, //from example
+      newMessageInput: "",
+      newMessageInputUser: "",
+      messages: [],
+      room: 0
     });
   };
 
@@ -127,9 +142,10 @@ class ChatRoom extends Component {
       if (this.props.counselor) return <Redirect to="/login" />;
     }
 
-    if (thatUser) {
+    if (this.props.counselors.user.loggedIn) {
       //if they are a counselor
       const { first_name, last_name, photo } = thatUser;
+      console.log("thatuser", first_name, last_name, photo);
       return (
         <div className="holder">
           <Header />
@@ -194,9 +210,10 @@ class ChatRoom extends Component {
       );
     }
 
-    if (thatCounselor) {
+    if (this.props.user.user.loggedIn) {
       //if they are a user
       const { first_name, last_name, photo } = thatCounselor;
+      console.log("thatperson", first_name, last_name, photo);
       return (
         <div className="holder">
           <Header />
@@ -253,7 +270,13 @@ class ChatRoom extends Component {
                   onChange={this.handleInput}
                   className="message-input"
                 />
-                <button onClick={this.sendMessageUser}>Send</button>
+                <button
+                  onClick={async () => {
+                    await this.sendMessageUser(() => this.firstTime());
+                  }}
+                >
+                  Send
+                </button>
               </div>
             )}
           </div>
