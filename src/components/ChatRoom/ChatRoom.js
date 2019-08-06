@@ -27,7 +27,8 @@ class ChatRoom extends Component {
         this.props.user.user.id,
         +this.props.match.params.id
       );
-    } else if (this.props.counselors.user.loggedIn) {
+    }
+    if (this.props.counselors.user.loggedIn) {
       this.props.getMatchingUserCounselor(
         +this.props.match.params.id,
         this.props.counselors.user.id
@@ -36,13 +37,12 @@ class ChatRoom extends Component {
 
     this.socket = io();
     this.socket.on("room entered", data => {
-      console.log("hit", data);
       this.joinSuccess(data);
     });
 
     this.socket.on("message sent", data => {
-      console.log("hit message sent", data);
       this.updateMessages(data);
+      this.setState({ joined: true });
     });
   };
 
@@ -91,7 +91,6 @@ class ChatRoom extends Component {
   }
 
   updateMessages = messages => {
-    console.log("message hit", messages);
     this.setState({
       messages: messages
     });
@@ -130,38 +129,45 @@ class ChatRoom extends Component {
 
     if (thatUser) {
       //if they are a counselor
-      // if (this.props.room) console.log(this.props.room.user_counselor_id)
-      console.log("state", this.state);
-      console.log("props", this.props);
       const { first_name, last_name, photo } = thatUser;
       return (
         <div className="holder">
           <Header />
-          <h1>
-            {`${first_name} ${last_name}`}
-          </h1>
-            <div>
+          <h1>{`${first_name} ${last_name}`}</h1>
+          <div>
             <div className="mapped-message-holder">
               {this.state.messages.map((
                 messageObj //change this mapping function... new component?
               ) => (
                 <h2 className="chat-repeating" key={messageObj.id}>
                   {messageObj.is_counselor ? (
-                    <div className='sent-message'>
-                      <div className='sent-message-color'>{messageObj.message}</div>
-                      <img className='messaging-picture' src={this.props.counselors.user.photo} />
+                    <div className="sent-message">
+                      <div className="sent-message-color">
+                        {messageObj.message}
+                      </div>
+                      <img
+                        onError={this.addDefaultSrc}
+                        className="messaging-picture"
+                        src={this.props.counselors.user.photo}
+                      />
                     </div>
                   ) : (
-                    <div className='received-message'>
-                      <div className='received-message-color'>{messageObj.message}</div>{" "}
-                      <img className='messaging-picture' src={photo} />
+                    <div className="received-message">
+                      <div className="received-message-color">
+                        {messageObj.message}
+                      </div>{" "}
+                      <img
+                        onError={this.addDefaultSrc}
+                        className="messaging-picture"
+                        src={photo}
+                      />
                     </div>
                   )}
                 </h2>
               ))}
             </div>
             {this.state.joined ? (
-              <div className='message-footer'>
+              <div className="message-footer">
                 <input
                   type="text"
                   name="newMessageInput"
@@ -171,7 +177,18 @@ class ChatRoom extends Component {
                 />
                 <button onClick={this.sendMessageCounselor}>Send</button>
               </div>
-            ) : null}
+            ) : (
+              <div className="message-footer">
+                <input
+                  type="text"
+                  name="newMessageInput"
+                  value={this.state.newMessageInput}
+                  onChange={this.handleInput}
+                  className="message-input"
+                />
+                <button onClick={this.sendMessageCounselor}>Send</button>
+              </div>
+            )}
           </div>
         </div>
       );
@@ -179,20 +196,11 @@ class ChatRoom extends Component {
 
     if (thatCounselor) {
       //if they are a user
-      console.log(this.state.counselors);
       const { first_name, last_name, photo } = thatCounselor;
       return (
         <div className="holder">
           <Header />
-          <h1>
-            {`${first_name} ${last_name}`}
-            <img
-              onError={this.addDefaultSrc}
-              src={photo}
-              className="profile-pic"
-            />
-          </h1>
-
+          <h1>{`${first_name} ${last_name}`}</h1>
           <div>
             <div className="mapped-message-holder">
               {this.state.messages.map((
@@ -200,21 +208,33 @@ class ChatRoom extends Component {
               ) => (
                 <h2 className="chat-repeating" key={messageObj.id}>
                   {messageObj.is_counselor ? (
-                    <div className='received-message'>
-                      <div className='received-message-color'>{messageObj.message}</div>
-                      <img className='messaging-picture' src={photo} />
+                    <div className="received-message">
+                      <div className="received-message-color">
+                        {messageObj.message}
+                      </div>
+                      <img
+                        onError={this.addDefaultSrc}
+                        className="messaging-picture"
+                        src={photo}
+                      />
                     </div>
                   ) : (
-                    <div className='sent-message'>
-                      <div className='sent-message-color'>{messageObj.message}</div>{" "}
-                      <img className='messaging-picture' src={this.props.user.user.photo} />
+                    <div className="sent-message">
+                      <div className="sent-message-color">
+                        {messageObj.message}
+                      </div>{" "}
+                      <img
+                        onError={this.addDefaultSrc}
+                        className="messaging-picture"
+                        src={this.props.user.user.photo}
+                      />
                     </div>
                   )}
                 </h2>
               ))}
             </div>
             {this.state.joined ? (
-              <div className='message-footer'>
+              <div className="message-footer">
                 <input
                   type="text"
                   name="newMessageInputUser"
@@ -224,7 +244,18 @@ class ChatRoom extends Component {
                 />
                 <button onClick={this.sendMessageUser}>Send</button>
               </div>
-            ) : null}
+            ) : (
+              <div className="message-footer">
+                <input
+                  type="text"
+                  name="newMessageInputUser"
+                  value={this.state.newMessageInputUser}
+                  onChange={this.handleInput}
+                  className="message-input"
+                />
+                <button onClick={this.sendMessageUser}>Send</button>
+              </div>
+            )}
           </div>
         </div>
       );

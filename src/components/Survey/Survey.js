@@ -49,6 +49,7 @@ class Survey extends Component {
       return alert("Make sure you rated your day with a number");
     } else {
       this.setState({ question: (now += 1) });
+      console.log("state", this.state, this.props);
       this.props.completeSurvey(
         this.state.user_id,
         this.state.date,
@@ -74,6 +75,7 @@ class Survey extends Component {
 
   render() {
     if (this.state.question === 1) {
+      console.log("state", this.state, this.props);
       return (
         <div className="survey-container">
           <section className="next-back">
@@ -87,13 +89,14 @@ class Survey extends Component {
       return (
         <div className="survey-container">
           <div className="survey-question">What is the date?</div>
-
-          <input
-            name={"date"}
-            value={this.state.date}
-            onChange={this.handleInput}
-          />
-
+          <section className="align-input-center">
+            <input
+              name={"date"}
+              value={this.state.date}
+              onChange={this.handleInput}
+              className="input-color"
+            />
+          </section>
           <section className="next-back">
             <button onClick={this.back} className="next-back">
               Back
@@ -108,13 +111,14 @@ class Survey extends Component {
       return (
         <div className="survey-container">
           <div className="survey-question">How do you feel on a scale 1-10</div>
-
-          <input
-            name={"mood"}
-            value={this.state.mood}
-            onChange={this.handleInput}
-          />
-
+          <section className="align-input-center">
+            <input
+              name={"mood"}
+              value={this.state.mood}
+              onChange={this.handleInput}
+              className="input-color"
+            />
+          </section>
           <section className="next-back">
             <button onClick={this.back} className="next-back">
               Back
@@ -128,18 +132,18 @@ class Survey extends Component {
     } else if (this.state.question === 4) {
       return (
         <div className="survey-container">
-          <div className="survey-question-textarea">
+          <div className="survey-question">
             {" "}
             Please write a little about your day
           </div>
-
-          <textarea
-            name={"note"}
-            value={this.state.note}
-            onChange={this.handleInput}
-            className="textarea-journal"
-          />
-
+          <section className="align-input-center">
+            <textarea
+              name={"note"}
+              value={this.state.note}
+              onChange={this.handleInput}
+              className="textarea-journal"
+            />
+          </section>
           <section className="next-back">
             <button onClick={this.back} className="next-back">
               Back

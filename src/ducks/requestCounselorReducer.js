@@ -105,12 +105,12 @@ export const acceptRequest = (user_counselor_id, counselor_id) => {
 };
 
 export const getAcceptedUsers = counselor_id => {
-  const allAccepted = axios
+  const allAcceptedUsers = axios
     .get(`/api/getAcceptedUsers/${counselor_id}`)
     .then(res => res.data);
   return {
     type: GET_ACCEPTED_USERS,
-    payload: allAccepted
+    payload: allAcceptedUsers
   };
 };
 
@@ -166,14 +166,16 @@ export default function(state = initialState, action) {
         requestedUsers: payload.updatedRequests,
         acceptedUsers: payload.updatedUsers
       };
+ 
     case GET_ACCEPTED_COUNSELORS + "_FULFILLED":
       return { ...state, acceptedCounselors: payload };
     case GET_ACCEPTED_COUNSELORS + "_PENDING":
       return { ...state };
-    case GET_ACCEPTED_USERS + "_FULFILLED":
-      return { ...state, acceptedUsers: payload };
-    case GET_ACCEPTED_USERS + "_PENDING":
-      return { ...state };
+      case GET_ACCEPTED_USERS + "_FULFILLED":
+        return { ...state, acceptedUsers: payload };
+      case GET_ACCEPTED_USERS + "_PENDING":
+        return { ...state };
+
     case GET_MATCHING_USER_COUNSELOR + "_FULFILLED":
       return { ...state, userCounselorMatch: payload };
     case LOGOUT_REQUEST_COUNSELOR + "_FULFILLED":

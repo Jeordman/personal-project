@@ -44,7 +44,7 @@ module.exports = {
       first_name,
       last_name,
       photo,
-      id: counselor.id,
+      id: counselor.counselor_id,
       loggedIn: true,
       counselor: true
     };

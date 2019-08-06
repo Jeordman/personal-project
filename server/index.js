@@ -113,7 +113,7 @@ io.on("connection", socket => {
     let messages = await db.get_messages(room);
     console.log("messages", messages);
     socket.join(room);
-    io.to(room).emit("room entered", messages);
+    io.in(room).emit("room entered", messages);
     console.log("room entered");
   });
 
@@ -124,6 +124,7 @@ io.on("connection", socket => {
     const db = app.get("db");
     await db.send_message(room, message, sender, is_counselor);
     let messages = await db.get_messages(room);
+    if (messages.length <= 1) io.to(room).emit("room entered", messages);
     console.log("messages", messages);
     io.to(data.room).emit("message sent", messages);
   });

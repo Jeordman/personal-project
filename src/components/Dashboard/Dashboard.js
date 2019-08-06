@@ -57,6 +57,14 @@ class Dashboard extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.acceptedUsers !== this.props.acceptedUsers) {
+      this.render();
+    } else if (prevProps.acceptedCounselors !== this.props.acceptedCounselors) {
+      this.render();
+    }
+  }
+
   addDefaultSrc(ev) {
     ev.target.src =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvlhaYgj0EeSjYPBSHNY3xacbupTZ_EnCvlSWoyJB7jMa1wuhdeA";
@@ -122,15 +130,6 @@ class Dashboard extends Component {
       user_photo: this.props.user.user.photo,
       user_info: this.props.user.user.info
     });
-  };
-
-  getCurrentDate = () => {
-    let newDate = new Date();
-    let date = newDate.getDate();
-    let month = newDate.getMonth() + 1;
-    let year = newDate.getFullYear();
-
-    return `${year} ${month < 10 ? `0${month}` : `${month}`} ${date}`;
   };
 
   render() {
@@ -202,7 +201,7 @@ class Dashboard extends Component {
                 </section>
               </div>
             ) : (
-              <section className='all-bio-info'>
+              <section className="all-bio-info">
                 <section className="bio-center">BIO</section>
                 <section className="bio-before-edit-holder">
                   <article className="bio-before-edit">
@@ -249,93 +248,97 @@ class Dashboard extends Component {
     if (this.props.counselor.loggedIn) {
       let { counselor: counselorUser } = this.props;
       let { counselorError, counselorRedirect } = this.props;
-      console.log("props", this.props);
       if (counselorError || counselorRedirect) return <Redirect to="/login" />;
       return (
-        <div className="full-dash-holder-counselor">
-          <Header />
-          <img
-            onError={this.addDefaultSrc}
-            src={this.state.counselor_photo}
-            className="user-pic"
-          />
-          <h2>
-            Welcome{" "}
-            {`${this.state.counselor_first_name} ${
-              this.state.counselor_last_name
-            }`}
-          </h2>
-
-          {editing ? (
-            <div className="full-edit-inputs">
-              <section className="first-two-inputs">
-                <input
-                  value={this.state.counselor_first_name} //what we are changing (on props) (the info)
-                  onChange={this.handleChange} //normal handle change
-                  name="counselor_first_name"
-                />
-                <input
-                  value={this.state.counselor_last_name} //what we are changing (on props) (the info)
-                  onChange={this.handleChange} //normal handle change
-                  name="counselor_last_name"
-                />
-              </section>
-              <input
-                value={this.state.counselor_photo} //what we are changing (on props) (the info)
-                onChange={this.handleChange} //normal handle change
-                name="counselor_photo"
-                className="edit-photo-url"
+        <div className="full-dash-holder">
+          <div className="desktop-dash-left">
+            <Header />
+            <section className="img-holder-center">
+              <img
+                onError={this.addDefaultSrc}
+                src={this.state.counselor_photo}
+                className="user-pic"
               />
-              <input
-                value={this.state.counselor_info} //what we are changing (on props) (the info)
-                onChange={this.handleChange} //normal handle change
-                name="counselor_info"
-                className="homepage-bio"
-              />
-            </div>
-          ) : null}
-          {editing ? (
-            <div>
-              <section className="save-cancel-home">
-                <button
-                  onClick={this.saveChangesCounselor}
-                  className="save-cancel-home"
-                >
-                  save changes
-                </button>
-                <button onClick={this.cancel} className="save-cancel-home">
-                  cancel{" "}
-                </button>
-              </section>
-            </div>
-          ) : (
-            <section>
-              <section className="bio-center">BIO</section>
-              <section className="bio-before-edit-holder">
-                <article className="bio-before-edit">
-                  {this.state.counselor_info}
-                </article>
-              </section>
-              <button onClick={this.edit} className="edit-dash">
-                Edit Profile
-              </button>
             </section>
-          )}
+            <h2>
+              Welcome{" "}
+              {`${this.state.counselor_first_name} ${
+                this.state.counselor_last_name
+              }`}
+            </h2>
 
-          <RequestInbox />
+            {editing ? (
+              <div className="full-edit-inputs">
+                <section className="first-two-inputs">
+                  <input
+                    value={this.state.counselor_first_name} //what we are changing (on props) (the info)
+                    onChange={this.handleChange} //normal handle change
+                    name="counselor_first_name"
+                  />
+                  <input
+                    value={this.state.counselor_last_name} //what we are changing (on props) (the info)
+                    onChange={this.handleChange} //normal handle change
+                    name="counselor_last_name"
+                  />
+                </section>
+                <input
+                  value={this.state.counselor_photo} //what we are changing (on props) (the info)
+                  onChange={this.handleChange} //normal handle change
+                  name="counselor_photo"
+                  className="edit-photo-url"
+                />
+                <input
+                  value={this.state.counselor_info} //what we are changing (on props) (the info)
+                  onChange={this.handleChange} //normal handle change
+                  name="counselor_info"
+                  className="homepage-bio"
+                />
+              </div>
+            ) : null}
+            {editing ? (
+              <div>
+                <section className="save-cancel-home">
+                  <button
+                    onClick={this.saveChangesCounselor}
+                    className="save-cancel-home"
+                  >
+                    save changes
+                  </button>
+                  <button onClick={this.cancel} className="save-cancel-home">
+                    cancel{" "}
+                  </button>
+                </section>
+              </div>
+            ) : (
+              <section className="all-bio-info">
+                <section className="bio-center">BIO</section>
+                <section className="bio-before-edit-holder">
+                  <article className="bio-before-edit">
+                    {this.state.counselor_info}
+                  </article>
+                </section>
+                <button onClick={this.edit} className="edit-dash">
+                  Edit Profile
+                </button>
+              </section>
+            )}
 
-          <h4 className="h4">Users</h4>
+            <RequestInbox />
+          </div>
+          <div className="desktop-dash-right">
+            <h4 className="h4">Users</h4>
 
-          <section className="scroll-right">
-            {this.props.acceptedCounselors.map(obj => {
-              //dont know why I am mapping over this !!!!!
-              return (
-                <div>
-                  <ChatMap obj={obj} />
-                </div>
-              );
-            })}
-          </section>
+            <section className="scroll-right">
+              {this.props.acceptedUsers.map(obj => {
+                //dont know why I am mapping over this !!!!!
+                return (
+                  <div>
+                    <ChatMap obj={obj} />
+                  </div>
+                );
+              })}
+            </section>
+          </div>
         </div>
       );
     } else {

@@ -35,7 +35,7 @@ module.exports = {
       first_name,
       last_name,
       photo,
-      id: user.id,
+      id: user.user_id,
       loggedIn: true
     };
     res.send(req.session.user);
