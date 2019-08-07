@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Header from "../Header/Header";
+import { Redirect } from "react-router-dom";
 import { getUserGraph } from "../../ducks/userReducer";
 import MyChart from "../MyChart/MyChart";
 import "./graphHealth.css";
@@ -19,18 +20,27 @@ class GraphHealth extends Component {
   render() {
     // console.log('this state', this.state.graphInfo)
     console.log("graph info", this.props.graphInfo);
+    if (!this.props.user.loggedIn) return <Redirect to="/login" />;
     return (
-      <div className="full-graph-health">
+      <div>
+        <section className="fill-in-white-1" ></section>
         <Header />
-        <div className="introduction-graph">{`Here is how you have felt recently ${
-          this.props.user.first_name
-        }`}</div>
+        <section className="fill-in-white" ></section>
+        <div className="full-graph-health">
+          {this.props.graphInfo[0] ? (
+            <section className="my-chart-holder">
+              <MyChart />
+            </section>
+          ) : (
+            <div id="loader-wrapper">
+              <div id="loader" />
+            </div>
+          )}
 
-        {this.props.graphInfo[0] ? (
-          <section className="my-chart-holder">
-            <MyChart />
-          </section>
-        ) : null}
+          <div className="introduction-graph">{`Here is how you have felt recently ${
+            this.props.user.first_name
+          }`}</div>
+        </div>
       </div>
     );
   }

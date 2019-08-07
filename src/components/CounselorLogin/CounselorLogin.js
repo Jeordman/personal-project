@@ -10,7 +10,8 @@ class CounselorLogin extends Component {
 
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      loading: false
     };
   }
   handleInput = e => {
@@ -20,49 +21,59 @@ class CounselorLogin extends Component {
 
   handleLogin = () => {
     this.props.loginCounselor(this.state.username, this.state.password);
+    this.setState({
+      loading: true
+    });
   };
 
   render() {
     const { user } = this.props;
     if (user.loggedIn) return <Redirect to="/" />;
-    return (
-      <div className="hold-counselor-full">
-        <h1>Counselor</h1>
-        <article className="page-label">Sign in</article>
-        <section className="input-holder">
-          <input
-            type="text"
-            name="username"
-            placeholder="USERNAME"
-            onChange={this.handleInput}
-            className="input"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="PASSWORD"
-            onChange={this.handleInput}
-            className="input"
-          />
-        </section>
-        <article className="no-account">Don't have an account?</article>
+    if (!this.state.loading) {
+      return (
+        <div className="hold-counselor-full">
+          <article className="page-label">Counselor Sign in</article>
+          <section className="input-holder">
+            <input
+              type="text"
+              name="username"
+              placeholder="USERNAME"
+              onChange={this.handleInput}
+              className="input"
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="PASSWORD"
+              onChange={this.handleInput}
+              className="input"
+            />
+          </section>
+          <article className="no-account">Don't have an account?</article>
 
-        <section className="button-holder">
-          <Link to={{ pathname: "/Login" }}>
-            <div className="signup">Back</div>
-          </Link>
+          <section className="button-holder">
+            <Link to={{ pathname: "/Login" }}>
+              <div className="signup">Back</div>
+            </Link>
 
-          <Link to={{ pathname: "/CounselorSignup" }}>
-            <div className="signup">Sign up</div>
-          </Link>
+            <Link to={{ pathname: "/CounselorSignup" }}>
+              <div className="signup">Sign up</div>
+            </Link>
 
-          <button onClick={this.handleLogin} className="login">
-            Sign In
-          </button>
-        </section>
-        <article className="author">created by Jeordin Callister</article>
-      </div>
-    );
+            <button onClick={this.handleLogin} className="login">
+              Sign In
+            </button>
+          </section>
+          <article className="author">created by Jeordin Callister</article>
+        </div>
+      );
+    } else if (this.state.loading) {
+      return (
+        <div id="loader-wrapper">
+          <div id="loader" />
+        </div>
+      );
+    }
   }
 }
 

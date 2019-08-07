@@ -38,7 +38,7 @@ class ChatRoom extends Component {
 
     this.socket = io();
     this.socket.on("room entered", data => {
-      console.log('hit emit')
+      console.log("hit emit");
       this.joinSuccess(data);
     });
 
@@ -62,7 +62,7 @@ class ChatRoom extends Component {
   };
 
   firstTime = () => {
-    console.log('first time')
+    console.log("first time");
     this.setState({
       showChat: false,
 
@@ -284,8 +284,8 @@ class ChatRoom extends Component {
       );
     } else
       return (
-        <div className="loading-spin">
-          <i className="fa fa-bars fa-spin" />
+        <div id="loader-wrapper">
+          <div id="loader" />
         </div>
       );
   }

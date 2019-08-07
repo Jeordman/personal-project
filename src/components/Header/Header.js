@@ -46,7 +46,7 @@ class Header extends Component {
             </button>
           </div>
           {this.state.showMenu ? (
-            <div className="dark-dash-menu">
+            <div className="dark-dash-menu" style={{ zIndex: 7 }}>
               <div className="nav-menu">
                 <Link to={{ pathname: "/" }}>
                   <button className="nav-link"> Dashboard </button>

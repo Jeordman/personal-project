@@ -6,7 +6,21 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  
+}
+
+.dark-dash-journal {
+  position: absolute;
+  background-color: rgba(39, 39, 39, 0.9);
+  top: 0;
+  left: 0%;
+  width: 100vw;
+  height: 150vh;
+  margin: 0 auto;
+}
+
+
+.edit-journal-text {
+  background-color: #f6f6f6;
 }
 
 .repeating-date {
@@ -19,3 +33,4 @@
   margin: 0 auto;
   font-size: 25px;
 }
+

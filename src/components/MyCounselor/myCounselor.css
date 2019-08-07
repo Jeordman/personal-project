@@ -16,12 +16,15 @@
   height: 90px;
   border-radius: 50%;
   border-style: solid;
-  border-color: gray;
+  border-color: #3ea7f1;
   margin-top: 2vh;
 }
 
 .request-counselor-button {
-  color: rgb(7, 7, 7);
+  margin: 0 auto;
+  color: rgb(255, 255, 255);
+  background-color: #ffb008;
+  width: 25vw;
 }
 
 .loading-spin {

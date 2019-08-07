@@ -1,14 +1,23 @@
 @media (max-width: 800px) {
   .full-graph-health {
-    background-color: #f6f6f6;
     color: black;
-    height: 100vh;
+    height: 80vh;
   }
 
   .introduction-graph {
     margin-top: 8vh;
     text-align: center;
     font-size: 25px;
+  }
+
+  .fill-in-white-1{
+    height: 8vh;
+    width: 100vw;
+  }
+
+  .fill-in-white{
+    height: 11vh;
+    width: 100vw;
   }
 
   .my-chart-holder {
@@ -19,7 +28,6 @@
 
 @media (min-width: 800px) {
   .full-graph-health {
-    background-color: #f6f6f6;
     color: black;
     height: 100vh;
     margin-top: 12vh;

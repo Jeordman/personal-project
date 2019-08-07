@@ -13,7 +13,8 @@ class CounselorSignup extends Component {
       password: "",
       first_name: "",
       last_name: "",
-      image: ""
+      image: "",
+      loading: false
     };
   }
 
@@ -31,6 +32,9 @@ class CounselorSignup extends Component {
       last_name,
       image
     );
+    this.setState({
+      loading: true
+    });
   };
 
   addDefaultSrc(ev) {
@@ -45,70 +49,77 @@ class CounselorSignup extends Component {
     console.log("loggedIn", loggedIn);
 
     if (loggedIn) return <Redirect to="/" />;
-    return (
-      <section className="counselor-signup-hold">
-        {" "}
-        COUNSELOR
-        <h2>Create account</h2>
-        <section className="main">
-          <img
-            onError={this.addDefaultSrc}
-            src={this.state.image}
-            className="img"
-          />
-          <section className="input-holder">
-            <input
-              type="text"
-              value={image}
-              name="image"
-              onChange={this.handleInput}
-              placeholder="IMAGE URL"
-              className="input"
+    if (!this.state.loading) {
+      return (
+        <section className="counselor-signup-hold">
+          {" "}
+          <h2>Create Counselor Account</h2>
+          <section className="main">
+            <img
+              onError={this.addDefaultSrc}
+              src={this.state.image}
+              className="img"
             />
-            <input
-              type="text"
-              value={username}
-              name="username"
-              onChange={this.handleInput}
-              placeholder="USERNAME"
-              className="input"
-            />
-            <input
-              type="password"
-              value={password}
-              name="password"
-              onChange={this.handleInput}
-              placeholder="PASSWORD"
-              className="input"
-            />
-            <input
-              type="text"
-              value={first_name}
-              name="first_name"
-              onChange={this.handleInput}
-              placeholder="FIRST NAME"
-              className="input"
-            />
-            <input
-              type="text"
-              value={last_name}
-              name="last_name"
-              onChange={this.handleInput}
-              placeholder="LAST NAME"
-              className="input"
-            />
+            <section className="input-holder">
+              <input
+                type="text"
+                value={image}
+                name="image"
+                onChange={this.handleInput}
+                placeholder="IMAGE URL"
+                className="input"
+              />
+              <input
+                type="text"
+                value={username}
+                name="username"
+                onChange={this.handleInput}
+                placeholder="USERNAME"
+                className="input"
+              />
+              <input
+                type="password"
+                value={password}
+                name="password"
+                onChange={this.handleInput}
+                placeholder="PASSWORD"
+                className="input"
+              />
+              <input
+                type="text"
+                value={first_name}
+                name="first_name"
+                onChange={this.handleInput}
+                placeholder="FIRST NAME"
+                className="input"
+              />
+              <input
+                type="text"
+                value={last_name}
+                name="last_name"
+                onChange={this.handleInput}
+                placeholder="LAST NAME"
+                className="input"
+              />
+            </section>
+          </section>
+          <section className="button-holder">
+            <Link to={{ pathname: "/login" }}>
+              <article className="login">Sign in</article>
+            </Link>
+            <button onClick={this.signup} className="signup">
+              Sign up -->
+            </button>
           </section>
         </section>
-        <section className="button-holder">
-          <Link to={{ pathname: "/login" }}>
-            <article className="login">Sign in</article>
-          </Link>
-          <button onClick={this.signup} className="signup">
-            Sign up -->
-          </button>
-        </section>
-      </section>
-    );
+      );
+    } else if (this.state.loading) {
+      return (
+        <div id="loader-wrapper">
+          <div id="loader" />
+        </div>
+      );
+    }
   }
 }
 

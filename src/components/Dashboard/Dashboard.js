@@ -276,7 +276,7 @@ class Dashboard extends Component {
 
             {editing ? (
               <div className="dark-dash-counselor">
-                <div className="full-edit-inputs" >
+                <div className="full-edit-inputs">
                   <section className="first-two-inputs">
                     <input
                       value={this.state.counselor_first_name} //what we are changing (on props) (the info)
@@ -323,15 +323,16 @@ class Dashboard extends Component {
             ) : null}
             {editing ? null : (
               <section className="all-bio-info">
-                <section className="bio-center">BIO</section>
                 <section className="bio-before-edit-holder">
+                  <button onClick={this.edit} className="edit-dash">
+                    Edit Profile
+                  </button>
+                  <section className="bio-before">BIO</section>
+
                   <article className="bio-before-edit">
                     {this.state.counselor_info}
                   </article>
                 </section>
-                <button onClick={this.edit} className="edit-dash">
-                  Edit Profile
-                </button>
               </section>
             )}
 

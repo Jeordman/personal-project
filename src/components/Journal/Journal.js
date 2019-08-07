@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Header from "../Header/Header";
+import { Redirect } from "react-router-dom";
 import { getUserJournal, editUserJournal } from "../../ducks/journalReducer";
 import JournalEntries from "../JournalEntries/JournalEntries";
 import JournalSelected from "../JournalSelected/JournalSelected";
@@ -11,17 +12,27 @@ class Journal extends Component {
     super();
 
     this.state = {
-      selectedEntry: 40000,
+      selectedEntry: -1,
       selectedDate: "",
       selectedMood: 0,
       selectedNote: "",
-
       editing: false
     };
   }
 
   componentDidMount() {
     this.props.getUserJournal(this.props.user.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.user && prevProps !== this.props) {
+      this.setState({
+        selectedEntry: this.props.journalEntries[0].entry_id,
+        selectedDate: this.props.journalEntries[0].date,
+        selectedMood: this.props.journalEntries[0].mood,
+        selectedNote: this.props.journalEntries[0].note
+      });
+    }
   }
 
   chooseEntry = id => {
@@ -69,28 +80,38 @@ class Journal extends Component {
   render() {
     console.log("journal props", this.props);
     console.log("state", this.state);
-    return (
-      <div className="journal-holder-component">
-        <Header />
-        <section className="repeating">
-          {this.props.journalEntries.map(obj => {
-            return (
-              <div>
-                <JournalEntries obj={obj} chooseEntry={this.chooseEntry} />
-              </div>
-            );
-          })}
-        </section>
+    if (!this.props.user.loggedIn) return <Redirect to="/login" />;
+    if (this.props.journalEntries[0]) {
+      return (
+        <div className="journal-holder-component">
+          <Header />
 
-        <JournalSelected
-          journalState={this.state}
-          edit={this.edit}
-          saveChangesJournal={this.saveChangesJournal}
-          handleChange={this.handleChange}
-          cancel={this.cancel}
-        />
-      </div>
-    );
+          <JournalSelected
+            journalState={this.state}
+            edit={this.edit}
+            saveChangesJournal={this.saveChangesJournal}
+            handleChange={this.handleChange}
+            cancel={this.cancel}
+          />
+
+          <section className="repeating">
+            {this.props.journalEntries.map(obj => {
+              return (
+                <div>
+                  <JournalEntries obj={obj} chooseEntry={this.chooseEntry} />
+                </div>
+              );
+            })}
+          </section>
+        </div>
+      );
+    } else {
+      return (
+        <div id="loader-wrapper">
+          <div id="loader" />
+        </div>
+      );
+    }
   }
 }
 

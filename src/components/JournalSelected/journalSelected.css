@@ -1,9 +1,14 @@
 .specific-entry {
+  position: absolute;
   margin: 0 auto;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
   margin-top: 5vh;
   background-color: #ffffff;
   width: 70vw;
-  height: 30vh;
+  height: 50vh;
   border-radius: 6%;
 }
 
@@ -29,5 +34,6 @@
   display: flex;
   margin-top: 2vh;
   width: 70vw;
-  height: 10vh;
+  height: 30vh;
+  overflow-y: auto;
 }
