@@ -5,6 +5,7 @@ import { logoutCounselor } from "../../ducks/counselorsReducer";
 import { logoutJournal } from "../../ducks/journalReducer";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import { logoutRequestCounselor } from "../../ducks/requestCounselorReducer";
+import { getUserJournal } from "../../ducks/journalReducer";
 import "./header.css";
 
 import { slideInDown } from "react-animations";
@@ -19,7 +20,10 @@ class Header extends Component {
 
   toggleMenu = () => {
     this.setState({ showMenu: !this.state.showMenu });
+      this.props.getUserJournal(this.props.user.id);
   };
+
+  
 
   handleLogout = async () => {
     await this.props.logout();
@@ -31,6 +35,8 @@ class Header extends Component {
 
   render() {
     //user login
+    console.log("prooops", this.props);
+   
     if (!this.props.counselorReducerState.counselor) {
       return (
         <div classNam="hold-all-header">
@@ -54,9 +60,11 @@ class Header extends Component {
                 <Link to={`/myGraph`}>
                   <button className="nav-link">My Graph</button>
                 </Link>
-                <Link to={{ pathname: "/Journal" }}>
-                  <button className="nav-link"> Journal </button>
-                </Link>
+                {this.props.journalEntries[0] ? (
+                  <Link to={{ pathname: "/Journal" }}>
+                    <button className="nav-link"> Journal </button>
+                  </Link>
+                ) : null}
                 <button
                   style={{ zIndex: 6 }}
                   className="nav-link"
@@ -82,7 +90,7 @@ class Header extends Component {
               }
               className="img-logo"
             />
-         
+
             <button className="menu-btn-content" onClick={this.toggleMenu}>
               <i className="fa fa-bars fa-lg" />
             </button>
@@ -112,13 +120,21 @@ class Header extends Component {
 function mapStateToProps(state) {
   return {
     userReducerState: state.user,
-    counselorReducerState: state.counselors
+    counselorReducerState: state.counselors,
+    user: state.user.user,
+    journalEntries: state.journal.journalEntries
   };
 }
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { logout, logoutCounselor, logoutJournal, logoutRequestCounselor }
+    {
+      logout,
+      logoutCounselor,
+      logoutJournal,
+      logoutRequestCounselor,
+      getUserJournal
+    }
   )(Header)
 );

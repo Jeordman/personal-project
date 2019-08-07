@@ -3,3 +3,9 @@
   background-color: #f6f6f6;
   height: 100vh;
 }
+
+.fill-space-again{
+  width: 100vw;
+  height: 13vh;
+  background-color: #f6f6f6;
+}

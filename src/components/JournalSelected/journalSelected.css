@@ -14,6 +14,7 @@
 
 .selected-date {
   font-size: 25px;
+  font-family: 'DM Serif Text', serif;
 }
 
 .selected-mood {
@@ -23,6 +24,7 @@
   widows: 100vw;
   margin: 0 auto;
   font-size: 19px;
+  font-family: 'Slabo 27px', serif;
 }
 
 .edit-journal-text {
@@ -36,4 +38,5 @@
   width: 70vw;
   height: 30vh;
   overflow-y: auto;
+  font-family: 'Slabo 27px', serif;
 }

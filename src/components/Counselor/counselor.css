@@ -4,8 +4,9 @@
     text-align: center;
     margin-left: 9vw;
     width: 50vw;
-    margin-top: 1vh;
+    margin-top: .5vh;
     border-radius: 12px;
+    font-family: 'DM Serif Text', serif;
   }
 
   .images {

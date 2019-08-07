@@ -24,11 +24,12 @@
 
 .notification-requests {
   font-size: 25px;
-
+  font-family: 'DM Serif Text', serif;
 }
 
 .notification-requests-back {
   font-size: 25px;
+  font-family: 'DM Serif Text', serif;
 }
 
 .repeating-requests {
@@ -39,4 +40,5 @@
   height: 20vh;
   overflow-x: scroll;
   font-size: 30px;
+  font-family: 'Slabo 27px', serif;
 }

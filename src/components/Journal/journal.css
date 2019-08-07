@@ -21,6 +21,7 @@
   flex-wrap: wrap;
   overflow: scroll;
   justify-content: space-around;
+  font-family: 'DM Serif Text', serif;
 }
 
 .loading-spin {

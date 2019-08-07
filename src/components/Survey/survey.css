@@ -1,17 +1,18 @@
 @media (max-width: 850px) {
 
   .first-survey-container {
-    width: 90vw;
+    width: 60vw;
     /* height: 25vh; */
     background-color: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 10%;
-    margin-top: 2vh;
+    border-radius: 23%;
     margin: 0 auto;
+    margin-top: 4vh;
   }
 
   .dark-dash{
     position: absolute;
+    z-index: 2;
     background-color: rgba(39, 39, 39, 0.9);
     top: 0;
     width: 100vw;
@@ -46,7 +47,7 @@
   .survey-text {
     font-size: 20px;
     width: 100vw;
-
+    font-family: 'Slabo 27px', serif;
   }
 
   .survey-question {

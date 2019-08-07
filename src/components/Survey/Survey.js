@@ -64,6 +64,12 @@ class Survey extends Component {
     }
   };
 
+  start = () => {
+    this.setState({
+      question: 1, date: "", mood: "", note: ""
+    })
+  }
+
   beginAgain = () => {
     this.setState({ question: 2, date: "", mood: "", note: "" });
   };
@@ -80,7 +86,7 @@ class Survey extends Component {
         <div className="first-survey-container">
           <section className="next-back">
             <button onClick={this.next} className="survey-text">
-              Touch Here
+              Begin Survey
             </button>
           </section>
         </div>
@@ -137,7 +143,7 @@ class Survey extends Component {
       );
     } else if (this.state.question === 4) {
       return (
-        <div className="dark-dash">
+        <div className="dark-dash" >
           <div className="survey-container">
             <div className="survey-question">
               {" "}
@@ -169,12 +175,8 @@ class Survey extends Component {
             <div>Thank you</div>
             <section className="next-back">
               <button onClick={this.beginAgain}>New Entry</button>
-              <Link to={`/myGraph`}>
-                <button className="next-back">Check out my graph</button>
-              </Link>
-              <Link to={`/Journal`}>
-                <button className="next-back">Go to journal</button>
-              </Link>
+
+              <button className="next-back"  onClick={this.start}>Done</button>
             </section>
           </div>
         </div>

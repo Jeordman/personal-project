@@ -32,6 +32,7 @@ class CounselorLogin extends Component {
     if (!this.state.loading) {
       return (
         <div className="hold-counselor-full">
+          <div className='fill-space'></div>
           <article className="page-label">Counselor Sign in</article>
           <section className="input-holder">
             <input

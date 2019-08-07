@@ -53,6 +53,7 @@ class CounselorSignup extends Component {
       return (
         <section className="counselor-signup-hold">
           {" "}
+          <div className='fill-space-again'></div>
           <h2>Create Counselor Account</h2>
           <section className="main">
             <img

@@ -44,6 +44,7 @@ class Signup extends Component {
     if (!this.state.loading) {
       return (
         <section className="hold-signup">
+           <div className='fill-space-again'></div>
           <h2>Create account</h2>
           <section className="main">
             <img

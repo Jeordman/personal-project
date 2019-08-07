@@ -21,28 +21,40 @@ class GraphHealth extends Component {
     // console.log('this state', this.state.graphInfo)
     console.log("graph info", this.props.graphInfo);
     if (!this.props.user.loggedIn) return <Redirect to="/login" />;
-    return (
-      <div>
-        <section className="fill-in-white-1" ></section>
-        <Header />
-        <section className="fill-in-white" ></section>
-        <div className="full-graph-health">
-          {this.props.graphInfo[0] ? (
-            <section className="my-chart-holder">
-              <MyChart />
-            </section>
-          ) : (
-            <div id="loader-wrapper">
-              <div id="loader" />
-            </div>
-          )}
+    if (this.props.graphInfo[0]) {
+      return (
+        <div>
+          <section className="fill-in-white-1" />
+          <Header />
+          <section className="fill-in-white" />
+          <div className="full-graph-health">
+            {this.props.graphInfo[0] ? (
+              <section className="my-chart-holder">
+                <MyChart />
+              </section>
+            ) : (
+              <div id="loader-wrapper">
+                <div id="loader" />
+              </div>
+            )}
 
-          <div className="introduction-graph">{`Here is how you have felt recently ${
-            this.props.user.first_name
-          }`}</div>
+            <div className="introduction-graph">{`Here is how you have felt recently ${
+              this.props.user.first_name
+            }`}</div>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <div id="loader-wrapper">
+            <div id="loader" />
+            
+            <Redirect to="/" />;
+          </div>
+        </div>
+      );
+    }
   }
 }
 

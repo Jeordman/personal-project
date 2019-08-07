@@ -224,17 +224,29 @@ class Dashboard extends Component {
             <Survey />
           </div>
           <div className="desktop-dash-right">
-            <h4 className="h4">Active Conversations</h4>
-
-            <section className="scroll-right">
-              {this.props.acceptedCounselors.map(obj => {
-                return (
-                  <div>
-                    <ChatMap obj={obj} />
-                  </div>
-                );
-              })}
-            </section>
+            {this.props.acceptedCounselors[0] ? (
+              <div>
+                <h4 className="h4">Active Conversations</h4>
+                <section className="scroll-right">
+                  {this.props.acceptedCounselors.map(obj => {
+                    return (
+                      <div>
+                        <ChatMap obj={obj} />
+                      </div>
+                    );
+                  })}
+                </section>
+              </div>
+            ) : (
+              <div className="scroll-load">
+                <div id="loader-dash"> </div>
+                <div no-active-chats>
+                <div className="no-active-chats">No Active Chats</div>
+                  
+                  
+                </div>
+              </div>
+            )}
 
             <h4 className="h4">Counselors</h4>
             <section className="scroll-right">

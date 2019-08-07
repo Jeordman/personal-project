@@ -1,11 +1,13 @@
 .welcome-message {
   text-align: center;
   margin: 5vh 0vh 0.5vh 0vh;
+  font-family: 'DM Serif Text', serif;
 }
 
 .hold-all {
   position: absolute;
   background-color: #f6f6f6;
+  font-family: 'DM Serif Text', serif;
 }
 
 .title {

@@ -25,6 +25,7 @@ class Journal extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    
     if (this.props.user && prevProps !== this.props) {
       this.setState({
         selectedEntry: this.props.journalEntries[0].entry_id,
