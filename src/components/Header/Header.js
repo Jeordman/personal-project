@@ -70,7 +70,7 @@ class Header extends Component {
                   className="nav-link"
                   onClick={this.handleLogout}
                 >
-                  logout user
+                 Logout
                 </button>
               </div>
             </div>
@@ -106,7 +106,7 @@ class Header extends Component {
                   className="nav-link"
                   onClick={this.handleLogout}
                 >
-                  logout counselor
+                  Logout
                 </button>
               </div>
             </div>
